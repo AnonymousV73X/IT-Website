@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semester 4.1</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-...your-integrity-hash...=" crossorigin="anonymous" />
+  <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+</head>
+
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
+
+
+  body {
+
+    background-color: #f5ede6;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-family: "Bai Jamjuree", sans-serif;
+
+  }
+
+
+  .get {
+    color: #894f1d;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.8;
+    margin-top: 80px;
+    max-width: 300px;
+  }
+
+
+  .book {
+
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-top: 320px !important;
+    margin: 0 auto;
+    border: 5px solid #f5ede6;
+    width: 60px;
+    height: 70px;
+  }
+
+  .book__page {
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    margin: 0 auto;
+    border-top: 5px solid #804000;
+    border-bottom: 5px solid #804000;
+    border-right: 5px solid #804000;
+    border-left: 0.0001px solid #804000;
+    background: #673402;
+    width: 70px;
+    height: 80px;
+    -webkit-transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
+    -webkit-animation: flip 1.2s infinite linear;
+    animation: flip 1.2s infinite linear;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+  }
+
+  .book__page:nth-child(1) {
+    z-index: -1;
+    -webkit-animation-delay: 1.4s;
+    animation-delay: 1.4s;
+  }
+
+  .book__page:nth-child(2) {
+    z-index: -2;
+    -webkit-animation-delay: 2.8s;
+    animation-delay: 2.8s;
+  }
+
+  .book__page:nth-child(3) {
+    z-index: -3;
+    -webkit-animation-delay: 4.2s;
+    animation-delay: 4.2s;
+  }
+
+  @-webkit-keyframes flip {
+    0% {
+      -webkit-transform: perspective(600px) rotateY(0deg);
+      transform: perspective(600px) rotateY(0deg);
+    }
+
+    20% {
+      background: #f5ede6;
+    }
+
+    29.9% {
+      background: #f5ede6;
+    }
+
+    30% {
+      -webkit-transform: perspective(200px) rotateY(-90deg);
+      transform: perspective(200px) rotateY(-90deg);
+      background: #f5ede6;
+    }
+
+    54.999% {
+      opacity: 1;
+    }
+
+    55% {
+      opacity: 0;
+    }
+
+    60% {
+      -webkit-transform: perspective(200px) rotateY(-180deg);
+      transform: perspective(200px) rotateY(-180deg);
+      background: #f5ede6;
+    }
+
+    100% {
+      -webkit-transform: perspective(200px) rotateY(-180deg);
+      transform: perspective(200px) rotateY(-180deg);
+      background: #f5ede6;
+    }
+  }
+
+  @keyframes flip {
+    0% {
+      -webkit-transform: perspective(600px) rotateY(0deg);
+      transform: perspective(600px) rotateY(0deg);
+    }
+
+    20% {
+      background: #f5ede6;
+    }
+
+    29.9% {
+      background: #f5ede6;
+    }
+
+    30% {
+      -webkit-transform: perspective(200px) rotateY(-90deg);
+      transform: perspective(200px) rotateY(-90deg);
+      background: #f5ede6;
+    }
+
+    54.999% {
+      opacity: 1;
+    }
+
+    55% {
+      opacity: 0;
+    }
+
+    60% {
+      -webkit-transform: perspective(200px) rotateY(-180deg);
+      transform: perspective(200px) rotateY(-180deg);
+      background: #f5ede6;
+    }
+
+    100% {
+      -webkit-transform: perspective(200px) rotateY(-180deg);
+      transform: perspective(200px) rotateY(-180deg);
+      background: #f5ede6;
+    }
+  }
+</style>
+
+
+<body>
+
+
+
+  <div class="wrapper-loader">
+
+
+    <div class="loader"></div>
+
+    <div class="book">
+      <div class="book__page"></div>
+      <div class="book__page"></div>
+      <div class="book__page"></div>
+
+    </div>
+
+
+    <p class="get" id="typing-dots"></p>
+
+    <script>
+
+      const dotsElement = document.getElementById('typing-dots');
+          const sentence = " ANON-V73X is still developing this page...";
+      let charIndex = 0;
+
+      function animateTypingDots() {
+        if (charIndex === 0) {
+          dotsElement.textContent = sentence.charAt(charIndex);
+          charIndex++;
+        } else if (charIndex < sentence.length) {
+          dotsElement.textContent = sentence.substring(0, charIndex + 1);
+          charIndex++;
+        } else {
+          charIndex = 0; // Reset charIndex to 0 when it reaches the end of the sentence
+          dotsElement.textContent = sentence.charAt(0); // Set the first character of the sentence
+          charIndex++;
+        }
+
+        setTimeout(animateTypingDots, 100);
+      }
+
+      animateTypingDots();
+
+
+
+
+    </script>
+
+
+
+
+  </div>
+
+</body>
+
+</html>
