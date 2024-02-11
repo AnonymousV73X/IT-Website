@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Analysis and Design</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/page-style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-...your-integrity-hash...=" crossorigin="anonymous" />
+  <link rel="icon" href="../../assets/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+
+  <style>
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 10px;
+      background: #e56707;
+      border-radius: 5px;
+      -webkit-animation: load 1.8s ease-in-out infinite;
+      animation: load 1.8s ease-in-out infinite;
+    }
+
+    .loader:before,
+    .loader:after {
+      position: absolute;
+      display: block;
+      content: "";
+      -webkit-animation: load 1.8s ease-in-out infinite;
+      animation: load 1.8s ease-in-out infinite;
+      height: 10px;
+      border-radius: 5px;
+    }
+
+    .loader:before {
+      top: -20px;
+      left: 10px;
+      width: 40px;
+      background: #c87405;
+    }
+
+    .loader:after {
+      bottom: -20px;
+      width: 35px;
+      background: #F5AB35;
+    }
+
+    @-webkit-keyframes load {
+      0% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+
+      50% {
+        -webkit-transform: translateX(-30px);
+        transform: translateX(-30px);
+      }
+
+      100% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+    }
+
+    @keyframes load {
+      0% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+
+      50% {
+        -webkit-transform: translateX(-30px);
+        transform: translateX(-30px);
+      }
+
+      100% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+    }
+
+
+
+    .get {
+      margin-top: 350px !important;
+
+    }
+
+    .menu-link:hover .fas {
+      color: #f5ede6;
+      transform: translateX(-50%);
+      transition: transform 500ms ease-in-out;
+    }
+
+
+
+    h1 {
+      text-align: center;
+    }
+
+    .uli {
+      --col-gap: 1.2rem;
+      --row-gap: 1.6rem;
+      --line-w: 0.25rem;
+      display: grid;
+      grid-template-columns: var(--line-w) 1fr;
+      grid-auto-columns: max-content;
+      column-gap: var(--col-gap);
+      list-style: none;
+      width: min(60rem, 90%);
+      margin-inline: auto;
+    }
+
+    /* line */
+    .uli::before {
+      content: "";
+      grid-column: 1;
+      grid-row: 1 / span 20;
+      background: rgb(225, 225, 225);
+      border-radius: calc(var(--line-w) / 2);
+    }
+
+    /* columns*/
+
+    /* row gaps */
+    .uli li:not(:last-child) {
+      margin-bottom: var(--row-gap);
+    }
+
+    /* card */
+    .uli li {
+      grid-column: 2;
+      --inlineP: 1.5rem;
+      margin-inline: var(--inlineP);
+      grid-row: span 2;
+      display: grid;
+      grid-template-rows: min-content min-content min-content;
+    }
+
+    /* date */
+    .uli li .date {
+      --dateH: 3rem;
+      height: var(--dateH);
+      margin-inline: calc(var(--inlineP) * -1);
+
+      text-align: center;
+      background-color: var(--accent-color);
+
+      color: white;
+      font-size: 1.0rem;
+      font-weight: 700;
+
+      display: grid;
+      place-content: center;
+      position: relative;
+
+      border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+    }
+
+    /* date flap */
+    .uli li .date::before {
+      content: "";
+      width: var(--inlineP);
+      aspect-ratio: 1;
+      background: var(--accent-color);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+      position: absolute;
+      top: 100%;
+
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      right: 0;
+    }
+
+    /* circle */
+    .uli li .date::after {
+      content: "";
+      position: absolute;
+      width: 1.5rem;
+      aspect-ratio: 1;
+      background: var(--bgColor);
+      border: 0.3rem solid var(--accent-color);
+      border-radius: 50%;
+      top: 50%;
+
+      transform: translate(50%, -50%);
+      right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+    }
+
+    /* title descr */
+    .uli li .title,
+    .uli li .descr {
+      background: var(--bgColor);
+      position: relative;
+      padding-inline: 1rem;
+    }
+
+    .uli li .title {
+      overflow: hidden;
+      padding-block-start: 1.5rem;
+      padding-block-end: 1rem;
+      font-weight: 600;
+      color: #76562b;
+    }
+
+    .uli li .descr {
+      padding-block-end: 0.7rem;
+      font-weight: 500;
+      font-size: 14px;
+      color: #382409;
+
+    }
+
+    /* shadows */
+    .uli li .title::before,
+    .uli li .descr::before {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 0.3rem;
+      background: rgba(139, 69, 19, 0.2);
+      left: 50%;
+      border-radius: 50%;
+      filter: blur(4px);
+      transform: translate(-50%, 50%);
+    }
+
+    .uli li .title::before {
+      bottom: calc(100% + 0.125rem);
+    }
+
+    .uli li .descr::before {
+      z-index: -1;
+      bottom: 0.25rem;
+    }
+
+    @media (min-width: 40rem) {
+      .uli {
+        grid-template-columns: 1fr var(--line-w) 1fr;
+      }
+
+      .uli::before {
+        grid-column: 2;
+      }
+
+      .uli li:nth-child(odd) {
+        grid-column: 1;
+      }
+
+      .uli li:nth-child(even) {
+        grid-column: 3;
+      }
+
+      /* start second card */
+      .uli li:nth-child(2) {
+        grid-row: 2/4;
+      }
+
+      .uli li:nth-child(odd) .date::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+        left: 0;
+      }
+
+      .uli li:nth-child(odd) .date::after {
+        transform: translate(-50%, -50%);
+        left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+      }
+
+      .uli li:nth-child(odd) .date {
+        border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* THEMES */
+
+    /********** Theme: dark **********/
+    /* Font styles */
+
+    /* Rotor group headings */
+    .flipdown.flipdown__theme-dark .rotor-group-heading:before {
+      color: #008080;
+      font-weight: bold;
+      margin-bottom: 10px;
+
+    }
+
+    /* Delimeters */
+    .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,
+    .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+      background-color: #869393;
+    }
+
+    /* Rotor tops */
+    .flipdown.flipdown__theme-dark .rotor,
+    .flipdown.flipdown__theme-dark .rotor-top,
+    .flipdown.flipdown__theme-dark .rotor-leaf-front {
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 28px;
+      background-color: #008080;
+    }
+
+    /* Rotor bottoms */
+    .flipdown.flipdown__theme-dark .rotor-bottom,
+    .flipdown.flipdown__theme-dark .rotor-leaf-rear {
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 28px;
+      background-color: #008080;
+    }
+
+    /* Hinge */
+    .flipdown.flipdown__theme-dark .rotor:after {
+      border-top: solid 0.1px#a2b3b3;
+    }
+
+
+    /* END OF THEMES */
+
+    .flipdown {
+      overflow: visible;
+      width: 510px;
+      height: 110px;
+    }
+
+    .flipdown .rotor-group {
+      position: relative;
+      float: left;
+      padding-right: 30px;
+    }
+
+    .flipdown .rotor-group:last-child {
+      padding-right: 0;
+    }
+
+    .flipdown .rotor-group-heading:before {
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .flipdown .rotor-group:nth-child(1) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(2) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(3) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(4) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      left: 115px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+      content: '';
+      position: absolute;
+      bottom: 50px;
+      left: 115px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .flipdown .rotor {
+      position: relative;
+      float: left;
+      width: 50px;
+      height: 80px;
+      margin: 0px 5px 0px 0px;
+      border-radius: 4px;
+      font-size: 4rem;
+      text-align: center;
+      perspective: 200px;
+    }
+
+    .flipdown .rotor:last-child {
+      margin-right: 0;
+    }
+
+    .flipdown .rotor-top,
+    .flipdown .rotor-bottom {
+      overflow: hidden;
+      position: absolute;
+      width: 50px;
+      height: 40px;
+    }
+
+    .flipdown .rotor-leaf {
+      z-index: 1;
+      position: absolute;
+      width: 50px;
+      height: 80px;
+      transform-style: preserve-3d;
+      transition: transform 0s;
+    }
+
+    .flipdown .rotor-leaf.flipped {
+      transform: rotateX(-180deg);
+      transition: all 0.5s ease-in-out;
+    }
+
+    .flipdown .rotor-leaf-front,
+    .flipdown .rotor-leaf-rear {
+      overflow: hidden;
+      position: absolute;
+      width: 50px;
+      height: 40px;
+      margin: 0;
+      transform: rotateX(0deg);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .flipdown .rotor-leaf-front {
+      line-height: 80px;
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    .flipdown .rotor-leaf-rear {
+      line-height: 0px;
+      border-radius: 0px 0px 4px 4px;
+      transform: rotateX(-180deg);
+    }
+
+    .flipdown .rotor-top {
+      line-height: 80px;
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    .flipdown .rotor-bottom {
+      bottom: 0;
+      line-height: 0px;
+      border-radius: 0px 0px 4px 4px;
+    }
+
+    .flipdown .rotor:after {
+      content: '';
+      z-index: 2;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 50px;
+      height: 40px;
+      border-radius: 0px 0px 4px 4px;
+    }
+
+    @media (max-width: 330px) and (min-width: 0px) {
+      .flipdown {
+        width: 280px !important;
+        height: 140px !important;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-x: scroll !important;
+
+        margin-left: -5px !important;
+
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .flipdown {
+        width: 312px;
+        height: 70px;
+
+      }
+
+      .flipdown .rotor {
+        font-size: 2.2rem;
+        margin-right: 3px;
+      }
+
+      .flipdown .rotor,
+      .flipdown .rotor-leaf,
+      .flipdown .rotor-leaf-front,
+      .flipdown .rotor-leaf-rear,
+      .flipdown .rotor-top,
+      .flipdown .rotor-bottom,
+      .flipdown .rotor:after {
+        width: 30px;
+      }
+
+      .flipdown .rotor-group {
+        padding-right: 20px;
+      }
+
+      .flipdown .rotor-group:last-child {
+        padding-right: 0px;
+      }
+
+      .flipdown .rotor-group-heading:before {
+        font-size: 0.8rem;
+        height: 20px;
+        line-height: 20px;
+      }
+
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before,
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+        left: 69px;
+      }
+
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
+        bottom: 13px;
+        height: 8px;
+        width: 8px;
+      }
+
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+        bottom: 29px;
+        height: 8px;
+        width: 8px;
+      }
+
+      .flipdown .rotor-leaf-front,
+      .flipdown .rotor-top {
+        line-height: 50px;
+      }
+
+      .flipdown .rotor-leaf,
+      .flipdown .rotor {
+        height: 50px;
+      }
+
+      .flipdown .rotor-leaf-front,
+      .flipdown .rotor-leaf-rear,
+      .flipdown .rotor-top,
+      .flipdown .rotor-bottom,
+      .flipdown .rotor:after {
+        height: 25px;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .example h1,
+    .example p,
+    .example .button {
+      transition: all 0.2s ease-in-out;
+    }
+
+    .example {
+
+      height: 300px;
+
+
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f5ede6;
+
+    }
+
+    .example .flipdown {
+      margin: auto;
+
+    }
+
+    .example h3 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #616b6b;
+    }
+
+    .example p {
+      text-align: center;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 40px;
+      color: #585757;
+      font-size: 15px;
+
+    }
+
+    .example .buttons {
+      width: 100%;
+      height: 50px;
+
+      display: flex;
+
+      align-items: center;
+
+    }
+
+    .example .buttons p {
+      height: 50px;
+      line-height: 50px;
+      font-weight: 400;
+      padding: 0px 25px 0px 0px;
+      color: #333;
+      margin: 0px;
+    }
+
+    .example .button {
+      display: inline-block;
+      height: 50px;
+
+      line-height: 46px;
+      text-decoration: none;
+      color: #333;
+      padding: 0px 20px;
+      border: solid 2px #333;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .example .button:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .example .button i {
+      margin-right: 5px;
+    }
+
+    @media (max-width: 550px) {
+      .example {
+        width: 100%;
+        height: 362px;
+      }
+
+      .example h1 {
+        font-size: 2.5em;
+      }
+
+      .example p {
+        margin-bottom: 25px;
+      }
+
+      .example .buttons {
+        width: 100%;
+        margin-top: 25px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .example .buttons p,
+      .example .buttons a {
+        float: none;
+        margin: 0 auto;
+      }
+
+      .example .buttons p {
+        padding-right: 0px;
+      }
+
+      .example .buttons a {
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <nav class="navbar">
+
+
+
+    <div class="container">
+
+      <h2 class="sem2" style="font-size: 17px;">SAD Revision 03</h2>
+
+      <div class="menu">
+
+        <a class="menu-link" onclick="goBack()" style="color: #412f22; cursor:pointer;"><i style="font-size: 14px;"
+            class="fas fa-arrow-left"></i> Go Back</a>
+
+        <script>
+          function goBack() {
+            window.history.back();
+          }
+        </script>
+
+
+
+      </div>
+
+      <button class="hamburger" onclick="toggleHamburger()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </nav>
+
+
+
+
+
+
+  <div id="timetablePopup" style=" margin-bottom:100px; margin-top:100px;">
+
+
+    <div class="example" style="text-align: center;">
+      <h3>Countdown To SAD exam</h3>
+
+      <div id="flipdown" class="flipdown" style="display: flex; flex-wrap:wrap; flex-direction:column;"></div>
+    </div>
+
+
+    <div class="timeline">
+      <h1 data-aos="fade-down" data-aos-delay="100"
+        style="font-size: 1.4rem; margin-top: -50px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
+        System Analysis and Design </h1>
+      <ul class="uli">
+        <li style="--accent-color:#3D1F00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Project Initiation & Planning</div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+            <strong style="font-weight: bold;">Project Initiation and Planning (PIP) Phase - Software Development
+              Project:</strong>
+            <br><br>
+            <strong style="font-weight: bold;">Project Initiation Phase:</strong>
+            <br> <br>
+            - Establishing the project initiation team: <br> The company selects a team of experienced software
+            developers, designers,
+            and testers to work on the project, ensuring relevant skills and expertise in mobile app development.
+            <br> <br>
+            - Establishing a relationship with the customer:<br> An analyst meets with the client to understand their
+            business needs,
+            goals, and requirements, establishing clear communication channels and work standards for effective
+            collaboration.
+            <br><br>
+            - Establishing the project initiation plan:<br> The company creates a plan outlining the initial steps,
+            goals, and
+            objectives of the project, identifying key stakeholders and defining their roles and responsibilities.
+            <br><br>
+            - Establishing management procedures: Project management procedures are set up to handle tasks like progress
+            tracking,
+            issue resolution, and reporting, ensuring the project stays on track.
+            <br><br>
+            <strong style="font-weight: bold;">Project Planning Phase:</strong>
+            <br>
+            - Describing the project scope, alternatives, and feasibility:<br> The team defines the mobile app's scope,
+            considers
+            development approaches, and assesses feasibility for each option.
+            <br><br>
+            - Dividing the project into manageable tasks:<br> The development process is broken down into smaller tasks,
+            such as
+            designing the user interface, developing backend functionalities, and testing the app.
+            <br><br>
+            - Estimating resources and creating a resource plan:<br> The team estimates the required number of
+            developers, designers,
+            and testers for each task and creates a resource plan.
+            <br><br>
+            - Identifying and assessing risks:<br> Potential risks, like technical challenges or changes in
+            requirements, are
+            identified, and strategies to mitigate them are developed.
+            <br><br>
+            - Developing a preliminary schedule and budget:<br> Based on tasks and resource estimates, a preliminary
+            project schedule
+            and budget are created, outlining the timeline and cost for each development phase.
+            <br><br>
+            - Developing a communication plan:<br> A communication plan is established to update stakeholders regularly
+            on the project's
+            progress and any challenges encountered.
+            <br><br>
+            - Creating a Statement of Work (SoW):<br> A detailed SoW is prepared, outlining deliverables, timeline,
+            costs, and other
+            contractual terms.
+            <br><br>
+            - Setting a Baseline Project Plan (BPP):<br> The team finalizes the project plan and obtains approval from
+            the client,
+            stakeholders, and management to proceed with development.
+
+
+          </div>
+
+        </li>
+
+
+
+
+        <li style="--accent-color: #6D4C00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">The SoW & BPP
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <strong style="font-weight: bold;">Baseline Project Plan (BPP):</strong>
+            <br>
+            The BPP is a comprehensive document containing all information collected and analyzed during project
+            initiation and
+            planning. <br> It serves as the foundation for subsequent <em style="font-weight: bold;"
+              style="font-style: italic;">Software Development Life Cycle
+              (SDLC)</em> activities, reflecting the best estimate of project scope, benefits, costs, risks, resources
+            required, and
+            schedules.
+            <br><br>
+            <strong style="font-weight: bold;">Contents of the Baseline Project Plan:</strong>
+            <br>
+            <em style="font-weight: bold;">a) Introduction:</em> Provides an executive summary of the project, outlining
+            scope, feasibility, justification,
+            resource requirements, and schedules.
+            <br>
+            <em style="font-weight: bold;">b) System Description:</em> Describes the selected system configuration,
+            including considered alternatives.
+            <br>
+            <em style="font-weight: bold;">c) Feasibility Assessment:</em> Discusses the feasibility study, analyzing
+            technical, economic, legal, operational,
+            and scheduling aspects.
+            <br>
+            <em style="font-weight: bold;">d) Management Issues:</em> Covers team configuration, management,
+            communication plans, and project standards and
+            procedures.
+            <br><br>
+            The BPP is reviewed by the user, management, and development groups to ensure alignment with organizational
+            standards
+            and gain approval before proceeding to the next <em style="font-weight: bold;"
+              style="font-style: italic;">SDLC</em> phase. A structured
+            walkthrough, involving specific roles, is often used for this review.
+            <br><br>
+            <strong style="font-weight: bold;">Statement of Work (SoW):</strong>
+            <br>
+            The SoW is a concise document prepared for the customer, describing project deliverables and outlining all
+            work required
+            to complete it. It ensures a common understanding between the project team and the customer.
+            <br><br>
+            <strong style="font-weight: bold;">Contents of the Statement of Work:</strong>
+            <br>
+            - Title/Name of the organization and Date of the SoW
+            <br>
+            - Project Name
+            <br>
+            - Project Manager
+            <br>
+            - Customer
+            <br>
+            - Project Sponsor
+            <br>
+            - Project Start/End (<em style="font-weight: bold;" style="font-style: italic;"
+              style="font-weight: bold;">Projected</em> )
+            <br>
+            - Staff/Development Estimates – Names and Number of Months
+            <br><br>
+            The SoW provides a project description, objectives, phases of work, and other essential details about
+            deliverables and
+            benefits. Both the BPP and SoW are crucial documents setting the project's direction, helping stakeholders
+            make informed
+            decisions, ensuring clarity in project goals, and serving as references for all subsequent <em
+              style="font-weight: bold;" style="font-style: italic;">SDLC</em> activities.
+
+
+
+          </div>
+
+        </li>
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Feasibility Study
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <strong style="font-weight: bold;">Economic Feasibility:</strong>
+            <br>
+            The economic feasibility analysis involves evaluating the financial benefits and costs associated with the
+            project. <br>This
+            includes identifying both <em style="font-weight: bold; font-style: italic;">tangible and intangible</em>
+            benefits and
+            costs.
+            <br>
+            <em style="font-weight: bold;">Tangible benefits:</em> Measurable and certain benefits, such as cost
+            savings, error
+            reduction, increased efficiency, and improved management planning and control.
+            <br>
+            <em style="font-weight: bold;">Intangible benefits:</em> Non-measurable benefits with direct organizational
+            or societal
+            implications, like improved employee morale or reduced waste creation.
+            <br>
+            Project costs are also assessed, including tangible costs like hardware and software purchases, labor costs,
+            training
+            expenses, and intangible costs like loss of customer goodwill or operational inefficiencies. Both one-time
+            and recurring
+            costs are considered.
+            <br><br>
+            <strong style="font-weight: bold;">Technical Feasibility:</strong>
+            <br>
+            Technical feasibility evaluates the organization's ability to construct the proposed system. Key factors
+            include:
+            <br>
+            - Project size: Larger projects are riskier due to complexity and coordination challenges.
+            <br>
+            - Project structure: Renovating existing systems or making procedural changes may be less risky than
+            completely new
+            projects.
+            <br>
+            - Development Group: Familiarity with target hardware, software, and prior experience with similar projects
+            influence
+            technical risk.
+            <br>
+            - User Groups: Familiarity with IS development processes and previous experience with similar systems impact
+            project
+            risk.
+            <br>
+            Managing technical risks involves understanding potential sources of risks and devising strategies to
+            mitigate them.
+            <br><br>
+            <strong style="font-weight: bold;">Operational Feasibility:</strong>
+            <br>
+            Operational feasibility assesses whether the proposed project aligns with the organization's deadlines and
+            constraints
+            for implementing change. It ensures that the project activities can be completed within the available time
+            frame and
+            resources.
+            <br><br>
+            <strong style="font-weight: bold;">Legal and Contractual Feasibility:</strong>
+            <br>
+            This feasibility focuses on evaluating potential legal and contractual implications due to the construction
+            of the
+            system. Considerations include copyright infringements, labor laws, antitrust legislation, foreign trade
+            regulations,
+            and contractual obligations, especially when using third-party services.
+            <br><br>
+            <strong style="font-weight: bold;">Political Feasibility:</strong>
+            <br>
+            Political feasibility refers to the evaluation of how key stakeholders within the organization view the
+            proposed system.
+            It addresses whether these stakeholders support, oppose, or might attempt to disrupt the project.
+            Understanding
+            political feasibility helps anticipate and address potential resistance or challenges from influential
+            parties.
+
+
+          </div>
+
+        </li>
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Design Phase of SDLC
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            Imagine a company called "XYZ Tech Solutions" that offers various IT services. They want to create a new
+            website to
+            showcase their services and attract potential clients. <br> <br>
+            Here's how the design phase would unfold: <br><br>
+
+
+            <strong style="font-weight: bold;">System Analysis:</strong>
+            <br>
+            During the analysis phase, "XYZ Tech Solutions" identifies website requirements and gathers input from
+            stakeholders.
+            They define the purpose, target audience, key features, and content. The system analyst documents these in a
+            System
+            Requirements Specification (SRS) document.
+            <br><br>
+            <strong style="font-weight: bold;">Transition to Design Phase:</strong>
+            <br>
+            After reviewing the SRS document, management decides to develop the website in-house, marking the transition
+            to the
+            design phase.
+            <br><br>
+            <strong style="font-weight: bold;">Logical Design:</strong>
+            <br>
+            In the logical design phase, the system analyst defines website functions and features without specific
+            implementation
+            details. They determine pages, content, and navigation. For example, homepage, services, contact, and blog
+            sections.
+            <br><br>
+            <strong style="font-weight: bold;">Physical Design:</strong>
+            <br>
+            The physical design phase plans website implementation based on the logical design. It covers data entry
+            methods, server
+            file organization, page layout, and output format. For example, HTML, CSS, JavaScript for front-end, and a
+            database for
+            client info.
+            <br><br>
+            <strong style="font-weight: bold;">Relationship between Analysis and Design:</strong>
+            <br>
+            Logical and physical design are related. Logical design comes first and serves as the foundation for
+            physical design.
+            Deviations from the analysis are minimized, focusing on moving forward with the established logical design.
+            <br><br>
+            <strong style="font-weight: bold;">Continuous Review:</strong>
+            <br>
+            Throughout the design phase, the system analyst ensures the physical design aligns with the SRS document.
+            Any deviations
+            are documented and justified.
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Implementation Phase of SDLC
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong style="font-weight: bold;">System Implementation:</strong>
+            <br>
+            System Implementation is the phase of the SDLC where the physical specifications and design are turned into
+            a working
+            computer system. <br> It involves coding, testing, installing the system, documenting it, training users,
+            and preparing the
+            necessary support systems to assist users.
+            <br><br>
+            <strong style="font-weight: bold;">1. Coding:</strong>
+            <br>
+            <em style="font-style: italic;">Example:</em> Imagine a company developing a mobile application for food
+            delivery
+            services. During the coding phase, the software developers will write the necessary code to build the app
+            based on the
+            physical design specifications. They will implement features like user registration, order placement,
+            payment
+            processing, and delivery tracking by translating the logical design into actual code.
+            <br><br>
+            <strong style="font-weight: bold;">2. Testing:</strong>
+            <br>
+            <em style="font-style: italic;">Example:</em> Continuing with the food delivery app, during the testing
+            phase, the
+            developers will systematically test the app's various components to detect and fix errors. They will conduct
+            unit
+            testing to ensure that individual modules, such as order processing or payment handling, perform their
+            functions
+            correctly. Integration testing will be carried out to verify that all modules work together seamlessly.
+            System testing
+            will evaluate the entire app's functionality, including how it interacts with external systems like GPS for
+            tracking
+            deliveries. They will document the testing process and any issues encountered for further analysis and
+            resolution.
+            <br><br>
+            <strong style="font-weight: bold;">3. Installation:</strong>
+            <br>
+            <em style="font-style: italic;">Example:</em> Once the food delivery app has passed the testing phase, it is
+            ready for
+            installation on the servers or app stores. The development team will deploy the application to the
+            designated servers,
+            making it accessible to users for download and use.
+            <br><br>
+            <strong style="font-weight: bold;">4. Documentation:</strong>
+            <br>
+            <em style="font-style: italic;">Example:</em> Comprehensive documentation is crucial for the food delivery
+            app's
+            success. The development team will prepare user manuals, technical guides, and system documentation. The
+            user manuals
+            will help customers understand how to use the app, while technical guides will assist support staff in
+            troubleshooting
+            and maintaining the system. The system documentation will provide insights into the architecture, database
+            structures,
+            and other technical details.
+            <br><br>
+            <strong style="font-weight: bold;">5. Training:</strong>
+            <br>
+            <em style="font-style: italic;">Example:</em> To ensure smooth adoption of the food delivery app, the
+            development team
+            may conduct training sessions for the restaurant owners, delivery personnel, and customer support staff.
+            These training
+            sessions will familiarize users with the app's features and functionalities, making them more confident in
+            using it
+            effectively.
+            <br><br>
+            <strong style="font-weight: bold;">6. Support:</strong>
+            <br>
+            <em style="font-style: italic;">Example:</em> After the app is launched, a support system will be set up to
+            assist users
+            in case they encounter any issues or have questions. This support system might include a help desk, online
+            chat support,
+            or an email support team that responds to customer inquiries promptly.
+
+          </div>
+
+        </li>
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">System Installation
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong style="font-weight: bold;">Approaches to System Installation:</strong>
+            <br>
+            <strong><em style="font-weight: bold;">1) Direct Installation:</em></strong>
+            <br>
+            Example: A retail chain decides to replace its outdated point-of-sale (POS) system with a modern,
+            cloud-based POS
+            solution. They choose direct installation because the new system has a completely different architecture and
+            offers more
+            advanced features. The company is confident in the new system's reliability and accuracy after extensive
+            testing and
+            vendor recommendations. On the go-live day, <strong style="font-weight: bold;">they switch off the old POS
+              system and
+              switch on the new one</strong>, resulting in a seamless transition for both customers and employees.
+            <br><br>
+            <strong><em style="font-weight: bold;">2) Parallel Installation:</em></strong>
+            <br>
+            Example: A medium-sized manufacturing company is implementing a new Enterprise Resource Planning (ERP)
+            system to
+            streamline their operations. To ensure a smooth transition and minimize risks, they decide to run the new
+            ERP system in
+            parallel with the existing legacy system for a few months. During this period, they compare outputs from
+            both systems to
+            verify the new system's performance. Once the management is confident in the new system's reliability,
+            <strong style="font-weight: bold;">they turn off the legacy system and fully adopt the new ERP
+              solution</strong>.
+            <br><br>
+            <strong><em style="font-weight: bold;">3) Single Location Installation/Pilot Installation:</em></strong>
+            <br>
+            Example: An international airline company wants to upgrade its reservation and booking system. Instead of
+            rolling out
+            the new system across all locations simultaneously, they decide to pilot the installation at one of their
+            smaller
+            regional offices. The new system is tested thoroughly in this single location, and feedback is collected
+            from users.
+            Based on the results and feedback, any necessary adjustments are made <strong
+              style="font-weight: bold;">before
+              implementing the system in other locations</strong>.
+            <br><br>
+            <strong><em style="font-weight: bold;">4) Phased Installation/Staged Installation:</em></strong>
+            <br>
+            Example: A large educational institution is replacing its outdated student information system with a modern,
+            integrated
+            student management solution. They opt for a phased installation approach, starting with the registration and
+            admission
+            module. Once the new module is successfully implemented and stable, they proceed to install the grading and
+            attendance
+            module. This incremental approach allows the institution to manage potential risks and <strong
+              style="font-weight: bold;">ensure smooth integration between the new and old systems</strong>.
+            <br><br>
+            <strong style="font-weight: bold;">Planning Installation:</strong>
+            <br>
+            In the process of system installation, it's essential to plan and manage several aspects, including data
+            conversion,
+            hardware setup, training, and scheduling. For example, when implementing a new Customer Relationship
+            Management (CRM)
+            system for a retail company, they need to <strong style="font-weight: bold;">convert their existing customer
+              data into
+              the format compatible with the new CRM</strong>. They may also need to reformat the data to match the new
+            database
+            structure.
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Approaches to Installation
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong style="font-weight: bold;">Advantages of Different Approaches to Installation:</strong>
+            <br>
+            <strong style="font-weight: bold;">Direct Installation:</strong>
+            <br>
+            Quick and straightforward process.
+            <br>
+            Immediate transition to the new system, minimizing downtime.
+            <br>
+            Suitable for cases where the new system is vastly different from the old one.
+            <br><br>
+            <strong style="font-weight: bold;">Parallel Installation:</strong>
+            <br>
+            Allows for side-by-side comparison of the old and new systems.
+            <br>
+            Ensures a fallback option if issues arise in the new system.
+            <br>
+            Lower risk as the old system continues to work during the transition.
+            <br><br>
+            <strong style="font-weight: bold;">Single Location Installation/Pilot Installation:</strong>
+            <br>
+            Enables gradual implementation, reducing risks across the organization.
+            <br>
+            Easier to manage and control the transition in a smaller test environment.
+            <br>
+            Provides valuable feedback and insights before full deployment.
+            <br><br>
+            <strong style="font-weight: bold;">Phased Installation/Staged Installation:</strong>
+            <br>
+            Incremental approach reduces the impact of change on users.
+            <br>
+            Early modules can be tested and refined before proceeding further.
+            <br>
+            Allows for a smoother transition across the organization.
+            <br><br>
+            <strong style="font-weight: bold;">Disadvantages of Different Approaches to Installation:</strong>
+            <br>
+            <strong style="font-weight: bold;">Direct Installation:</strong>
+            <br>
+            High risk if the new system fails to meet expectations.
+            <br>
+            Limited opportunity to revert to the old system if critical issues arise.
+            <br>
+            Employees may face difficulties adjusting to the sudden change.
+            <br><br>
+            <strong style="font-weight: bold;">Parallel Installation:</strong>
+            <br>
+            Resource-intensive, requiring both old and new systems to run simultaneously.
+            <br>
+            Potential confusion for users managing two systems simultaneously.
+            <br>
+            Extended timeframe for full transition, impacting overall efficiency.
+            <br><br>
+            <strong style="font-weight: bold;">Single Location Installation/Pilot Installation:</strong>
+            <br>
+            Limited scope may not fully represent challenges across the organization.
+            <br>
+            May not uncover certain issues that arise during a broader rollout.
+            <br>
+            Can result in delays if adjustments are needed after the pilot phase.
+            <br><br>
+            <strong style="font-weight: bold;">Phased Installation/Staged Installation:</strong>
+            <br>
+            Complexity increases as more components are integrated.
+            <br>
+            Potential compatibility issues between phased components.
+            <br>
+            Lengthy implementation timeline due to gradual rollout.
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Types of Documentation
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong style="font-weight: bold;">Basic Types of Documentation: System Documentation and User
+              Documentation</strong>
+            <br>
+            <strong style="font-weight: bold;">1. System Documentation:</strong>
+            <br>
+            a) <strong style="font-weight: bold;">Internal Documentation:</strong> This type of documentation is usually
+            embedded
+            within the program source code or automatically generated during the compilation process. It provides
+            insights into how
+            the code works and helps developers understand the internal logic and structure of the software. Examples of
+            internal
+            documentation include comments within the code that explain specific functions, algorithms, or complex
+            logic.
+            <br> <br>
+            <em>Example:</em> A software development team is building a web application for an e-commerce platform. In
+            the source
+            code, they include comments that explain the steps involved in processing a customer's order, calculating
+            the shipping
+            cost, and handling various exceptions during the checkout process. These comments serve as internal
+            documentation to
+            guide other developers who might work on the code in the future.
+            <br><br>
+            b) <strong style="font-weight: bold;">External Documentation:</strong> This type of documentation
+            encompasses a broader
+            view of the system and is created using structured diagramming techniques like data flow diagrams (DFD) and
+            entity-relationship diagrams (ERD). It captures the system's design specifications, interactions between
+            various
+            components, and the flow of data within the system.
+            <br> <br>
+            <em>Example:</em> For the same e-commerce web application, the development team creates external
+            documentation in the
+            form of DFDs that illustrate how data flows from user input on the website to the database and back to the
+            user as a
+            response. Additionally, they create ERDs to depict the relationships between entities such as customers,
+            products, and
+            orders in the database.
+            <br><br>
+            <strong style="font-weight: bold;">2. User Documentation:</strong> User documentation provides information
+            to end-users,
+            explaining how to use the software effectively. It includes written or visual instructions that guide users
+            on how to
+            navigate the application's interface, perform specific tasks, and access various features.
+            <br> <br>
+            <em>Example:</em> In the case of the e-commerce web application, user documentation would include on-screen
+            tooltips,
+            pop-up help messages, and step-by-step guides for processes like creating an account, adding items to the
+            shopping cart,
+            and completing the checkout process. This documentation helps users understand the application's
+            functionalities and
+            empowers them to use it efficiently.
+            <br><br>
+            In modern software development, user documentation is often delivered online in hypertext format. This
+            allows users to
+            access help and instructions directly within the application, making it easier to find relevant information
+            without the
+            need for bulky printed manuals.
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Approaches to Installation
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong style="font-weight: bold;">Computer Training Methods:</strong><br>
+            <strong><em style="font-weight: bold;">Tutorial - One person taught at a time:</em></strong><br>
+            Example: The retail company hires a trainer to provide one-on-one tutorials to its store managers and
+            cashiers. During
+            these sessions, the trainer demonstrates how to use the new POS system, including how to process
+            transactions, handle
+            returns, and manage inventory. Each staff member receives personalized attention, allowing them to ask
+            questions and
+            practice using the system hands-on.<br>
+            <strong><em style="font-weight: bold;">Course - Several people taught at a time:</em></strong><br>
+            Example: To train a larger group of store employees simultaneously, the retail company organizes group
+            training courses.
+            They schedule sessions in which a trainer conducts classroom-style training for store employees from
+            multiple locations.
+            This approach allows for more efficient training of a larger number of users at once.<br>
+            <strong><em style="font-weight: bold;">Computer Aided Instructions:</em></strong><br>
+            Example: The retail company provides computer-aided instruction through interactive e-learning modules.
+            Employees can
+            access these modules on the company's intranet or through an online learning platform. The modules include
+            interactive
+            quizzes and simulations that help employees learn how to use the POS system step by step at their own
+            pace.<br>
+            <strong>User Support:</strong><br>
+            <strong><em style="font-weight: bold;">Electronic Performance Support Systems (EPSS):</em></strong><br>
+            Example: The new POS system comes with an embedded EPSS that provides on-screen help and guidance to users.
+            When an
+            employee encounters a new feature or has a question, they can access the EPSS, which offers contextual help,
+            tutorials,
+            and links to reference materials directly within the POS software. This feature assists users in real-time
+            without
+            requiring them to leave the application.<br>
+            <strong><em style="font-weight: bold;">Online Support Forums:</em></strong><br>
+            Example: The retail company sets up an online support forum where employees can post questions, share
+            experiences, and
+            seek assistance related to the new POS system. Trainers and experienced users, as well as representatives
+            from the POS
+            vendor, actively participate in the forum to provide timely answers and solutions.<br>
+            <strong><em style="font-weight: bold;">On-Demand Fax and Voice Response Systems:</em></strong><br>
+            Example: To provide quick and efficient support, the retail company establishes an on-demand support system
+            that allows
+            employees to request help via fax or interactive voice response (IVR). The system can provide automated
+            responses to
+            common inquiries or route more complex issues to appropriate support personnel for resolution.<br>
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
+      </ul>
+    </div>
+  </div>
+
+
+
+
+  <div class="wrapper-loader">
+
+
+
+
+
+
+
+    <div class='loader'></div>
+
+
+    <p class="get" id="typing-dots">Getting Things Ready</p>
+
+    <script>
+
+      const dotsElement = document.getElementById('typing-dots');
+      const dots = '...';
+      let dotCount = 0;
+
+      function animateTypingDots() {
+        dotsElement.textContent = 'Getting Things Ready' + dots.substring(0, dotCount);
+        dotCount = (dotCount + 1) % (dots.length + 1);
+        setTimeout(animateTypingDots, 300);
+      }
+
+      animateTypingDots();
+
+    </script>
+
+
+
+
+
+
+
+
+  </div>
+
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      var targetDate = new Date(new Date().getFullYear(), 7, 15, 9, 0).getTime() / 1000;
+
+      // Set up FlipDown
+      var flipdown = new FlipDown(targetDate)
+
+        // Start the countdown
+        .start()
+
+        // Do something when the countdown ends
+        .ifEnded(() => {
+          console.log("The countdown has ended!");
+        });
+
+
+
+      // Show version number
+      var ver = document.getElementById("ver");
+      ver.innerHTML = flipdown.version;
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "use strict";
+
+    function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+    function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+    var FlipDown = function () {
+      function FlipDown(uts) {
+        var el = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "flipdown";
+        var opt = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+        _classCallCheck(this, FlipDown);
+
+        if (typeof uts !== "number") {
+          throw new Error("FlipDown: Constructor expected unix timestamp, got ".concat(_typeof(uts), " instead."));
+        }
+
+        if (_typeof(el) === "object") {
+          opt = el;
+          el = "flipdown";
+        }
+
+        this.version = "0.3.2";
+        this.initialised = false;
+        this.now = this._getTime();
+        this.epoch = uts;
+        this.countdownEnded = false;
+        this.hasEndedCallback = null;
+        this.element = document.getElementById(el);
+        this.rotors = [];
+        this.rotorLeafFront = [];
+        this.rotorLeafRear = [];
+        this.rotorTops = [];
+        this.rotorBottoms = [];
+        this.countdown = null;
+        this.daysRemaining = 0;
+        this.clockValues = {};
+        this.clockStrings = {};
+        this.clockValuesAsString = [];
+        this.prevClockValuesAsString = [];
+        this.opts = this._parseOptions(opt);
+
+        this._setOptions();
+
+        console.log("FlipDown ".concat(this.version, " (Theme: ").concat(this.opts.theme, ")"));
+      }
+
+      _createClass(FlipDown, [{
+        key: "start",
+        value: function start() {
+          if (!this.initialised) this._init();
+          this.countdown = setInterval(this._tick.bind(this), 1000);
+          return this;
+        }
+      }, {
+        key: "ifEnded",
+        value: function ifEnded(cb) {
+          this.hasEndedCallback = function () {
+            cb();
+            this.hasEndedCallback = null;
+          };
+
+          return this;
+        }
+      }, {
+        key: "_getTime",
+        value: function _getTime() {
+          return new Date().getTime() / 1000;
+        }
+      }, {
+        key: "_hasCountdownEnded",
+        value: function _hasCountdownEnded() {
+          if (this.epoch - this.now < 0) {
+            this.countdownEnded = true;
+
+            if (this.hasEndedCallback != null) {
+              this.hasEndedCallback();
+              this.hasEndedCallback = null;
+            }
+
+            return true;
+          } else {
+            this.countdownEnded = false;
+            return false;
+          }
+        }
+      }, {
+        key: "_parseOptions",
+        value: function _parseOptions(opt) {
+          var headings = ["Days", "Hours", "Minutes", "Seconds"];
+
+          if (opt.headings && opt.headings.length === 4) {
+            headings = opt.headings;
+          }
+
+          return {
+            theme: opt.hasOwnProperty("theme") ? opt.theme : "dark",
+            headings: headings
+          };
+        }
+      }, {
+        key: "_setOptions",
+        value: function _setOptions() {
+          this.element.classList.add("flipdown__theme-".concat(this.opts.theme));
+        }
+      }, {
+        key: "_init",
+        value: function _init() {
+          this.initialised = true;
+
+          if (this._hasCountdownEnded()) {
+            this.daysremaining = 0;
+          } else {
+            this.daysremaining = Math.floor((this.epoch - this.now) / 86400).toString().length;
+          }
+
+          var dayRotorCount = this.daysremaining <= 2 ? 2 : this.daysremaining;
+
+          for (var i = 0; i < dayRotorCount + 6; i++) {
+            this.rotors.push(this._createRotor(0));
+          }
+
+          var dayRotors = [];
+
+          for (var i = 0; i < dayRotorCount; i++) {
+            dayRotors.push(this.rotors[i]);
+          }
+
+          this.element.appendChild(this._createRotorGroup(dayRotors, 0));
+          var count = dayRotorCount;
+
+          for (var i = 0; i < 3; i++) {
+            var otherRotors = [];
+
+            for (var j = 0; j < 2; j++) {
+              otherRotors.push(this.rotors[count]);
+              count++;
+            }
+
+            this.element.appendChild(this._createRotorGroup(otherRotors, i + 1));
+          }
+
+          this.rotorLeafFront = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-leaf-front"));
+          this.rotorLeafRear = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-leaf-rear"));
+          this.rotorTop = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-top"));
+          this.rotorBottom = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-bottom"));
+
+          this._tick();
+
+          this._updateClockValues(true);
+
+          return this;
+        }
+      }, {
+        key: "_createRotorGroup",
+        value: function _createRotorGroup(rotors, rotorIndex) {
+          var rotorGroup = document.createElement("div");
+          rotorGroup.className = "rotor-group";
+          var dayRotorGroupHeading = document.createElement("div");
+          dayRotorGroupHeading.className = "rotor-group-heading";
+          dayRotorGroupHeading.setAttribute("data-before", this.opts.headings[rotorIndex]);
+          rotorGroup.appendChild(dayRotorGroupHeading);
+          appendChildren(rotorGroup, rotors);
+          return rotorGroup;
+        }
+      }, {
+        key: "_createRotor",
+        value: function _createRotor() {
+          var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+          var rotor = document.createElement("div");
+          var rotorLeaf = document.createElement("div");
+          var rotorLeafRear = document.createElement("figure");
+          var rotorLeafFront = document.createElement("figure");
+          var rotorTop = document.createElement("div");
+          var rotorBottom = document.createElement("div");
+          rotor.className = "rotor";
+          rotorLeaf.className = "rotor-leaf";
+          rotorLeafRear.className = "rotor-leaf-rear";
+          rotorLeafFront.className = "rotor-leaf-front";
+          rotorTop.className = "rotor-top";
+          rotorBottom.className = "rotor-bottom";
+          rotorLeafRear.textContent = v;
+          rotorTop.textContent = v;
+          rotorBottom.textContent = v;
+          appendChildren(rotor, [rotorLeaf, rotorTop, rotorBottom]);
+          appendChildren(rotorLeaf, [rotorLeafRear, rotorLeafFront]);
+          return rotor;
+        }
+      }, {
+        key: "_tick",
+        value: function _tick() {
+          this.now = this._getTime();
+          var diff = this.epoch - this.now <= 0 ? 0 : this.epoch - this.now;
+          this.clockValues.d = Math.floor(diff / 86400);
+          diff -= this.clockValues.d * 86400;
+          this.clockValues.h = Math.floor(diff / 3600);
+          diff -= this.clockValues.h * 3600;
+          this.clockValues.m = Math.floor(diff / 60);
+          diff -= this.clockValues.m * 60;
+          this.clockValues.s = Math.floor(diff);
+
+          this._updateClockValues();
+
+          this._hasCountdownEnded();
+        }
+      }, {
+        key: "_updateClockValues",
+        value: function _updateClockValues() {
+          var _this = this;
+
+          var init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+          this.clockStrings.d = pad(this.clockValues.d, 2);
+          this.clockStrings.h = pad(this.clockValues.h, 2);
+          this.clockStrings.m = pad(this.clockValues.m, 2);
+          this.clockStrings.s = pad(this.clockValues.s, 2);
+          this.clockValuesAsString = (this.clockStrings.d + this.clockStrings.h + this.clockStrings.m + this.clockStrings.s).split("");
+          this.rotorLeafFront.forEach(function (el, i) {
+            el.textContent = _this.prevClockValuesAsString[i];
+          });
+          this.rotorBottom.forEach(function (el, i) {
+            el.textContent = _this.prevClockValuesAsString[i];
+          });
+
+          function rotorTopFlip() {
+            var _this2 = this;
+
+            this.rotorTop.forEach(function (el, i) {
+              if (el.textContent != _this2.clockValuesAsString[i]) {
+                el.textContent = _this2.clockValuesAsString[i];
+              }
+            });
+          }
+
+          function rotorLeafRearFlip() {
+            var _this3 = this;
+
+            this.rotorLeafRear.forEach(function (el, i) {
+              if (el.textContent != _this3.clockValuesAsString[i]) {
+                el.textContent = _this3.clockValuesAsString[i];
+                el.parentElement.classList.add("flipped");
+                var flip = setInterval(function () {
+                  el.parentElement.classList.remove("flipped");
+                  clearInterval(flip);
+                }.bind(_this3), 500);
+              }
+            });
+          }
+
+          if (!init) {
+            setTimeout(rotorTopFlip.bind(this), 500);
+            setTimeout(rotorLeafRearFlip.bind(this), 500);
+          } else {
+            rotorTopFlip.call(this);
+            rotorLeafRearFlip.call(this);
+          }
+
+          this.prevClockValuesAsString = this.clockValuesAsString;
+        }
+      }]);
+
+      return FlipDown;
+    }();
+
+    function pad(n, len) {
+      n = n.toString();
+      return n.length < len ? pad("0" + n, len) : n;
+    }
+
+    function appendChildren(parent, children) {
+      children.forEach(function (el) {
+        parent.appendChild(el);
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+  <script src="../../assets/js/app.js"></script>
+  <script src="../../assets/js/semesters.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+    });
+  </script>
+</body>
+
+</html>

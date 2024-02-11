@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEB Applications Programming</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/page-style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-...your-integrity-hash...=" crossorigin="anonymous" />
+  <link rel="icon" href="../../assets/images/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+
+  <style>
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 10px;
+      background: #e56707;
+      border-radius: 5px;
+      -webkit-animation: load 1.8s ease-in-out infinite;
+      animation: load 1.8s ease-in-out infinite;
+    }
+
+    .loader:before,
+    .loader:after {
+      position: absolute;
+      display: block;
+      content: "";
+      -webkit-animation: load 1.8s ease-in-out infinite;
+      animation: load 1.8s ease-in-out infinite;
+      height: 10px;
+      border-radius: 5px;
+    }
+
+    .loader:before {
+      top: -20px;
+      left: 10px;
+      width: 40px;
+      background: #c87405;
+    }
+
+    .loader:after {
+      bottom: -20px;
+      width: 35px;
+      background: #F5AB35;
+    }
+
+    @-webkit-keyframes load {
+      0% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+
+      50% {
+        -webkit-transform: translateX(-30px);
+        transform: translateX(-30px);
+      }
+
+      100% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+    }
+
+    @keyframes load {
+      0% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+
+      50% {
+        -webkit-transform: translateX(-30px);
+        transform: translateX(-30px);
+      }
+
+      100% {
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+      }
+    }
+
+
+
+    .get {
+      margin-top: 350px !important;
+
+    }
+
+    .menu-link:hover .fas {
+      color: #f5ede6;
+      transform: translateX(-50%);
+      transition: transform 500ms ease-in-out;
+    }
+
+
+
+    h1 {
+      text-align: center;
+    }
+
+    .uli {
+      --col-gap: 1.2rem;
+      --row-gap: 1.6rem;
+      --line-w: 0.25rem;
+      display: grid;
+      grid-template-columns: var(--line-w) 1fr;
+      grid-auto-columns: max-content;
+      column-gap: var(--col-gap);
+      list-style: none;
+      width: min(60rem, 90%);
+      margin-inline: auto;
+    }
+
+    /* line */
+    .uli::before {
+      content: "";
+      grid-column: 1;
+      grid-row: 1 / span 20;
+      background: rgb(225, 225, 225);
+      border-radius: calc(var(--line-w) / 2);
+    }
+
+    /* columns*/
+
+    /* row gaps */
+    .uli li:not(:last-child) {
+      margin-bottom: var(--row-gap);
+    }
+
+    /* card */
+    .uli li {
+      grid-column: 2;
+      --inlineP: 1.5rem;
+      margin-inline: var(--inlineP);
+      grid-row: span 2;
+      display: grid;
+      grid-template-rows: min-content min-content min-content;
+    }
+
+    /* date */
+    .uli li .date {
+      --dateH: 3rem;
+      height: var(--dateH);
+      margin-inline: calc(var(--inlineP) * -1);
+
+      text-align: center;
+      background-color: var(--accent-color);
+
+      color: white;
+      font-size: 1.0rem;
+      font-weight: 700;
+
+      display: grid;
+      place-content: center;
+      position: relative;
+
+      border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+    }
+
+    /* date flap */
+    .uli li .date::before {
+      content: "";
+      width: var(--inlineP);
+      aspect-ratio: 1;
+      background: var(--accent-color);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+      position: absolute;
+      top: 100%;
+
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      right: 0;
+    }
+
+    /* circle */
+    .uli li .date::after {
+      content: "";
+      position: absolute;
+      width: 1.5rem;
+      aspect-ratio: 1;
+      background: var(--bgColor);
+      border: 0.3rem solid var(--accent-color);
+      border-radius: 50%;
+      top: 50%;
+
+      transform: translate(50%, -50%);
+      right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+    }
+
+    /* title descr */
+    .uli li .title,
+    .uli li .descr {
+      background: var(--bgColor);
+      position: relative;
+      padding-inline: 1rem;
+    }
+
+    .uli li .title {
+      overflow: hidden;
+      padding-block-start: 1.5rem;
+      padding-block-end: 1rem;
+      font-weight: 600;
+      color: #76562b;
+    }
+
+    .uli li .descr {
+      padding-block-end: 0.7rem;
+      font-weight: 500;
+      font-size: 14px;
+      color: #382409;
+
+    }
+
+    /* shadows */
+    .uli li .title::before,
+    .uli li .descr::before {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 0.3rem;
+      background: rgba(139, 69, 19, 0.2);
+      left: 50%;
+      border-radius: 50%;
+      filter: blur(4px);
+      transform: translate(-50%, 50%);
+    }
+
+    .uli li .title::before {
+      bottom: calc(100% + 0.125rem);
+    }
+
+    .uli li .descr::before {
+      z-index: -1;
+      bottom: 0.25rem;
+    }
+
+    @media (min-width: 40rem) {
+      .uli {
+        grid-template-columns: 1fr var(--line-w) 1fr;
+      }
+
+      .uli::before {
+        grid-column: 2;
+      }
+
+      .uli li:nth-child(odd) {
+        grid-column: 1;
+      }
+
+      .uli li:nth-child(even) {
+        grid-column: 3;
+      }
+
+      /* start second card */
+      .uli li:nth-child(2) {
+        grid-row: 2/4;
+      }
+
+      .uli li:nth-child(odd) .date::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+        left: 0;
+      }
+
+      .uli li:nth-child(odd) .date::after {
+        transform: translate(-50%, -50%);
+        left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+      }
+
+      .uli li:nth-child(odd) .date {
+        border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* THEMES */
+
+    /********** Theme: dark **********/
+    /* Font styles */
+
+    /* Rotor group headings */
+    .flipdown.flipdown__theme-dark .rotor-group-heading:before {
+      color: #008080;
+      font-weight: bold;
+      margin-bottom: 10px;
+
+    }
+
+    /* Delimeters */
+    .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,
+    .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+      background-color: #869393;
+    }
+
+    /* Rotor tops */
+    .flipdown.flipdown__theme-dark .rotor,
+    .flipdown.flipdown__theme-dark .rotor-top,
+    .flipdown.flipdown__theme-dark .rotor-leaf-front {
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 28px;
+      background-color: #008080;
+    }
+
+    /* Rotor bottoms */
+    .flipdown.flipdown__theme-dark .rotor-bottom,
+    .flipdown.flipdown__theme-dark .rotor-leaf-rear {
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 28px;
+      background-color: #008080;
+    }
+
+    /* Hinge */
+    .flipdown.flipdown__theme-dark .rotor:after {
+      border-top: solid 0.1px#a2b3b3;
+    }
+
+
+    /* END OF THEMES */
+
+    .flipdown {
+      overflow: visible;
+      width: 510px;
+      height: 110px;
+    }
+
+    .flipdown .rotor-group {
+      position: relative;
+      float: left;
+      padding-right: 30px;
+    }
+
+    .flipdown .rotor-group:last-child {
+      padding-right: 0;
+    }
+
+    .flipdown .rotor-group-heading:before {
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .flipdown .rotor-group:nth-child(1) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(2) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(3) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(4) .rotor-group-heading:before {
+      content: attr(data-before);
+    }
+
+    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      left: 115px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+      content: '';
+      position: absolute;
+      bottom: 50px;
+      left: 115px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .flipdown .rotor {
+      position: relative;
+      float: left;
+      width: 50px;
+      height: 80px;
+      margin: 0px 5px 0px 0px;
+      border-radius: 4px;
+      font-size: 4rem;
+      text-align: center;
+      perspective: 200px;
+    }
+
+    .flipdown .rotor:last-child {
+      margin-right: 0;
+    }
+
+    .flipdown .rotor-top,
+    .flipdown .rotor-bottom {
+      overflow: hidden;
+      position: absolute;
+      width: 50px;
+      height: 40px;
+    }
+
+    .flipdown .rotor-leaf {
+      z-index: 1;
+      position: absolute;
+      width: 50px;
+      height: 80px;
+      transform-style: preserve-3d;
+      transition: transform 0s;
+    }
+
+    .flipdown .rotor-leaf.flipped {
+      transform: rotateX(-180deg);
+      transition: all 0.5s ease-in-out;
+    }
+
+    .flipdown .rotor-leaf-front,
+    .flipdown .rotor-leaf-rear {
+      overflow: hidden;
+      position: absolute;
+      width: 50px;
+      height: 40px;
+      margin: 0;
+      transform: rotateX(0deg);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .flipdown .rotor-leaf-front {
+      line-height: 80px;
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    .flipdown .rotor-leaf-rear {
+      line-height: 0px;
+      border-radius: 0px 0px 4px 4px;
+      transform: rotateX(-180deg);
+    }
+
+    .flipdown .rotor-top {
+      line-height: 80px;
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    .flipdown .rotor-bottom {
+      bottom: 0;
+      line-height: 0px;
+      border-radius: 0px 0px 4px 4px;
+    }
+
+    .flipdown .rotor:after {
+      content: '';
+      z-index: 2;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 50px;
+      height: 40px;
+      border-radius: 0px 0px 4px 4px;
+    }
+
+    @media (max-width: 330px) and (min-width: 0px) {
+      .flipdown {
+        width: 280px !important;
+        height: 140px !important;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-x: scroll !important;
+
+        margin-left: -5px !important;
+
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .flipdown {
+        width: 312px;
+        height: 70px;
+
+      }
+
+      .flipdown .rotor {
+        font-size: 2.2rem;
+        margin-right: 3px;
+      }
+
+      .flipdown .rotor,
+      .flipdown .rotor-leaf,
+      .flipdown .rotor-leaf-front,
+      .flipdown .rotor-leaf-rear,
+      .flipdown .rotor-top,
+      .flipdown .rotor-bottom,
+      .flipdown .rotor:after {
+        width: 30px;
+      }
+
+      .flipdown .rotor-group {
+        padding-right: 20px;
+      }
+
+      .flipdown .rotor-group:last-child {
+        padding-right: 0px;
+      }
+
+      .flipdown .rotor-group-heading:before {
+        font-size: 0.8rem;
+        height: 20px;
+        line-height: 20px;
+      }
+
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before,
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+        left: 69px;
+      }
+
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
+        bottom: 13px;
+        height: 8px;
+        width: 8px;
+      }
+
+      .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+        bottom: 29px;
+        height: 8px;
+        width: 8px;
+      }
+
+      .flipdown .rotor-leaf-front,
+      .flipdown .rotor-top {
+        line-height: 50px;
+      }
+
+      .flipdown .rotor-leaf,
+      .flipdown .rotor {
+        height: 50px;
+      }
+
+      .flipdown .rotor-leaf-front,
+      .flipdown .rotor-leaf-rear,
+      .flipdown .rotor-top,
+      .flipdown .rotor-bottom,
+      .flipdown .rotor:after {
+        height: 25px;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .example h1,
+    .example p,
+    .example .button {
+      transition: all 0.2s ease-in-out;
+    }
+
+    .example {
+
+      height: 300px;
+
+
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f5ede6;
+
+    }
+
+    .example .flipdown {
+      margin: auto;
+
+    }
+
+    .example h3 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #616b6b;
+    }
+
+    .example p {
+      text-align: center;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 40px;
+      color: #585757;
+      font-size: 15px;
+
+    }
+
+    .example .buttons {
+      width: 100%;
+      height: 50px;
+
+      display: flex;
+
+      align-items: center;
+
+    }
+
+    .example .buttons p {
+      height: 50px;
+      line-height: 50px;
+      font-weight: 400;
+      padding: 0px 25px 0px 0px;
+      color: #333;
+      margin: 0px;
+    }
+
+    .example .button {
+      display: inline-block;
+      height: 50px;
+
+      line-height: 46px;
+      text-decoration: none;
+      color: #333;
+      padding: 0px 20px;
+      border: solid 2px #333;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .example .button:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .example .button i {
+      margin-right: 5px;
+    }
+
+    @media (max-width: 550px) {
+      .example {
+        width: 100%;
+        height: 362px;
+      }
+
+      .example h1 {
+        font-size: 2.5em;
+      }
+
+      .example p {
+        margin-bottom: 25px;
+      }
+
+      .example .buttons {
+        width: 100%;
+        margin-top: 25px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .example .buttons p,
+      .example .buttons a {
+        float: none;
+        margin: 0 auto;
+      }
+
+      .example .buttons p {
+        padding-right: 0px;
+      }
+
+      .example .buttons a {
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <nav class="navbar">
+
+
+
+    <div class="container">
+
+      <h2 class="sem2" style="font-size: 17px;">INTE 221 Revision</h2>
+
+      <div class="menu">
+
+        <a class="menu-link" onclick="goBack()" style="color: #412f22; cursor:pointer;"><i style="font-size: 14px;"
+            class="fas fa-arrow-left"></i> Go Back</a>
+
+        <script>
+          function goBack() {
+            window.history.back();
+          }
+        </script>
+
+
+
+      </div>
+
+      <button class="hamburger" onclick="toggleHamburger()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </nav>
+
+  <style>
+    .descr {
+      width: 95%;
+      word-wrap: break-word;
+      overflow-x: scroll;
+    }
+  </style>
+
+
+
+
+
+  <div id="timetablePopup" style=" margin-bottom:100px; margin-top:100px;">
+
+
+    <div class="example" style="text-align: center;">
+      <h3>Countdown To INTE 221 exam</h3>
+
+      <div id="flipdown" class="flipdown" style="display: flex; flex-wrap:wrap; flex-direction:column;"></div>
+    </div>
+
+
+    <div class="timeline">
+      <h1 data-aos="fade-down" data-aos-delay="100"
+        style="font-size: 1.4rem; margin-top: -50px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
+        WEB Applications Programming</h1>
+      <ul class="uli">
+        <li style="--accent-color:#3D1F00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Introduction</div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+            <strong style="font-weight: bold;">The Internet:</strong> A collection of information stored in computers
+            that are
+            networked together internationally.
+            <br><br>
+            <strong style="font-weight: bold;">To connect to the internet, you need:</strong>
+            <br>
+
+            Computer
+            <br>
+            Connection method (phone line, cable, DSL, wireless, etc.)
+            <br>
+            Modem
+            <br>
+            Network Software (TCP/IP)
+            <br>
+            Application Software (web browser, email, etc.)
+            <br>
+            Internet Service Provider (ISP)
+            <br><br>
+            <strong style="font-weight: bold;">Ways to connect to the internet include:</strong>
+            <br>
+            Dial-up access: Uses a modem and phone call over PSTN to connect to an ISP's pool of modems.
+            <br>
+            Cable Internet: Provides access via Hybrid Fiber Coaxial wiring, either fiber-optic or coaxial cable.
+            <br>
+            DSL (Digital Subscriber Line): Operates using a single phone line without interrupting voice phone calls.
+            <br>
+            Wi-Fi (Wireless Fidelity): Used in homes, businesses, public places with access points like wireless
+            routers.
+            <br>
+            WiMAX (Worldwide Interoperability for Microwave Access): Delivers last-mile wireless broadband as an
+            alternative to
+            cable and DSL.
+            <br>
+            Satellite: Provides fixed, portable, and mobile internet access, particularly in remote areas.
+            <br><br>
+            <strong style="font-weight: bold;">A URL (Uniform Resource Locator) is the address of a file or resource on
+              the
+              internet, and its structure follows "protocol://host.domain[:port] <br>/path/file.extension <br>[?optional
+              stuff]".</strong>
+            <br><br>
+            Protocol might be - http, file, gopher, wais, news, telnet, https, etc.
+            <br>
+            The case of URLs may be important, and it's recommended to use only lowercase in URLs you build.
+            <br>
+            "Optional stuff" after a "?" is usually search parameters or values for variables, used to pass parameters
+            to search
+            engines, databases, or CGI scripts.
+            <br><br>
+            <strong style="font-weight: bold;">Common domain endings include:</strong>
+            <br>
+            .com (commercial entity)
+            <br>
+            .gov (government)
+            <br>
+            .net (network)
+            <br>
+            .org (non-profit organization)
+            <br>
+            .mil (military)
+            <br>
+            Foreign domains end with country codes like .ca (Canada), .uk (United Kingdom), etc.
+
+
+          </div>
+
+        </li>
+
+
+
+
+        <li style="--accent-color: #6D4C00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date"> HTML
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <strong style="font-weight: bold;">HTML (Hypertext Markup Language) documents are plain-text files (ASCII)
+              created with
+              any text editor and can include GIF or JPEG-format graphics.</strong>
+            <br><br>
+            <strong style="font-weight: bold;">The &lt;HTML&gt; tag indicates an HTML-coded document, and all HTML
+              documents should
+              start with &lt;HTML&gt; and end with &lt;/HTML&gt; tags, following the syntax
+              &lt;HTML&gt;...&lt;/HTML&gt;.</strong>
+            <br><br>
+            <strong style="font-weight: bold;">The structure of an HTML document:</strong>
+            <br>
+            <strong style="font-weight: bold;">&lt;!DOCTYPE html&gt;:</strong> Declares the document type and version of
+            HTML being
+            used (HTML5 in this case).
+            <br>
+            <strong style="font-weight: bold;">&lt;html&gt;:</strong> The root element that contains the entire HTML
+            document.
+            <br>
+            <strong style="font-weight: bold;">&lt;head&gt;:</strong> Contains meta-information about the document, such
+            as the
+            title, character set, and links to external resources.
+            <br>
+            <strong style="font-weight: bold;">&lt;title&gt;:</strong> Sets the title of the document, displayed in the
+            browser's
+            title bar or tab.
+            <br>
+            <strong style="font-weight: bold;">&lt;body&gt;:</strong> Contains the visible content of the document,
+            including text,
+            images, links, and other elements.
+            <br>
+            <strong style="font-weight: bold;">&lt;h1&gt;, &lt;h2&gt;, ..., &lt;h6&gt;:</strong> Headings that create
+            hierarchical
+            levels of headings for content organization.
+            <br>
+            <strong style="font-weight: bold;">&lt;p&gt;:</strong> Represents paragraphs of text.
+            <br>
+            <strong style="font-weight: bold;">&lt;a&gt;:</strong> Creates hyperlinks to other web pages or resources.
+            <br>
+            <strong style="font-weight: bold;">&lt;img&gt;:</strong> Embeds images into the document.
+            <br>
+            <strong style="font-weight: bold;">&lt;ul&gt; and &lt;li&gt;:</strong> Used to create unordered lists with
+            list items.
+            <br>
+            <strong style="font-weight: bold;">&lt;ol&gt; and &lt;li&gt;:</strong> Used to create ordered lists with
+            numbered list
+            items.
+            <br>
+            <strong style="font-weight: bold;">&lt;div&gt;:</strong> A block-level container that helps organize and
+            style content.
+            <br>
+            <strong style="font-weight: bold;">&lt;span&gt;:</strong> An inline container used to apply styles to a
+            specific part of
+            the text.
+            <br>
+            <strong style="font-weight: bold;">Comments:</strong> Denoted by &lt;!-- comment text --&gt;, used to add
+            notes within
+            the code for reference or explanation.
+            <br><br>
+            <strong style="font-weight: bold;">Example structure:</strong>
+            <br>
+            <code>&lt;!DOCTYPE html&gt;</code>
+            <br>
+            <code>&lt;html&gt;</code>
+            <br>
+            <code>&lt;head&gt;</code>
+            <br>
+            <code>&lt;title&gt;My Web Page&lt;/title&gt;</code>
+            <br>
+            <code>&lt;/head&gt;</code>
+            <br>
+            <code>&lt;body&gt;</code>
+            <br>
+            <code>&lt;h1&gt;Welcome to My Web Page&lt;/h1&gt;</code>
+            <br>
+            <code>&lt;p&gt;This is the main content of the page.&lt;/p&gt;</code>
+            <br>
+            <code>&lt;a href="https://www.example.com"&gt;Visit Example&lt;/a&gt;</code>
+            <br>
+            <code>&lt;img src="image.jpg" alt="Image Description"&gt;</code>
+            <br>
+            <code>&lt;ul&gt;</code>
+            <br>
+            <code>&lt;li&gt;Item 1&lt;/li&gt;</code>
+            <br>
+            <code>&lt;li&gt;Item 2&lt;/li&gt;</code>
+            <br>
+            <code>&lt;li&gt;Item 3&lt;/li&gt;</code>
+            <br>
+            <code>&lt;/ul&gt;</code>
+            <br>
+            <code>&lt;/body&gt;</code>
+            <br>
+            <code>&lt;/html&gt;</code>
+
+
+
+
+          </div>
+
+        </li>
+
+        <style>
+          strong {
+            font-weight: bold;
+          }
+        </style>
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Text Formatting
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <strong>&lt;b&gt;...&lt;/b&gt;:</strong> Bold text<br><br>
+            <strong>&lt;i&gt;...&lt;/i&gt;:</strong> Italicized text<br><br>
+            <strong>&lt;u&gt;...&lt;/u&gt;:</strong> Underlined text<br><br>
+            <strong>&lt;strong&gt;...&lt;/strong&gt;:</strong> Strong emphasis (usually rendered as bold)<br><br>
+            <strong>&lt;em&gt;...&lt;/em&gt;:</strong> Emphasized text (usually rendered as italic)<br><br>
+            <strong>&lt;sup&gt;...&lt;/sup&gt;:</strong> Superscript text (e.g., 2&lt;sup&gt;nd&lt;/sup&gt;)<br><br>
+            <strong>&lt;sub&gt;...&lt;/sub&gt;:</strong> Subscript text (e.g., H&lt;sub&gt;2&lt;/sub&gt;O)<br><br>
+            <strong>&lt;del&gt;...&lt;/del&gt;:</strong> Deleted or strike-through text<br><br>
+            <strong>&lt;ins&gt;...&lt;/ins&gt;:</strong> Inserted or underlined text<br><br>
+            <strong>&lt;p&gt;:</strong> Represents paragraphs of text.<br><br>
+            <strong>&lt;a&gt;...&lt;/a&gt;:</strong> Creates hyperlinks to other web pages or resources.<br><br>
+            <strong>&lt;img&gt;:</strong> Embeds images into the document.<br><br>
+            <strong>&lt;ul&gt;...&lt;/ul&gt;:</strong> Used to create unordered lists with list items.<br><br>
+            <strong>&lt;ol&gt;...&lt;/ol&gt;:</strong> Used to create ordered lists with numbered list items.<br><br>
+            <strong>&lt;div&gt;...&lt;/div&gt;:</strong> A block-level container that helps organize and style
+            content.<br><br>
+            <strong>&lt;span&gt;...&lt;/span&gt;:</strong> An inline container used to apply styles to a specific part
+            of the
+            text.<br><br>
+            <strong>Comments:</strong> Denoted by &lt;!-- comment text --&gt;, used to add notes within the code for
+            reference or
+            explanation.<br><br>
+
+            <strong>Example usage:</strong><br><br>
+            <p>This is a paragraph of <strong>&lt;b&gt;bold&lt;/b&gt;</strong> and
+              <strong>&lt;i&gt;italicized&lt;/i&gt;</strong>
+              text with <strong>&lt;u&gt;underline&lt;/u&gt;</strong>.
+            </p>
+            <p>This is <strong>&lt;strong&gt;strongly emphasized&lt;/strong&gt;</strong> and
+              <strong>&lt;em&gt;emphasized&lt;/em&gt;</strong> text.
+            </p>
+            <p>2<strong>&lt;sup&gt;nd&lt;/sup&gt;</strong> and H<strong>&lt;sub&gt;2&lt;/sub&gt;</strong>O.</p>
+            <p><strong>&lt;del&gt;Deleted&lt;/del&gt;</strong> and <strong>&lt;ins&gt;inserted&lt;/ins&gt;</strong>
+              text.</p>
+
+
+
+          </div>
+
+        </li>
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">HTML Forms
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong>&lt;form&gt;: HTML forms allow users to input and submit data to a web server. They are used for
+              various
+              purposes, like user login, contact forms, and search bars. Forms are created using the &lt;form&gt; tag,
+              which
+              contains input elements and a submit button.</strong><br><br>
+            &lt;form action="submit.php" method="post"&gt;: The form element with the "action" attribute specifying the
+            URL where
+            the data will be sent and the "method" attribute indicating how the data will be sent (post or
+            get).&lt;/form&gt;<br><br>
+            &lt;input type="text" name="username" /&gt;: A text input field, where users can enter their username. The
+            "name"
+            attribute assigns a name to the input, which will be used when processing the form data on the
+            server.&lt;/input&gt;<br><br>
+            &lt;input type="password" name="password" /&gt;: A password input field, where the user's password is
+            entered. The
+            entered text is obscured for security.&lt;/input&gt;<br><br>
+            &lt;input type="submit" value="Submit" /&gt;: A submit button that allows users to send the form data to the
+            server.&lt;/input&gt;<br><br>
+            &lt;textarea name="message"&gt;&lt;/textarea&gt;: A multi-line text input area where users can enter longer
+            messages or
+            comments.&lt;/textarea&gt;<br><br>
+            &lt;input type="radio" name="gender" value="male" /&gt;: Radio buttons for selecting one option from a
+            group, with each
+            option having a different "value".&lt;/input&gt;<br><br>
+            &lt;input type="checkbox" name="subscribe" value="yes" /&gt;: Checkboxes for selecting multiple options,
+            with each
+            checkbox having a different "value".&lt;/input&gt;<br><br>
+            &lt;select name="country"&gt;&lt;option value="us"&gt;United States&lt;/option&gt;&lt;option
+            value="uk"&gt;United
+            Kingdom&lt;/option&gt;&lt;/select&gt;: A drop-down menu where users can select one option from a list of
+            options.&lt;/select&gt;<br><br>
+            <strong>Example form:</strong><br><br>
+            &lt;form action="submit.php" method="post"&gt;<br>
+            &lt;label for="username"&gt;Username:&lt;/label&gt;<br>
+            &lt;input type="text" id="username" name="username" /&gt;&lt;br&gt;<br><br>
+
+            &lt;label for="password"&gt;Password:&lt;/label&gt;<br>
+            &lt;input type="password" id="password" name="password" /&gt;&lt;br&gt;<br><br>
+
+            &lt;label&gt;Gender:&lt;/label&gt;<br>
+            &lt;input type="radio" name="gender" value="male" /&gt;Male<br>
+            &lt;input type="radio" name="gender" value="female" /&gt;Female&lt;br&gt;<br>
+
+            &lt;label&gt;Subscribe to newsletter:&lt;/label&gt;<br>
+            &lt;input type="checkbox" name="subscribe" value="yes" /&gt;&lt;br&gt;<br>
+
+            &lt;label for="country"&gt;Select your country:&lt;/label&gt;<br>
+            &lt;select id="country" name="country"&gt;<br>
+            &lt;option value="us"&gt;United States&lt;/option&gt;<br>
+            &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;<br>
+            &lt;option value="ca"&gt;Canada&lt;/option&gt;<br>
+            &lt;/select&gt;&lt;br&gt;<br>
+
+            &lt;label for="message"&gt;Message:&lt;/label&gt;&lt;br&gt;<br>
+            &lt;textarea id="message" name="message"&gt;&lt;/textarea&gt;&lt;br&gt;<br>
+
+            &lt;input type="submit" value="Submit" /&gt;<br>
+            &lt;/form&gt;<br><br>
+            <strong>This form allows users to enter their username, password, select their gender, subscribe to a
+              newsletter, choose
+              their country, and leave a message. When the "Submit" button is clicked, the data will be sent to the
+              "submit.php"
+              script on the server for processing.</strong>
+
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Tables
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong>&lt;table&gt;:</strong> HTML tables are used to display data in a tabular format, with rows and
+            columns. They
+            are created using the &lt;table&gt; tag and consist of several elements.<br>
+            <strong>&lt;tr&gt;:</strong> Represents a table row, containing cells.<br>
+            <strong>&lt;th&gt;:</strong> Defines a table header cell, typically used for column headers.<br>
+            <strong>&lt;td&gt;:</strong> Represents a table data cell, containing regular data.<br>
+            <strong>&lt;caption&gt;:</strong> Optional element for adding a caption or title to the table.<br><br>
+            <strong>Example table:</strong><br>
+            &lt;table&gt;<br>
+            &lt;caption&gt;Monthly Sales Report&lt;/caption&gt;<br>
+            &lt;tr&gt;<br>
+            &lt;th&gt;Product&lt;/th&gt;<br>
+            &lt;th&gt;Quantity Sold&lt;/th&gt;<br>
+            &lt;th&gt;Revenue&lt;/th&gt;<br>
+            &lt;/tr&gt;<br>
+            &lt;tr&gt;<br>
+            &lt;td&gt;Product A&lt;/td&gt;<br>
+            &lt;td&gt;100&lt;/td&gt;<br>
+            &lt;td&gt;$1,000&lt;/td&gt;<br>
+            &lt;/tr&gt;<br>
+            &lt;tr&gt;<br>
+            &lt;td&gt;Product B&lt;/td&gt;<br>
+            &lt;td&gt;80&lt;/td&gt;<br>
+            &lt;td&gt;$800&lt;/td&gt;<br>
+            &lt;/tr&gt;<br>
+            &lt;/table&gt;<br><br>
+            This example table displays a monthly sales report with three columns: "Product," "Quantity Sold," and
+            "Revenue." The
+            data is presented in rows, with each row representing a different product and its corresponding sales
+            information. The
+            table has a caption "Monthly Sales Report" for better context or description.
+
+          </div>
+
+        </li>
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Frames and iFrames
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong>Frames:</strong><br>
+            HTML frames are used to divide a webpage into separate sections or frames, each displaying a different web
+            page. Frames
+            are defined using the &lt;frameset&gt; tag, and each frame is specified with the &lt;frame&gt; tag.<br><br>
+            <strong>Example frameset:</strong><br>
+            &lt;frameset rows="20%, 80%"&gt;<br>
+            &lt;frame src="header.html" /&gt;<br>
+            &lt;frame src="content.html" /&gt;<br>
+            &lt;/frameset&gt;<br><br>
+            In this example, the frameset is divided into two rows. The first frame displays the content of
+            "header.html," and the
+            second frame displays the content of "content.html." Frames allow for dividing the webpage's visual layout
+            into multiple
+            sections, each with its own separate HTML content. However, framesets are not widely used in modern web
+            development due
+            to the advent of more flexible and responsive layout techniques.<br><br>
+
+            <strong>iframes:</strong><br>
+            HTML iframes (inline frames) allow you to embed another web page within the current page. They are defined
+            using the
+            &lt;iframe&gt; tag.<br><br>
+            <strong>Example iframe:</strong><br>
+            &lt;iframe src="https://www.example.com" width="600" height="400" title="Embedded
+            Page"&gt;&lt;/iframe&gt;<br><br>
+            In this example, the iframe embeds the web page located at "https://www.example.com" within the current
+            page. The iframe
+            has a specified width of 600 pixels and a height of 400 pixels. The "title" attribute provides a descriptive
+            title for
+            the embedded page, which is beneficial for accessibility purposes. iframes are commonly used for embedding
+            videos, maps,
+            social media content, or external content from other websites. They provide a way to incorporate content
+            from other
+            sources seamlessly into a webpage.
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">CSS
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            <strong>CSS (Cascading Style Sheets)</strong> is a fundamental technology used in web development to style
+            and format
+            the presentation of HTML documents. It allows you to control the appearance of web pages, including layout,
+            colors,
+            fonts, and other visual elements. Here's a comprehensive overview of CSS:<br><br>
+
+            <strong>Inline CSS:</strong> Styling applied directly to HTML elements using the "style" attribute, e.g.,
+            &lt;div
+            style="color: blue;"&gt;.<br>
+            <strong>Internal CSS:</strong> Styling placed within the &lt;style&gt; tag in the &lt;head&gt; section of an
+            HTML
+            document, affecting the entire page.<br>
+            <strong>External CSS:</strong> Styling placed in a separate .css file and linked to the HTML document using
+            the
+            &lt;link&gt; tag, enabling styles to be shared across multiple pages.<br><br>
+
+            <strong>CSS Syntax and Selectors:</strong><br>
+
+            CSS uses a set of rules to style HTML elements.<br>
+            A CSS rule consists of a selector and a declaration block.<br>
+            The selector targets HTML elements you want to style.<br>
+            The declaration block contains one or more property-value pairs separated by semicolons.<br><br>
+
+            <strong>CSS Properties:</strong><br>
+
+            CSS properties control the visual appearance of elements.<br>
+            Common properties include color, font-size, padding, margin, background, border, and width.<br><br>
+
+            <strong>CSS Selectors:</strong><br>
+
+            Element Selector: Targets all elements of a specific type, e.g., p {} targets all paragraphs.<br>
+            Class Selector: Targets elements with a specific class attribute, e.g., .my-class {}.<br>
+            ID Selector: Targets elements with a specific ID attribute, e.g., #my-id {}.<br>
+            Descendant Selector: Targets elements inside another element, e.g., parent child {}.<br>
+            Pseudo-class Selector: Targets elements in a specific state, e.g., :hover {}.<br><br>
+
+            <strong>CSS Box Model:</strong><br>
+
+            The box model defines how elements are rendered on the page as rectangular boxes.<br>
+            Each box has content, padding, border, and margin.<br><br>
+
+            <strong>CSS Layout:</strong><br>
+
+            CSS is used to create responsive and flexible page layouts.<br>
+            Techniques like Flexbox and CSS Grid are widely used for layout design.<br><br>
+
+            <strong>CSS Media Queries:</strong><br>
+
+            Media queries allow you to apply different styles based on the device's screen size, resolution, or
+            orientation.<br>
+            Useful for creating responsive web designs that adapt to different devices.<br><br>
+
+            <strong>CSS Transitions and Animations:</strong><br>
+
+            CSS can create smooth transitions and animations without the need for JavaScript.<br>
+            Transitions change an element's style gradually over a specified duration.<br>
+            Animations allow more complex and dynamic effects.<br><br>
+
+            <strong>CSS Preprocessors:</strong><br>
+
+            CSS preprocessors like Sass and Less extend the capabilities of CSS.<br>
+            They introduce variables, functions, and nesting to make stylesheets more maintainable.<br><br>
+
+            <strong>CSS Frameworks:</strong><br>
+
+            CSS frameworks like Bootstrap and Foundation provide pre-designed styles and components for rapid web
+            development.<br><br>
+
+            <strong>CSS Best Practices:</strong><br>
+
+            Use external CSS files to separate styles from HTML documents.<br>
+            Minimize redundancy and use CSS shorthand properties where possible.<br>
+            Optimize CSS for performance by reducing unnecessary rules.<br>
+            Follow the principles of responsive design to create a mobile-friendly experience.<br><br>
+
+            <strong>EXAMPLES</strong><br>
+
+            CSS Syntax and Selectors:<br>
+
+            <strong>Selector: Element Selector</strong><br>
+            &lt;style&gt;<br>
+            p {<br>
+            color: blue;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            <strong>Selector: Class Selector</strong><br>
+            &lt;style&gt;<br>
+            .my-class {<br>
+            font-size: 20px;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            <strong>Selector: ID Selector</strong><br>
+            &lt;style&gt;<br>
+            #my-id {<br>
+            background-color: yellow;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            <strong>Selector: Descendant Selector</strong><br>
+            &lt;style&gt;<br>
+            div p {<br>
+            margin: 10px;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            <strong>Selector: Pseudo-class Selector</strong><br>
+            &lt;style&gt;<br>
+            a:hover {<br>
+            text-decoration: underline;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            CSS Properties:<br>
+
+            &lt;style&gt;<br>
+            /* Properties */<br>
+            p {<br>
+            color: red;<br>
+            font-size: 16px;<br>
+            padding: 10px;<br>
+            margin: 20px;<br>
+            background-color: #f0f0f0;<br>
+            border: 1px solid black;<br>
+            width: 200px;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            CSS Box Model:<br>
+
+            &lt;style&gt;<br>
+            /* Box Model */<br>
+            .box {<br>
+            width: 200px;<br>
+            height: 100px;<br>
+            padding: 20px;<br>
+            border: 2px solid black;<br>
+            margin: 10px;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            CSS Layout - Flexbox:<br>
+
+            <!-- HTML --><br>
+            &lt;div class="flex-container"&gt;<br>
+            &lt;div class="flex-item"&gt;Item 1&lt;/div&gt;<br>
+            &lt;div class="flex-item"&gt;Item 2&lt;/div&gt;<br>
+            &lt;div class="flex-item"&gt;Item 3&lt;/div&gt;<br>
+            &lt;/div&gt;<br><br>
+
+            <!-- CSS --><br>
+            &lt;style&gt;<br>
+            /* Flexbox Layout */<br>
+            .flex-container {<br>
+            display: flex;<br>
+            justify-content: space-around;<br>
+            }<br><br>
+
+            .flex-item {<br>
+            padding: 10px;<br>
+            background-color: #f0f0f0;<br>
+            border: 1px solid black;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            CSS Media Queries:<br>
+
+            &lt;style&gt;<br>
+            /* Media Query for Mobile Devices */<br>
+            @media (max-width: 600px) {<br>
+            body {<br>
+            font-size: 14px;<br>
+            }<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            CSS Transitions and Animations:<br>
+
+            &lt;style&gt;<br>
+            /* Transition */<br>
+            .button {<br>
+            background-color: blue;<br>
+            transition: background-color 0.3s ease;<br>
+            }<br><br>
+
+            .button:hover {<br>
+            background-color: red;<br>
+            }<br><br>
+
+            /* Animation */<br>
+            @keyframes slide-in {<br>
+            from {<br>
+            margin-left: -100%;<br>
+            }<br>
+            to {<br>
+            margin-left: 0;<br>
+            }<br>
+            }<br><br>
+
+            .slide-container {<br>
+            animation: slide-in 1s ease;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            CSS Preprocessors (Sass):<br>
+
+            &lt;style&gt;<br>
+            /* Using Sass */<br>
+            $primary-color: blue;<br><br>
+
+            .header {<br>
+            background-color: $primary-color;<br>
+            }<br><br>
+
+            /* Compiled CSS Output */<br>
+            .header {<br>
+            background-color: blue;<br>
+            }<br>
+            &lt;/style&gt;<br><br>
+
+            CSS Frameworks (Bootstrap):<br>
+
+            <!-- Using Bootstrap --><br>
+            &lt;link rel="stylesheet" href="bootstrap.css"&gt;
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">JavaScript
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+            JavaScript (JS) is a versatile programming language used to add interactivity and dynamic behavior to web
+            pages. It's a
+            crucial component of web development that enables you to manipulate and control HTML and CSS, handle events,
+            and create
+            responsive user experiences. <br><br>Here's an overview of JavaScript:
+            <br><br>
+            <strong>JavaScript Syntax:</strong><br>
+            JavaScript code is written inside
+            &lt;script&gt;tags or external.js files.<br>
+            Statements end with a semicolon(;), and code blocks are enclosed in curly braces { }.<br><br>
+
+            <strong>Variables and Data Types:</strong><br>
+            Declare variables using keywords like "var," "let," or "const."<br>
+            JavaScript has various data types, such as numbers, strings, booleans, arrays, objects, and more.<br><br>
+
+            <strong>Operators:</strong><br>
+            Use arithmetic, comparison, logical, and assignment operators to perform operations on values.<br><br>
+
+            <strong>Conditional Statements:</strong><br>
+            Use if, else if, and else to make decisions based on conditions.<br>
+            Ternary operator (?:) allows concise conditional expressions.<br><br>
+
+            <strong>Loops:</strong><br>
+            for loop, while loop, and do-while loop to execute code repeatedly.<br><br>
+
+            <strong>Functions:</strong><br>
+            Define reusable blocks of code using functions.<br>
+            Functions can take parameters and return values.<br><br>
+
+            <strong>Events:</strong><br>
+            JavaScript can respond to user actions like clicks, mouse movements, and keyboard input.<br>
+            Use event listeners to handle events and trigger functions accordingly.<br><br>
+
+            <strong>DOM Manipulation:</strong><br>
+            The Document Object Model (DOM) allows JavaScript to access and modify HTML elements.<br>
+            Update content, styles, and attributes dynamically with JS.<br><br>
+
+            <strong>Asynchronous Programming:</strong><br>
+            Use callbacks, promises, and async/await to handle asynchronous tasks like API requests and
+            timers.<br><br>
+
+            <strong>Error Handling:</strong><br>
+            Handle errors and exceptions using try-catch blocks to prevent application crashes.<br><br>
+
+            <strong>JSON:</strong><br>
+            JavaScript Object Notation (JSON) is a lightweight data interchange format used for data exchange between
+            the server and web applications.<br><br>
+
+            <strong>Example usage:</strong><br>
+
+
+            // Function to add two numbers<br>
+            function addNumbers(num1, num2) {<br>
+            return num1 + num2;<br>
+            }<br>
+            <br>
+            // Call the function and display the result<br>
+            var num1 = 5;<br>
+            var num2 = 10;<br>
+            var sum = addNumbers(num1, num2);<br>
+            alert("The sum of " + num1 + " and " + num2 + " is: " + sum);<br>
+            ```<br>
+            This example defines a function called addNumbers that takes two parameters num1 and num2. The function
+            returns the sum
+            of these two numbers. It then calls the addNumbers function with the values 5 and 10 and displays an alert
+            box with the
+            result, which is 15.
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </div>
+  </div>
+
+
+
+
+  <div class="wrapper-loader">
+
+
+
+
+
+
+
+    <div class='loader'></div>
+
+
+    <p class="get" id="typing-dots">Getting Things Ready</p>
+
+    <script>
+
+      const dotsElement = document.getElementById('typing-dots');
+      const dots = '...';
+      let dotCount = 0;
+
+      function animateTypingDots() {
+        dotsElement.textContent = 'Getting Things Ready' + dots.substring(0, dotCount);
+        dotCount = (dotCount + 1) % (dots.length + 1);
+        setTimeout(animateTypingDots, 300);
+      }
+
+      animateTypingDots();
+
+    </script>
+
+
+
+
+
+
+
+
+  </div>
+
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+
+      var targetDate = new Date(new Date().getFullYear(), 7, 14, 11, 30).getTime() / 1000;
+
+      // Set up FlipDown
+      var flipdown = new FlipDown(targetDate)
+
+        // Start the countdown
+        .start()
+
+        // Do something when the countdown ends
+        .ifEnded(() => {
+          console.log("The countdown has ended!");
+        });
+
+
+
+      // Show version number
+      var ver = document.getElementById("ver");
+      ver.innerHTML = flipdown.version;
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "use strict";
+
+    function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+    function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+    var FlipDown = function () {
+      function FlipDown(uts) {
+        var el = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "flipdown";
+        var opt = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+        _classCallCheck(this, FlipDown);
+
+        if (typeof uts !== "number") {
+          throw new Error("FlipDown: Constructor expected unix timestamp, got ".concat(_typeof(uts), " instead."));
+        }
+
+        if (_typeof(el) === "object") {
+          opt = el;
+          el = "flipdown";
+        }
+
+        this.version = "0.3.2";
+        this.initialised = false;
+        this.now = this._getTime();
+        this.epoch = uts;
+        this.countdownEnded = false;
+        this.hasEndedCallback = null;
+        this.element = document.getElementById(el);
+        this.rotors = [];
+        this.rotorLeafFront = [];
+        this.rotorLeafRear = [];
+        this.rotorTops = [];
+        this.rotorBottoms = [];
+        this.countdown = null;
+        this.daysRemaining = 0;
+        this.clockValues = {};
+        this.clockStrings = {};
+        this.clockValuesAsString = [];
+        this.prevClockValuesAsString = [];
+        this.opts = this._parseOptions(opt);
+
+        this._setOptions();
+
+        console.log("FlipDown ".concat(this.version, " (Theme: ").concat(this.opts.theme, ")"));
+      }
+
+      _createClass(FlipDown, [{
+        key: "start",
+        value: function start() {
+          if (!this.initialised) this._init();
+          this.countdown = setInterval(this._tick.bind(this), 1000);
+          return this;
+        }
+      }, {
+        key: "ifEnded",
+        value: function ifEnded(cb) {
+          this.hasEndedCallback = function () {
+            cb();
+            this.hasEndedCallback = null;
+          };
+
+          return this;
+        }
+      }, {
+        key: "_getTime",
+        value: function _getTime() {
+          return new Date().getTime() / 1000;
+        }
+      }, {
+        key: "_hasCountdownEnded",
+        value: function _hasCountdownEnded() {
+          if (this.epoch - this.now < 0) {
+            this.countdownEnded = true;
+
+            if (this.hasEndedCallback != null) {
+              this.hasEndedCallback();
+              this.hasEndedCallback = null;
+            }
+
+            return true;
+          } else {
+            this.countdownEnded = false;
+            return false;
+          }
+        }
+      }, {
+        key: "_parseOptions",
+        value: function _parseOptions(opt) {
+          var headings = ["Days", "Hours", "Minutes", "Seconds"];
+
+          if (opt.headings && opt.headings.length === 4) {
+            headings = opt.headings;
+          }
+
+          return {
+            theme: opt.hasOwnProperty("theme") ? opt.theme : "dark",
+            headings: headings
+          };
+        }
+      }, {
+        key: "_setOptions",
+        value: function _setOptions() {
+          this.element.classList.add("flipdown__theme-".concat(this.opts.theme));
+        }
+      }, {
+        key: "_init",
+        value: function _init() {
+          this.initialised = true;
+
+          if (this._hasCountdownEnded()) {
+            this.daysremaining = 0;
+          } else {
+            this.daysremaining = Math.floor((this.epoch - this.now) / 86400).toString().length;
+          }
+
+          var dayRotorCount = this.daysremaining <= 2 ? 2 : this.daysremaining;
+
+          for (var i = 0; i < dayRotorCount + 6; i++) {
+            this.rotors.push(this._createRotor(0));
+          }
+
+          var dayRotors = [];
+
+          for (var i = 0; i < dayRotorCount; i++) {
+            dayRotors.push(this.rotors[i]);
+          }
+
+          this.element.appendChild(this._createRotorGroup(dayRotors, 0));
+          var count = dayRotorCount;
+
+          for (var i = 0; i < 3; i++) {
+            var otherRotors = [];
+
+            for (var j = 0; j < 2; j++) {
+              otherRotors.push(this.rotors[count]);
+              count++;
+            }
+
+            this.element.appendChild(this._createRotorGroup(otherRotors, i + 1));
+          }
+
+          this.rotorLeafFront = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-leaf-front"));
+          this.rotorLeafRear = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-leaf-rear"));
+          this.rotorTop = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-top"));
+          this.rotorBottom = Array.prototype.slice.call(this.element.getElementsByClassName("rotor-bottom"));
+
+          this._tick();
+
+          this._updateClockValues(true);
+
+          return this;
+        }
+      }, {
+        key: "_createRotorGroup",
+        value: function _createRotorGroup(rotors, rotorIndex) {
+          var rotorGroup = document.createElement("div");
+          rotorGroup.className = "rotor-group";
+          var dayRotorGroupHeading = document.createElement("div");
+          dayRotorGroupHeading.className = "rotor-group-heading";
+          dayRotorGroupHeading.setAttribute("data-before", this.opts.headings[rotorIndex]);
+          rotorGroup.appendChild(dayRotorGroupHeading);
+          appendChildren(rotorGroup, rotors);
+          return rotorGroup;
+        }
+      }, {
+        key: "_createRotor",
+        value: function _createRotor() {
+          var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+          var rotor = document.createElement("div");
+          var rotorLeaf = document.createElement("div");
+          var rotorLeafRear = document.createElement("figure");
+          var rotorLeafFront = document.createElement("figure");
+          var rotorTop = document.createElement("div");
+          var rotorBottom = document.createElement("div");
+          rotor.className = "rotor";
+          rotorLeaf.className = "rotor-leaf";
+          rotorLeafRear.className = "rotor-leaf-rear";
+          rotorLeafFront.className = "rotor-leaf-front";
+          rotorTop.className = "rotor-top";
+          rotorBottom.className = "rotor-bottom";
+          rotorLeafRear.textContent = v;
+          rotorTop.textContent = v;
+          rotorBottom.textContent = v;
+          appendChildren(rotor, [rotorLeaf, rotorTop, rotorBottom]);
+          appendChildren(rotorLeaf, [rotorLeafRear, rotorLeafFront]);
+          return rotor;
+        }
+      }, {
+        key: "_tick",
+        value: function _tick() {
+          this.now = this._getTime();
+          var diff = this.epoch - this.now <= 0 ? 0 : this.epoch - this.now;
+          this.clockValues.d = Math.floor(diff / 86400);
+          diff -= this.clockValues.d * 86400;
+          this.clockValues.h = Math.floor(diff / 3600);
+          diff -= this.clockValues.h * 3600;
+          this.clockValues.m = Math.floor(diff / 60);
+          diff -= this.clockValues.m * 60;
+          this.clockValues.s = Math.floor(diff);
+
+          this._updateClockValues();
+
+          this._hasCountdownEnded();
+        }
+      }, {
+        key: "_updateClockValues",
+        value: function _updateClockValues() {
+          var _this = this;
+
+          var init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+          this.clockStrings.d = pad(this.clockValues.d, 2);
+          this.clockStrings.h = pad(this.clockValues.h, 2);
+          this.clockStrings.m = pad(this.clockValues.m, 2);
+          this.clockStrings.s = pad(this.clockValues.s, 2);
+          this.clockValuesAsString = (this.clockStrings.d + this.clockStrings.h + this.clockStrings.m + this.clockStrings.s).split("");
+          this.rotorLeafFront.forEach(function (el, i) {
+            el.textContent = _this.prevClockValuesAsString[i];
+          });
+          this.rotorBottom.forEach(function (el, i) {
+            el.textContent = _this.prevClockValuesAsString[i];
+          });
+
+          function rotorTopFlip() {
+            var _this2 = this;
+
+            this.rotorTop.forEach(function (el, i) {
+              if (el.textContent != _this2.clockValuesAsString[i]) {
+                el.textContent = _this2.clockValuesAsString[i];
+              }
+            });
+          }
+
+          function rotorLeafRearFlip() {
+            var _this3 = this;
+
+            this.rotorLeafRear.forEach(function (el, i) {
+              if (el.textContent != _this3.clockValuesAsString[i]) {
+                el.textContent = _this3.clockValuesAsString[i];
+                el.parentElement.classList.add("flipped");
+                var flip = setInterval(function () {
+                  el.parentElement.classList.remove("flipped");
+                  clearInterval(flip);
+                }.bind(_this3), 500);
+              }
+            });
+          }
+
+          if (!init) {
+            setTimeout(rotorTopFlip.bind(this), 500);
+            setTimeout(rotorLeafRearFlip.bind(this), 500);
+          } else {
+            rotorTopFlip.call(this);
+            rotorLeafRearFlip.call(this);
+          }
+
+          this.prevClockValuesAsString = this.clockValuesAsString;
+        }
+      }]);
+
+      return FlipDown;
+    }();
+
+    function pad(n, len) {
+      n = n.toString();
+      return n.length < len ? pad("0" + n, len) : n;
+    }
+
+    function appendChildren(parent, children) {
+      children.forEach(function (el) {
+        parent.appendChild(el);
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+  <script src="../../assets/js/app.js"></script>
+  <script src="../../assets/js/semesters.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 700,
+    });
+  </script>
+</body>
+
+</html>

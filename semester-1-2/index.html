@@ -84,19 +84,24 @@
       <div class="menu">
 
 
-        <a class="menu-link" onclick="navigateTo('tutorials')" style="color: #6B5840; cursor: pointer;">Tutorials</a>
+                        <a class="menu-link" onclick="navigateTo('tutorials')" style="color: #6B5840; cursor: pointer;">
+                          <i class="unique-fas fas fa-book-open" style="margin-right: 5px;"></i>Tutorials
+                        </a>
+                        
+                        <a class="menu-link" onclick="navigateTo('past-papers')" style="color: #6B5840; cursor: pointer;">
+                          <i class="unique-fas fas fa-file-alt" style="margin-right: 5px;"></i>Past Papers
+                        </a>
+                        
+                        <style>
+                          /* Change the icon color on hover */
+                          .menu-link:hover .unique-fas {
+                            color: #fff8dc;
+                          }
+                        </style>
 
-        <a class="menu-link" onclick="navigateTo('past-papers')" style="color: #6B5840; cursor: pointer;">Past
-          Papers</a>
+        
 
-        <a class="menu-link" onclick="navigateToSection('apps')" style="color: #6B5840; cursor: pointer;">Web Apps</a>
-
-        <script>
-          function navigateToSection(sectionId) {
-            var url = 'https://ithub.surge.sh#' + sectionId;
-            window.location.href = url;
-          }
-        </script>
+        
 
         <script>
           function navigateThis(page) {
@@ -1690,7 +1695,7 @@
 
 
     <div style="display: flex; justify-content:center; text-align:center;margin-top: 90px;  ">
-      <p class="mb-0" style="opacity: 0.4; font-weight:bold !important; font-size:small"> © 2023 IT Course Hub.
+      <p class="mb-0" style="opacity: 0.4; font-weight:bold !important; font-size:small"> © 2024 IT Course Hub.
         All rights reserved.</p>
     </div>
 

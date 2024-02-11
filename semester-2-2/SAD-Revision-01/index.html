@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timetable</title>
+  <title>System Analysis and Design</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/page-style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -157,7 +157,7 @@
       background-color: var(--accent-color);
 
       color: white;
-      font-size: 1.25rem;
+      font-size: 1.0rem;
       font-weight: 700;
 
       display: grid;
@@ -299,7 +299,7 @@
 
     /* Rotor group headings */
     .flipdown.flipdown__theme-dark .rotor-group-heading:before {
-      color: #d07527;
+      color: #008080;
       font-weight: bold;
       margin-bottom: 10px;
 
@@ -308,7 +308,7 @@
     /* Delimeters */
     .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,
     .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-      background-color: #a18974;
+      background-color: #869393;
     }
 
     /* Rotor tops */
@@ -318,7 +318,7 @@
       color: #FFFFFF;
       font-weight: bold;
       font-size: 28px;
-      background-color: #974f10;
+      background-color: #008080;
     }
 
     /* Rotor bottoms */
@@ -327,12 +327,12 @@
       color: #FFFFFF;
       font-weight: bold;
       font-size: 28px;
-      background-color: #974f10;
+      background-color: #008080;
     }
 
     /* Hinge */
     .flipdown.flipdown__theme-dark .rotor:after {
-      border-top: solid 0.1px #b2937a;
+      border-top: solid 0.1px#a2b3b3;
     }
 
 
@@ -613,7 +613,7 @@
       font-size: 1.5em;
       margin-top: 0;
       margin-bottom: 20px;
-      color: #966336;
+      color: #616b6b;
     }
 
     .example p {
@@ -705,10 +705,6 @@
         display: inline-block;
       }
     }
-
-    .date {
-      font-size: 18px !important;
-    }
   </style>
 </head>
 
@@ -721,7 +717,7 @@
 
     <div class="container">
 
-      <h2 class="sem2" style="font-size: 18px;">Exam Timetable</h2>
+      <h2 class="sem2" style="font-size: 17px;">SAD Revision 01</h2>
 
       <div class="menu">
 
@@ -757,107 +753,462 @@
 
 
     <div class="example" style="text-align: center;">
+      <h3>Countdown To SAD exam</h3>
 
-      <h3>Happy Holidays Everyone</h3>
-
-      
-
+      <div id="flipdown" class="flipdown" style="display: flex; flex-wrap:wrap; flex-direction:column;"></div>
     </div>
 
 
     <div class="timeline">
       <h1 data-aos="fade-down" data-aos-delay="100"
-        style="font-size: 1.4rem; margin-top: 0px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
-        Exam Timetable</h1>
+        style="font-size: 1.4rem; margin-top: -50px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
+        System Analysis and Design </h1>
       <ul class="uli">
+        <li style="--accent-color:#3D1F00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Introduction to Systems:</div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+            A <strong style="font-weight: bold;">system</strong> is an organized and interconnected set of components or
+            elements that work together to achieve specific
+            objectives or functions. <br><br>
+            In the context of information technology, a system can refer to various entities, such as computer systems,
+            software
+            applications, or even complex organizational structures. <br>
+            <br>
+
+            <strong style="font-weight: bold;">Definition of a System:</strong>
+
+            A system can be defined as a collection of interrelated and interdependent components that work together as
+            a whole to
+            achieve a common goal or purpose. <br><br>
+            These components can be physical entities, software modules, people, processes, data, or any combination of
+            these
+            elements.
+            The behavior and performance of a system are determined by the interactions between its components and the
+            rules that
+            govern their relationships.
+            <br><br>
+
+            In general, systems can be categorized into two main types: <br><br>
+
+            <strong style="font-weight: bold;">Open Systems:</strong>
+            Open systems interact with their environment and can exchange information, energy, or materials with it.
+            They are
+            influenced by external factors and adapt to changes in their surroundings. <br><br>
+
+            <strong style="font-weight: bold;">Closed Systems:</strong>
+            Closed systems, on the other hand, do not interact with their environment or have limited interactions. They
+            are
+            self-contained and do not exchange resources with the outside world.
 
 
-        <li style="--accent-color:#8B4513" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Friday 11th (Week 01)</div>
-          <div class="title">14:00 - 16:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                      ">Unit:</b> INTE 223 (ASSEMBLY LANGUAGE PROGRAMMING) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3; ">Venue:</b> New Meeting Facility - Door 01
           </div>
 
-
-
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Smashed
-              This!</b>
-          </div>
-        </li>
-
-
-
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Monday 14th (Week 02)</div>
-          <div class="title">11:30 - 13:30</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                      ">Unit:</b> INTE 221 (WEB APPLICATIONS PROGRAMMING) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
-
-
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Crashed
-              This!</b>
-          </div>
-
-
-        </li>
-
-
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Tuesday 15th (Week 02)</div>
-          <div class="title">09:00 - 11:00</div>
-          <div class="descr" style="margin-bottom: -8px;"> <b style="font-weight: bold;   color: #452302b3; ">Unit:</b>
-            INTE 226 (SYSTEM ANALYSIS AND DESIGN)</div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
-
-          <div class="title">14:00 - 16:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                ">Unit:</b> BIBL 222 (CHRISTIAN ETHICS) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
-
-
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Tests Completed!</b>
-          </div>
         </li>
 
 
 
 
-
-
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Thursday 17th (Week 02)</div>
-          <div class="title">09:00 - 11:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                      ">Unit:</b> COMP 326 (OBJECT ORIENTED PROGRAMMING WITH JAVA) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
+        <li style="--accent-color: #6D4C00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Characteristics of a System:
           </div>
 
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
 
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>And Just Like That😎</b>
+
+            <strong style="font-weight: bold;">Purpose or Objective:</strong> <br>
+            Every system has a specific purpose or goal it aims to achieve. This objective guides the behavior and
+            activities of
+            the system's components. <br><br>
+
+            <strong style="font-weight: bold;">Interconnectivity:</strong>
+            <br>Components within a system are interconnected and work together to fulfill the system's purpose. Changes
+            in one
+            component can impact the behavior of others.<br><br>
+
+            <strong style="font-weight: bold;">Boundaries:</strong>
+            <br>A system has well-defined boundaries that separate it from its environment. These boundaries determine
+            what is
+            considered part of the system and what is external to it.<br><br>
+
+            <strong style="font-weight: bold;">Input and Output:</strong>
+            <br>Systems interact with their environment by receiving inputs, processing them, and producing outputs.
+            Inputs are
+            resources or data needed for the system's operation, and outputs are the results or products of the system's
+            activities.<br><br>
+
+            <strong style="font-weight: bold;">Control and Feedback:</strong>
+            <br>Systems often incorporate control mechanisms to regulate their behavior and maintain stability. Feedback
+            loops allow
+            systems to receive information about their performance and make adjustments accordingly.<br><br>
+
+            <strong style="font-weight: bold;">Emergence:</strong>
+            <br>Systems may exhibit emergent properties, where the behavior of the whole system cannot be entirely
+            predicted or
+            explained solely by understanding its individual components.<br><br>
+
+            <strong style="font-weight: bold;">Hierarchy:</strong>
+            <br>Systems can be part of larger systems, forming a hierarchical structure. For example, an organization
+            can be seen as
+            a system composed of multiple subsystems (e.g., departments, teams).<br><br>
+
+            <strong style="font-weight: bold;">Adaptability:</strong>
+            <br>Systems have the ability to adapt to changes in their environment or requirements to ensure continued
+            functionality
+            and relevance.
+
+
           </div>
+
         </li>
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">The Modern Systems Analyst:
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <br>A
+            <strong style="font-weight: bold;">systems analyst</strong>
+            is a professional responsible for studying, analyzing, designing, and implementing information
+            systems to meet specific business needs or solve organizational problems.<br> <br>
+
+            Some key aspects of the modern systems analyst include:<br> <br>
+
+            <strong style="font-weight: bold;">Technical Expertise:</strong><br>
+            Modern systems analysts need a strong understanding of various technologies, programming languages,
+            databases, and
+            software development methodologies.<br><br>
+
+            <strong style="font-weight: bold;">Business Acumen:</strong><br>
+            They must also possess a deep understanding of the business processes and objectives for which they are
+            designing or
+            improving systems. This knowledge allows them to align technology solutions with business goals
+            effectively.<br><br>
+
+            <strong style="font-weight: bold;">Problem-Solving Skills:</strong><br>
+            Systems analysts are problem solvers. They identify inefficiencies or challenges in existing systems and
+            propose
+            solutions to enhance productivity and performance.<br><br>
+
+            <strong style="font-weight: bold;">Communication and Collaboration:</strong><br>
+            Effective communication skills are vital for systems analysts to interact with stakeholders, gather
+            requirements, and
+            convey technical concepts to non-technical audiences. Collaboration with teams from different domains is
+            common in
+            system analysis projects.<br><br>
+
+            <strong style="font-weight: bold;">System Design and Modeling:</strong><br>
+            Modern systems analysts use various tools and techniques to model systems, such as data flow diagrams, use
+            case
+            diagrams, and process models. These visual representations aid in understanding system functionalities and
+            interactions.<br><br>
+
+            <strong style="font-weight: bold;">Project Management:</strong><br>
+            Systems analysts may be involved in project management tasks, such as defining project scope, estimating
+            resources, and
+            monitoring progress.<br><br>
+
+            <strong style="font-weight: bold;">Continuous Learning:</strong><br>
+            Given the fast-paced nature of technology, systems analysts need to stay updated with the latest
+            advancements and
+            industry best practices.<br><br>
+
+
+          </div>
+
+        </li>
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">METHODOLOGIES
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <br>A
+            <strong style="font-weight: bold;">Methodology</strong> is a standard process followed by an organisation to
+            conduct all steps necessary to analyse, design and
+            maintain information systems.<br> <br>
+
+
+
+            <strong style="font-weight: bold;">Methodologies:</strong><br>
+
+            1. System Development Life Cycle (SDLC) <br>
+            2. System Analysis & Structured Design (SASD) <br>
+            3. Object-Oriented Analysis and Design <br>
+            4. Jackson System Development.<br><br>
+
+
+
+
+          </div>
+
+        </li>
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">System Development Life Cycle
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+
+            • Phases mark the progress of system analysis and design.<br>
+            • Not a strictly sequential process; steps can be adopted as needed.<br>
+            • Possibility to return to earlier phases if necessary.<br>
+            • Activities in different phases can be done in parallel.<br>
+            • Life cycle can be durative, repeating phases until an acceptable system is found.<br>
+            • Completion of one phase initiates the next; management approval required.<br>
+            • Emphasizes project management and system documentation throughout each phase.<br>
+            • Ongoing communication between information system personnel, users, and management.<br>
+            • Referred to as the waterfall method due to how each stage leads to the next stage.<br>
+            <br>
+
+            <strong style="font-weight: bold;">SDLC Phases:</strong><br>
+
+            <strong style="font-weight: bold;">Project Identification and Selection:</strong><br>
+            Involves identifying the need for a new or improved system.<br>
+            The user communicates the need or problem to initiate the life cycle.<br><br>
+
+            <strong style="font-weight: bold;">Project Initiation and Planning:</strong><br>
+            Preliminary investigation of the system problem or opportunity.<br>
+            Presentation of reasons for system development or non-development.<br>
+            Critical step: determining the scope of the proposed system.<br>
+            Investigation to understand current data handling and shortcomings.<br>
+            Project documentation compiled, including the need statement and planning aids.<br>
+            Results summarized in the preliminary investigation report for management approval.<br><br>
+
+            <strong style="font-weight: bold;">Detailed Analysis:</strong><br>
+            Analyst studies the organization's current procedures and information systems.<br>
+            Sub-phases include requirement determination, structuring requirements, generating design alternatives, and
+            comparing
+            them.<br>
+            Culminates in a feasibility study report presented to management for approval.<br><br>
+
+            <strong style="font-weight: bold;">Design:</strong><br>
+            Logical design independent of specific hardware or software platform.<br>
+            Physical design transforms logical specifications into technology-specific details.<br>
+            Analyst team determines physical details necessary to build the final system.<br>
+            Management approval initiates the next phase of system development.<br><br>
+
+            <strong style="font-weight: bold;">Implementation:</strong><br>
+            System specification is turned into a tested and usable system.<br>
+            Includes coding, testing, installation, evaluation, and initial user support.<br><br>
+
+            <strong style="font-weight: bold;">Maintenance:</strong><br>
+            Ongoing phase where programmers make changes and modifications based on user requests and changing business
+            conditions.<br>
+            Maintenance is not a separate phase but a repetition of other life cycle phases to implement needed
+            changes.<br><br><br>
+
+            <strong style="font-weight: bold;">Traditional SDLC Criticism:</strong><br>
+            <p></p>• Phases were treated as sequential, making it challenging to go back once a phase ended.<br>
+            <p></p>
+            • Lack of modern tools like CASE tools, code generators, and fourth-generation languages.<br>
+            <p></p>
+            • Insufficient focus on analysis and design resulting in systems that don't match user needs and require
+            extensive
+            maintenance, increasing costs.<br>
+
+
+
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Merits & Demerits of DFDs
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <br><strong style="font-weight: bold;">Advantages of Data Flow Diagrams (DFDs):</strong><br> <br>
+            • Clarity in Data Flow: <br> DFDs focus on the flow of data between various processes, entities, and data
+            stores. This
+            provides a clear understanding of how data moves through a system, making it easier to identify potential
+            bottlenecks
+            and inefficiencies.<br> <br>
+            • Simplified Representation: <br>DFDs use standardized symbols, such as circles for processes, arrows for
+            data flow, and
+            rectangles for data stores. This simplicity makes it easier for stakeholders to grasp the system's
+            functionality and the
+            relationships between different components.<br><br>
+            • Hierarchy and Decomposition:<br> DFDs are hierarchical in nature, allowing complex systems to be broken
+            down into smaller,
+            manageable modules. This decomposition simplifies the analysis and design process.<br><br>
+            • Independent of Implementation Details:<br> DFDs are implementation-agnostic, meaning they do not focus on
+            how processes
+            are implemented or specific programming languages used. This abstraction makes DFDs suitable for both
+            technical and
+            non-technical audiences.<br><br>
+            • Communication:<br> DFDs serve as effective communication tools between stakeholders, including business
+            analysts,
+            developers, and users. They facilitate discussions and help in reaching a common understanding of the
+            system's
+            requirements and behavior.<br><br><br>
+
+            <br>
+
+            <strong style="font-weight: bold;">Disadvantages of Data Flow Diagrams (DFDs):</strong><br><br>
+            • Limited in Detail:<br> DFDs may not provide the level of detail required for complex systems or for
+            representing the
+            internal logic of processes comprehensively.<br><br>
+            • Algorithmic Representation: DFDs are not ideal for representing complex algorithms or detailed procedural
+            logic. For
+            such cases, flowcharts might be a more appropriate choice.<br>
+            • Learning Curve:<br> Understanding and creating DFDs might require some learning, especially for those
+            unfamiliar with the
+            notation. In contrast, flowcharts use more straightforward symbols and are generally more familiar.<br><br>
+            • Possible Ambiguity:<br> In certain cases, DFDs may be open to interpretation or misinterpretation, leading
+            to
+            misunderstandings among stakeholders.<br><br>
+            • Limited for Real-time Systems:<br> DFDs may not be the best choice for representing real-time systems
+            where precise timing
+            and event sequencing are crucial. Flowcharts with control structures could handle such scenarios
+            better.<br><br>
+
+
+
+
+          </div>
+
+        </li>
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Jackson System Development
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <strong style="font-weight: bold; color: #d0a551;">Jackson System Development (JSD) is a linear software
+              development
+              methodology.</strong>
+
+            <br><br>
+
+            <strong style="font-weight: bold;">Let's consider a real-world example of Jackson System Development (JSD)
+              applied to
+              the development of a library management system.</strong>
+
+            <br><br>
+
+            <strong style="font-weight: bold;">Step 1: Modelling Stage (Analysis)</strong>
+            <br>
+            &emsp;&bull; In this stage, the development team begins by describing and modeling the real-world entities
+            and actions
+            related to a library. They identify the key entities, such as books, library members, and library staff, and
+            the
+            actions, such as borrowing books, returning books, and managing inventory.
+
+            <br><br>
+
+            <strong style="font-weight: bold;">Step 2: Network Stage (Design)</strong>
+            <br>
+            &emsp;&bull; The development team proceeds to the design stage, where they create an initial model of the
+            library
+            management system. This model captures the relationships between entities and actions, and it serves as a
+            basis for
+            further development.
+            <br>
+            &emsp;&bull; <em>Initial Model Step:</em> The team creates a high-level overview of the library management
+            system's
+            structure, outlining the main components and interactions.
+            <br>
+            &emsp;&bull; <em>Function Step:</em> They define the interactive functions of the system, such as user
+            authentication,
+            book search, and checkout.
+            <br>
+            &emsp;&bull; <em>System Timing Step:</em> The team incorporates timing constraints to ensure that actions
+            like book
+            reservations and due dates are synchronized with real-world library policies.
+
+            <br><br>
+
+            <strong style="font-weight: bold;">Step 3: Implementation Stage (Realization)</strong>
+            <br>
+            &emsp;&bull; In this stage, the team works on transforming the design into a concrete library management
+            system.
+            <br>
+            &emsp;&bull; <em>Implementation Step:</em> They develop the software using appropriate programming languages
+            and
+            technologies, ensuring that it can efficiently run on the library's existing hardware and software
+            infrastructure. They
+            also address any specific hardware or software requirements.
+
+            <br><br>
+
+            &emsp;Once the implementation is complete, the library management system is deployed and made available to
+            library staff
+            and patrons.
+
+            <br><br>
+
+            <strong style="font-weight: bold;">Example Scenario:</strong>
+            <br>
+            &emsp;&bull; A library user visits the library and wants to borrow a book. They log in to the library
+            management system
+            using their credentials, and the system authenticates them. The user searches for the desired book using the
+            system's
+            search function. The system retrieves the book information from the database and displays its availability.
+
+            <br><br>
+
+            &emsp;&bull; Upon finding the book, the user proceeds to check it out. The system updates the book's status
+            to "on
+            loan," and the due date is calculated based on the library's borrowing policies. The user receives a
+            notification
+            confirming the successful checkout and providing the due date.
+
+            <br><br>
+
+            &emsp;&bull; In the background, the system manages the inventory, updating the book's availability status
+            and notifying
+            library staff about any books nearing their due dates.
+
+            <br><br>
+
+            &emsp;&bull; The library management system is designed to accurately model the real-world processes of a
+            library,
+            efficiently managing book borrowing, returns, and inventory. It aligns the system's behavior with the
+            library's policies
+            and timing constraints, ensuring smooth operations and a seamless user experience.
+
+
+
+
+          </div>
+
+        </li>
+
+
+
+
+
+
+
+
       </ul>
     </div>
   </div>
@@ -865,7 +1216,7 @@
 
 
 
-   <div class="wrapper-loader">
+  <div class="wrapper-loader">
 
 
 
@@ -907,11 +1258,7 @@
   <script>
 
     document.addEventListener("DOMContentLoaded", () => {
-
-
-      var targetDate = new Date(new Date().getFullYear(), 7, 17, 9, 30).getTime() / 1000;
-
-
+      var targetDate = new Date(new Date().getFullYear(), 7, 15, 9, 0).getTime() / 1000;
 
       // Set up FlipDown
       var flipdown = new FlipDown(targetDate)

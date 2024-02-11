@@ -35,19 +35,24 @@
       <div class="menu">
 
 
-        <a class="menu-link" onclick="navigateTo('tutorials')" style="color: #6B5840; cursor: pointer;">Tutorials</a>
+        <a class="menu-link" onclick="navigateTo('tutorials')" style="color: #6B5840; cursor: pointer;">
+          <i class="unique-fas fas fa-book-open" style="margin-right: 5px;"></i>Tutorials
+        </a>
 
-        <a class="menu-link" onclick="navigateTo('past-papers')" style="color: #6B5840; cursor: pointer;">Past
-          Papers</a>
+        <a class="menu-link" onclick="navigateTo('past-papers')" style="color: #6B5840; cursor: pointer;">
+          <i class="unique-fas fas fa-file-alt" style="margin-right: 5px;"></i>Exe Files
+        </a>
 
-        <a class="menu-link" onclick="navigateToSection('apps')" style="color: #6B5840; cursor: pointer;">Web Apps</a>
-
-        <script>
-          function navigateToSection(sectionId) {
-            var url = 'https://ithub.surge.sh#' + sectionId;
-            window.location.href = url;
+        <style>
+          /* Change the icon color on hover */
+          .menu-link:hover .unique-fas {
+            color: #fff8dc;
           }
-        </script>
+        </style>
+
+
+
+
 
         <script>
 
@@ -129,14 +134,15 @@
             Programming</p>
         </li>
 
-
-
         <li style="display: flex;">
           <p class="" style="font-weight: bold;">INTE 317</p>
-          <p style="margin-left: 10%;margin-bottom:3.2%; font-size: 12px; font-weight:450;text-transform:uppercase;">
-            Organizational Behavior
-          </p>
+          <p style="margin-left: 10%;font-size: 12px; font-weight:450; text-transform:uppercase;">Organizational
+            Behaviour</p>
         </li>
+
+
+
+
 
 
         <style>
@@ -159,13 +165,36 @@
 
   </div>
 
+  <!---------------------- 📲👥 Timetable 📲👥 -------------------------->
+
+
+  <div style="display: flex; justify-content: center; margin-top:-60px;  margin-bottom:50px;">
+
+    <button class="btn btn-primary neumorphic shadow-soft border border-light" id="timetableButton" data-aos="fade-up"
+      data-aos-delay="100" onclick="redirectToTimetable()">
+      <span class="mr-1" style="font-weight: 500!important;">
+        <span class="far fa-calendar-alt"></span>
+        Timetable
+      </span>
+    </button>
+
+    <script>
+      function redirectToTimetable() {
+        window.location.href = './timetable';
+      }
+    </script>
+
+
+
+  </div>
+
 
 
   <!---------------------- 📲👥 WhatsApp Group Link 📲👥 -------------------------->
 
 
   <div style="display: flex; justify-content: center; margin-top:-65px; " data-aos="fade-up" data-aos-delay="100">
-    <a href="https://chat.whatsapp.com/DaLU1d75aI7BorcSSDQohs" target="_blank">
+    <a href="https://chat.whatsapp.com/IKW3gHOhtJc6pt5O0NjRN8" target="_blank">
       <button class="btn btn-primary neumorphic shadow-soft border border-light">
         <span class="mr-1" style="font-weight: 500!important;"><span class="fab fa-whatsapp"></span>
           Whatsapp Group
@@ -178,6 +207,8 @@
 
 
   <!----------------------- 📎 Whatsapp Group Link Ends Here 📎 ---------------------->
+
+
 
 
 
@@ -250,7 +281,7 @@
     <div data-aos="fade-up" data-aos-delay="200" class="col-md-4">
 
 
-      <!-- 📚 Icon box BIBL 120 -->
+      <!-- 📚 Icon box INTE 311 -->
 
       <div class="icon-box text-center mb-5">
 
@@ -265,7 +296,7 @@
                 ">INTE 311</h2>
 
 
-        <a href="">
+        <a href="https://drive.google.com/uc?export=download&id=1Oz7teokugY2TpqVR_z-mvrWgosgl0WIH">
 
           <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
             onclick="showPopup(11)">
@@ -297,7 +328,7 @@
 
     <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
 
-      <!-- 💻 Icon box COMP  122 -->
+      <!-- 💻 Icon box COMP  312 -->
 
 
       <div class="icon-box text-center mb-5">
@@ -307,7 +338,7 @@
 
         <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 312</h2>
 
-        <a href="">
+        <a href="https://drive.google.com/uc?export=download&id=1If5Xzmqo8wrNkhNSthikWM5dIPQMavmd">
           <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
             onclick="showPopup(11)">
             <span class="mr-1"><span class="fas fa-file-download"></span></span>
@@ -328,7 +359,7 @@
 
     <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
 
-      <!-------- 🌟 Icon Box COMS 120 🌟 ---------->
+      <!-------- 🌟 Icon Box INTE 314 🌟 ---------->
 
 
       <div class="icon-box text-center mb-5">
@@ -340,7 +371,7 @@
         <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 314</h2>
 
 
-        <a href="">
+        <a href="https://drive.google.com/uc?export=download&id=15t_plM9-B3cbWBPjZFKmWTEYcrnFUWCL">
 
           <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
             onclick="showPopup(11)">
@@ -364,7 +395,7 @@
 
     <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
 
-      <!------- 🎓 Icon Box INTE 121 🎓 ------->
+      <!------- 🎓 Icon Box INTE 315 🎓 ------->
 
 
       <div class="icon-box text-center mb-5">
@@ -376,7 +407,7 @@
         <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 315</h2>
 
 
-        <a href="">
+        <a href="https://drive.google.com/uc?export=download&id=1sV0oQc6cDpqMTcmNB4PfDAgE8QV5F6RC">
 
           <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
             onclick="showPopup(11)">
@@ -399,9 +430,15 @@
 
 
 
+
+
+
+
+
+
     <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
 
-      <!------- 🎓 Icon Box INTE 122 🎓 ------->
+      <!------- 🎓 Icon Box INTE 316 🎓 ------->
 
 
       <div class="icon-box text-center mb-5">
@@ -412,7 +449,7 @@
 
         <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 316</h2>
 
-        <a href="">
+        <a href="https://drive.google.com/uc?export=download&id=1VPmbKmMRfpbhQLfy-NI-PX3yI0TKmDV0">
 
           <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
             onclick="showPopup(11)">
@@ -435,27 +472,26 @@
 
 
 
-
     <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
 
-      <!------- 🎓 Icon Box INTE 123 🎓 ------->
+      <!------- 🎓 Icon Box INTE 317 🎓 ------->
 
 
       <div class="icon-box text-center mb-5">
 
         <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
-          <span class="fas fa-cogs"></span>
+          <span class="fas fa-server"></span>
         </div>
 
         <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 317</h2>
 
 
-        <a href="">
+        <a href="https://drive.google.com/uc?export=download&id=1-gXWYaf4F4QZ9RZOyFLAlLH4BFGPVhbG">
 
           <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
             onclick="showPopup(11)">
 
-            <span class="mr-1"><span class="far fas fa-arrow-circle-down"></span></span>
+            <span class="mr-1"><span class="far fa-arrow-alt-circle-down"></span></span>
             Download Notes
 
           </button>
@@ -468,6 +504,9 @@
 
 
     </div>
+
+
+
 
 
 
@@ -578,9 +617,11 @@
 
 
             <style>
+              
               .download-link {
                 padding: 0 4%;
               }
+
             </style>
 
             <div class="pt-3">
@@ -651,11 +692,26 @@
           <div class="collapse" id="panel-2">
             <div class="pt-3"
               style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <a href="" <button class="btn btn-primary neumorphic shadow-soft border border-light"
-                style="margin-top: 40px; max-width: 200px">
-                <span class="mr-1"><i class="fab fa-java" style="height: 20px!important;"></i></span>
-                <strong>Oracle</strong>
-                <span class="mr-1"><i class="fab fa-java" style="height: 20px!important;"></i></span>
+
+              <a href="https://liquidtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Windows/8.2.12/xampp-windows-x64-8.2.12-0-VS16-installer.exe"
+                target="_blank">
+                <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
+                  style="max-width: 200px; margin-bottom:0px!important">
+                  <span class="mr-1"><i class="fas fa-server"></i></span>
+                  XAMPP
+                </button>
+              </a>
+
+
+
+
+
+              <a href="https://octave.org/download" <button
+                class="btn btn-primary neumorphic shadow-soft border border-light"
+                style="margin-top: 30px; margin-bottom:30px!important; max-width: 200px">
+                <span class="mr-1"><i class="fas fa-calculator" style="height: 20px!important;"></i></span>
+                <strong>Octave Matlab</strong>
+
                 </button>
               </a>
 
@@ -665,9 +721,31 @@
               <a href="https://netbeans.apache.org/download/nb15/" target="_blank">
 
                 <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
-                  style="max-width: 200px;">
+                  style="max-width: 200px; margin-bottom:35px!important; ">
                   <span class="mr-1"><i class="fas fa-code"></i></span>
                   NetBeans
+                </button>
+              </a>
+
+
+
+
+              <a href="https://liquidtelecom.dl.sourceforge.net/project/wampserver/WampServer%203/WampServer%203.0.0/wampserver3.3.2_x64.exe"
+                target="_blank">
+                <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
+                  style="max-width: 200px; margin-bottom:30px!important; margin-top:-10px;">
+                  <span class="mr-1"><i class="fas fa-database"></i></span>
+                  WAMP
+                </button>
+              </a>
+
+              <a href="https://drive.google.com/uc?export=download&id=1-xLlgKvWTTJ2KgQFLxQzQBCT_xwOQn81
+" target="_blank">
+
+                <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
+                  style="max-width: 200px; margin-bottom:35px!important; ">
+                  <span class="mr-1"><i class="fas fa-code"></i></span>
+                  VC++ REDIST
                 </button>
               </a>
 
@@ -685,13 +763,7 @@
 
 
 
-              <a href="https://ccm.net/downloads/programming/4871-nasm/" target="_blank">
-                <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
-                  style="max-width: 200px;">
-                  <span class="mr-1"><i class="fas fa-file-code"></i></span>
-                  NASM
-                </button>
-              </a>
+
 
 
             </div>
@@ -738,11 +810,7 @@
                 numerical analysis and programming, focusing on algorithms and techniques used for solving mathematical
                 problems on
                 computers.</p>
-              <p><strong style="font-weight: bold; font-size:13px;">ORGANIZATIONAL BEHAVIOR:</strong><br> Gain insights
-                into
-                organizational behavior, studying human behavior within organizations, leadership styles, teamwork, and
-                effective
-                communication.</p>
+
             </div>
           </div>
 
@@ -863,16 +931,16 @@
 
 
     <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
-      <a href="https://youtu.be/BBpAmxU_NQo" target="_blank">
-        <img class="thumbnail" src="../assets/images/c-algo.jpg" class="card-img-top rounded-top">
+      <a href="https://youtu.be/N7KGeeBmjvU?si=vsGhyfOoQSsB9zFb" target="_blank">
+        <img class="thumbnail" src="../assets/images/Graphix.01.jpg" class="card-img-top rounded-top">
 
       </a>
 
       <div class="card-body" style="margin-top: -10%; margin-left:-4%">
 
-        <h3 class="h5 card-title mt-3">Data Structures and Algorithms for Beginners</h3>
+        <h3 class="h5 card-title mt-3">BIT401 - Computer Graphics Curriculum</h3>
         <span class="h6 icon-tertiary small">
-          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Programming with Mosh</span>
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">TV47</span>
         </span>
 
         <button class="btn btn-primary neumorphic shadow-soft border border-light"
@@ -949,14 +1017,14 @@
 
 
     <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
-      <a href="https://youtu.be/8hly31xKli0" target="_blank">
-        <img class="thumbnail" src="../assets/images/f-alg0.jpg" class="card-img-top rounded-top">
+      <a href="https://youtu.be/GQS7wPujL2k?si=FrkZC1xE4YyF2Qm7" target="_blank">
+        <img class="thumbnail" src="../assets/images/Graphix.02.jpg" class="card-img-top rounded-top">
       </a>
       <div class="card-body" style="margin-top: -10%; margin-left:-4%">
 
-        <h3 class="h5 card-title mt-3">Algorithms and Data Structures Tutorial - Full Course for Beginners</h3>
+        <h3 class="h5 card-title mt-3">Graphic Design Basics | FREE COURSE</h3>
         <span class="h6 icon-tertiary small">
-          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">freeCodeCamp</span>
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Envanto Elements</span>
         </span>
 
         <button class="btn btn-primary neumorphic shadow-soft border border-light"
@@ -1041,20 +1109,20 @@
 
 
     <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
-      <a href="https://youtu.be/mYWsllbszYQ" target="_blank">
-        <img class="thumbnail" src="../assets/images/data-c.jpg" class="card-img-top rounded-top">
+      <a href="https://youtu.be/C8YtdC8mxTU?si=cMfSkRSyscGHU5wc" target="_blank">
+        <img class="thumbnail" src="../assets/images/Graphix.03.jpg" class="card-img-top rounded-top">
       </a>
       <div class="card-body" style="margin-top: -10%; margin-left:-4%">
 
-        <h3 class="h5 card-title mt-3">INTRODUCTION TO DATA COMMUNICATIONS AND NETWORKING</h3>
+        <h3 class="h5 card-title mt-3">How Do Video Game Graphics Work</h3>
         <span class="h6 icon-tertiary small">
-          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">3G School of Enterprenuership</span>
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Branch Education</span>
         </span>
 
         <button class="btn btn-primary neumorphic shadow-soft border border-light"
           style="display: block; margin: 10% auto 0;" onclick="showPopup(3)">
           <span class="mr-1">
-            <i class="fas fa-download"></i> <!-- Replace this line with the download icon class -->
+            <i class="fas fa-download"></i>
           </span>
           Download Video
         </button>
@@ -1127,14 +1195,14 @@
 
 
     <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
-      <a href="https://youtu.be/KJgsSFOSQv0" target="_blank">
-        <img class="thumbnail" src="../assets/images/f-c.jpg" class="card-img-top rounded-top">
+      <a href="https://youtu.be/2HVKizgcfjo?si=MOYzZG-CA7249gNK" target="_blank">
+        <img class="thumbnail" src="../assets/images/sql.01.jpg" class="card-img-top rounded-top">
       </a>
       <div class="card-body" style="margin-top: -10%; margin-left:-4%">
 
-        <h3 class="h5 card-title mt-3">C Programming Tutorial for Beginners</h3>
+        <h3 class="h5 card-title mt-3">How to Connect HTML Form with MySQL Database using PHP</h3>
         <span class="h6 icon-tertiary small">
-          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">freeCodeCamp</span>
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Technical Babaji</span>
         </span>
 
         <button class="btn btn-primary neumorphic shadow-soft border border-light"
@@ -1219,20 +1287,20 @@
 
 
     <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
-      <a href="https://youtu.be/T7AxM7Vqvaw" target="_blank">
-        <img class="thumbnail" src="../assets/images/j-db.jpg" class="card-img-top rounded-top">
+      <a href="https://youtu.be/VUGvz-BDXo8?si=WniJHJAQhR_rU7Gh" target="_blank">
+        <img class="thumbnail" src="../assets/images/sql.02.jpg" class="card-img-top rounded-top">
       </a>
       <div class="card-body" style="margin-top: -10%; margin-left:-4%">
 
-        <h3 class="h5 card-title mt-3">Lec 1: Introduction to DBMS | Database Management System</h3>
+        <h3 class="h5 card-title mt-3">Registration form using HTML, CSS, PHP, MYSQL DATABASE</h3>
         <span class="h6 icon-tertiary small">
-          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Jenny's Lectures</span>
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Hetul Suthar</span>
         </span>
 
         <button class="btn btn-primary neumorphic shadow-soft border border-light"
           style="display: block; margin: 10% auto 0;" onclick="showPopup(5)">
           <span class="mr-1">
-            <i class="fas fa-download"></i> <!-- Replace this line with the download icon class -->
+            <i class="fas fa-download"></i>
           </span>
           Download Video
         </button>
@@ -1307,14 +1375,16 @@
 
 
     <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
-      <a href="https://youtu.be/Etp4q2w0HPc" target="_blank">
-        <img class="thumbnail" src="../assets/images/db.jpg" class="card-img-top rounded-top">
+      <a href="https://www.youtube.com/watch?v=qm4Eih_2p-M&t=11s&pp=ygUTaHRtbCBjc3MgZm9ybSBteXNxbA%3D%3D"
+        target="_blank">
+        <img class="thumbnail" src="../assets/images/sql.03.jpg" class="card-img-top rounded-top">
       </a>
       <div class="card-body" style="margin-top: -10%; margin-left:-4%">
 
-        <h3 class="h5 card-title mt-3">Fundamentals Of #DBMS | Database Management System</h3>
+        <h3 class="h5 card-title mt-3">Store HTML Form Data to MySQL Database
+        </h3>
         <span class="h6 icon-tertiary small">
-          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Learn2Succeed</span>
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Code And Coins</span>
         </span>
 
         <button class="btn btn-primary neumorphic shadow-soft border border-light"
@@ -1382,6 +1452,1118 @@
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📼 Sixth Video 📼--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/GSeeyJVD0JU?si=28RlZALwGwVrGi7j" target="_blank">
+        <img class="thumbnail" src="../assets/images/Researh.jpg" class="card-img-top rounded-top">
+      </a>
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Research Methodology Lecture Series (Episode 1)
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">CONNECTING ASIA TV</span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(6)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i> <!-- Replace this line with the download icon class -->
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+
+    <!-------------⚙️ Select Quality For Video 6 ⚙️---------------->
+
+
+    <div class="popup-card" id="popupCard6">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                align-items:center;">
+
+          <h3 class="h5 card-title mt-3" style="margin-top:40px !important;
+                                    margin-bottom: 40px; opacity:0.5;text-align:center;">Select Video Quality</h3>
+
+
+          <a href="">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light" onclick="downloadVideo('1080p')">
+
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+
+
+            </button>
+          </a>
+
+
+
+          <a href="">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light" onclick="downloadVideo('720p')"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(6)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/TqwSlEsbObg?si=T-sb50qzcy_Wq3oV" target="_blank">
+        <img class="thumbnail" src="../assets/images/Octave-01.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Matlab Tutorial for Absolute Beginners: Learn Matlab via Octave in 1 hr and 30
+          min
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Mr. STEM EDU TV
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                            align-items:center;">
+
+          <h3 class="h5 card-title mt-3" style="margin-top:40px !important;
+                                margin-bottom: 40px; opacity:0.5;text-align:center;">Select Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/QUT1VHiLmmI?si=ij9TZ9ZZ8uA2o_A_" target="_blank">
+        <img class="thumbnail" src="../assets/images/Numpy.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Python NumPy Tutorial for Beginners
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">freeCodeCamp.org
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                    align-items:center;">
+
+          <h3 class="h5 card-title mt-3" style="margin-top:40px !important;
+                                        margin-bottom: 40px; opacity:0.5;text-align:center;">Select Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/-Fs2t6P5AjY?si=EKgKvS2ZAZ5fIHP8" target="_blank">
+        <img class="thumbnail" src="../assets/images/Vector-Raster.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">What are Vector and Raster Graphics?
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Buddy Media
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                    align-items:center;">
+
+          <h3 class="h5 card-title mt-3" style="margin-top:40px !important;
+                                                        margin-bottom: 40px; opacity:0.5;text-align:center;">Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/ywIpBSblBdA?si=SM2xtq9DdotT05HZ" target="_blank">
+        <img class="thumbnail" src="../assets/images/Vec0000.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">What are Vector Graphics? Vector vs. Raster Graphics
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Eye on Tech
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                                                    align-items:center;">
+
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important;
+                                                                                        margin-bottom: 40px; opacity:0.5;text-align:center;">Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtube.com/watch?v=xAMhX3Drq14" target="_blank">
+        <img class="thumbnail" src="../assets/images/Oled.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">OLED Displays, How do they work?
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Lesics
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                                                            align-items:center;">
+
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important;
+                                                                                                margin-bottom: 40px; opacity:0.5;text-align:center;">
+            Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/yxygknX1AiE?si=rCGbzXD9Fjizlf9N" target="_blank">
+        <img class="thumbnail" src="../assets/images/lcd.led.crt.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Monitors Explained - LCD, LED, OLED, CRT, TN, IPS, VA
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">PowerCert Animated Videos
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                                                                    align-items:center;">
+
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important;
+                                                                                                        margin-bottom: 40px; opacity:0.5;text-align:center;">
+            Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/96QwqOZ4xjE?si=ST4Z8Wu7N7R0zZqS" target="_blank">
+        <img class="thumbnail" src="../assets/images/led.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">The CRAZY PHYSICS of LED Displays!
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name"> Lesics
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                                                                                    align-items:center;">
+
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important;
+                                                                                                                        margin-bottom: 40px; opacity:0.5;text-align:center;">
+            Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/Blhj9GmxJQQ?si=mmdaZ52wsbDSi4pF" target="_blank">
+        <img class="thumbnail" src="../assets/images/plasma.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">How does a Plasma Display work - A GalcoTV Tech Tip
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name"> GalcoTV
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                                                                                                        align-items:center;">
+
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important;
+                                                                                                                                            margin-bottom: 40px; opacity:0.5;text-align:center;">
+            Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/w8ykjdA9g9w?si=5xKcQegFKA46F80q" target="_blank">
+        <img class="thumbnail" src="../assets/images/quickie.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">LCD, LED, Plasma, OLED TVs as Fast As Possible
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name"> Techquickie
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                                                                                                                            align-items:center;">
+
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important;
+                                                                                                                                                                margin-bottom: 40px; opacity:0.5;text-align:center;">
+            Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!------------📺 First Video 📺--------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://youtu.be/sBawWOlkKvs?si=XenUhquh8H2r61od" target="_blank">
+        <img class="thumbnail" src="../assets/images/wamp.jpg" class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">How To Connect A MYSQL DataBase With Wamp Server To PHP | PHP tutorials
+        </h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name"> Fullyworld Web Tutorials
+          </span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fas fa-download"></i>
+          </span>
+          Download Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                                                                                                                                                                    align-items:center;">
+
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important;
+                                                                                                                                                                                        margin-bottom: 40px; opacity:0.5;text-align:center;">
+            Select
+            Video Quality</h3>
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              1080p
+            </button>
+
+          </a>
+
+
+
+
+          <a href="" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light"
+              style="margin-bottom: 100px !important;">
+              <span class="mr-1">
+                <i class="fas fa-video"></i>
+              </span>
+              720p
+            </button>
+          </a>
+
+
+
+          <span class="close-btn" onclick="rotateAndHidePopup(1)">
+            <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);"></i>
+          </span>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
 
 
 
@@ -1598,10 +2780,10 @@
   <!-----------------🚀 Progress Starts Here 🚀------------------>
 
   <style>
-    @media(max-width:400px){
-      .title-1{
+    @media(max-width:400px) {
+      .title-1 {
 
-        padding-top: 10%!important;
+        padding-top: 10% !important;
       }
     }
   </style>
@@ -1861,7 +3043,7 @@
 
 
     <div style="display: flex; justify-content:center; text-align:center;margin-top: 90px;  ">
-      <p class="mb-0" style="opacity: 0.4; font-weight:bold !important; font-size:small"> © 2023 IT Course Hub.
+      <p class="mb-0" style="opacity: 0.4; font-weight:bold !important; font-size:small"> © 2024 IT Course Hub.
         All rights reserved.</p>
     </div>
 

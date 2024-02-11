@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timetable</title>
+  <title>System Analysis and Design</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/page-style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -157,7 +157,7 @@
       background-color: var(--accent-color);
 
       color: white;
-      font-size: 1.25rem;
+      font-size: 1.0rem;
       font-weight: 700;
 
       display: grid;
@@ -299,7 +299,7 @@
 
     /* Rotor group headings */
     .flipdown.flipdown__theme-dark .rotor-group-heading:before {
-      color: #d07527;
+      color: #008080;
       font-weight: bold;
       margin-bottom: 10px;
 
@@ -308,7 +308,7 @@
     /* Delimeters */
     .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,
     .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-      background-color: #a18974;
+      background-color: #869393;
     }
 
     /* Rotor tops */
@@ -318,7 +318,7 @@
       color: #FFFFFF;
       font-weight: bold;
       font-size: 28px;
-      background-color: #974f10;
+      background-color: #008080;
     }
 
     /* Rotor bottoms */
@@ -327,12 +327,12 @@
       color: #FFFFFF;
       font-weight: bold;
       font-size: 28px;
-      background-color: #974f10;
+      background-color: #008080;
     }
 
     /* Hinge */
     .flipdown.flipdown__theme-dark .rotor:after {
-      border-top: solid 0.1px #b2937a;
+      border-top: solid 0.1px#a2b3b3;
     }
 
 
@@ -613,7 +613,7 @@
       font-size: 1.5em;
       margin-top: 0;
       margin-bottom: 20px;
-      color: #966336;
+      color: #616b6b;
     }
 
     .example p {
@@ -705,10 +705,6 @@
         display: inline-block;
       }
     }
-
-    .date {
-      font-size: 18px !important;
-    }
   </style>
 </head>
 
@@ -721,7 +717,7 @@
 
     <div class="container">
 
-      <h2 class="sem2" style="font-size: 18px;">Exam Timetable</h2>
+      <h2 class="sem2" style="font-size: 17px;">SAD Revision 02</h2>
 
       <div class="menu">
 
@@ -757,84 +753,399 @@
 
 
     <div class="example" style="text-align: center;">
+      <h3>Countdown To SAD exam</h3>
 
-      <h3>Happy Holidays Everyone</h3>
-
-      
-
+      <div id="flipdown" class="flipdown" style="display: flex; flex-wrap:wrap; flex-direction:column;"></div>
     </div>
 
 
     <div class="timeline">
       <h1 data-aos="fade-down" data-aos-delay="100"
-        style="font-size: 1.4rem; margin-top: 0px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
-        Exam Timetable</h1>
+        style="font-size: 1.4rem; margin-top: -50px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
+        System Analysis and Design </h1>
       <ul class="uli">
+        <li style="--accent-color:#3D1F00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Improving system development</div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+            <strong style="font-weight: bold; color: #e49306c0;">Approaches to improving system development</strong>
+
+            <br><br>
+
+            <strong style="font-weight: bold;">Prototyping:</strong>
+
+            <br>
+            Prototyping is a technique where a smaller, working version of the desired system is built first. <br> This
+            can be done using
+            various computer languages or development tools, but there are specific prototyping tools available to make
+            the process
+            easier. The prototype can be created using 4G, query and screen design tools of a database management system
+            (DBMS), or
+            Computer-Aided Software Engineering (CASE) tools.
+
+            <br><br>
+
+            <strong style="font-weight: bold;">There are three main activities involved in prototyping:</strong> <br>
+
+            <br>
+            <em style="font-weight: bold;">&bull; Mock-up:</em> <br>This is a non-functional demonstration of the
+            proposed system's
+            appearance. It helps users visualize the final system's look and feel but lacks actual processing or storage
+            capabilities.
+
+            <br>
+
+            <em style="font-weight: bold;">&bull; Trial Prototyping:</em> <br> A simplified working model of the system
+            is created with
+            some of its capabilities. It can be used to design the user interface for the new system.
+
+            <br>
+
+            <em style="font-weight: bold;">&bull; Rapid Prototyping:</em> <br>This approach aims for quick application
+            development by
+            delaying the detailed system design until user requirements are clear. It prioritizes gaining user
+            acceptance and
+            building core capabilities rapidly over optimizing computer efficiency.
+
+            <br><br> <br>
+
+            <strong style="font-weight: bold;">Joint Application Design (JAD):</strong>
+
+            <br>
+            JAD is a structured process where users, managers, and analysts collaborate in intensive meetings over
+            several days to
+            specify or review system requirements. <br> It was developed in the late 1970s by IBM. However, JAD
+            methodologies might
+            overlook important software engineering principles, leading to inconsistencies between system modules and
+            non-compliant
+            components, making maintenance costly and challenging.
+
+            <br><br> <br>
+
+            <strong style="font-weight: bold;">The People in a System Development Process:</strong>
+
+            <br><br>
+            There are two key stakeholders involved in the system development process:
+
+            <br> <br>
+            <em style="font-weight: bold;">&bull; Management:</em> <br>They are responsible for ensuring that the end
+            results of the
+            development process meet the company's needs, and they oversee the project to ensure it stays on schedule
+            and within the
+            budget.
+
+            <br><br>
+
+            <em style="font-weight: bold;">&bull; Users:</em> <br>Users are the individuals for whom the systems are
+            developed. They are
+            the ones who will be using the system on a day-to-day basis. The system should increase their efficiency and
+            productivity. Users' concerns include ease of use and system reliability. They can contribute valuable ideas
+            and
+            insights into the business procedures involved in the development process.
 
 
-        <li style="--accent-color:#8B4513" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Friday 11th (Week 01)</div>
-          <div class="title">14:00 - 16:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                      ">Unit:</b> INTE 223 (ASSEMBLY LANGUAGE PROGRAMMING) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3; ">Venue:</b> New Meeting Facility - Door 01
           </div>
 
-
-
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Smashed
-              This!</b>
-          </div>
         </li>
 
 
 
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Monday 14th (Week 02)</div>
-          <div class="title">11:30 - 13:30</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                      ">Unit:</b> INTE 221 (WEB APPLICATIONS PROGRAMMING) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
+
+        <li style="--accent-color: #6D4C00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Systems Analyst
           </div>
 
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
 
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Crashed
-              This!</b>
+
+            <strong style="font-weight: bold; color: #e08e00;">Roles of a Systems Analyst:</strong>
+            <br> <br>
+            <em style="font-weight: bold;">Helping the User Determine Information Needs:</em>
+            <br>
+            The analyst works with users to understand their information requirements and needs for the system.
+            <br><br>
+            <em style="font-weight: bold;">Systems Analysis:</em>
+            <br>
+            Gathering information about the existing systems and analyzing them to assess their effectiveness.
+            <br><br>
+            <em style="font-weight: bold;">Systems Design:</em>
+            <br>
+            Designing new systems or suggesting changes to existing ones and helping in the implementation of those
+            changes.
+            <br><br>
+            <em style="font-weight: bold;">Systems Specification:</em>
+            <br>
+            Providing detailed specifications of the system, including inputs, files, processing, output, hardware,
+            cost, accuracy,
+            and response times.
+            <br><br>
+            <em style="font-weight: bold;">System Testing and Maintenance:</em>
+            <br>
+            Testing the system to ensure it works correctly and providing ongoing maintenance and support.
+
+            <br><br><br>
+
+            <strong style="font-weight: bold; color:#c87405;">Skills of a Systems Analyst:</strong>
+            <br> <br>
+            <em style="font-weight: bold;">a) Analytical Skills:</em>
+            <br>
+            - Understanding the organization and its functions.
+            <br>
+            - Identifying and defining problems that need solving.
+            <br>
+            - Analyzing and finding solutions to the identified problems through four phases: Intelligence, Design,
+            Choice, and
+            Implementation.
+
+            <br><br>
+            <em style="font-weight: bold;">b) Technical Skills:</em>
+            <br>
+            - Being familiar with various technologies used in systems development, such as computers, programming
+            languages,
+            operating systems, databases, networking, web development tools, and more.
+            <br>
+            - Staying up-to-date with the latest technology trends through reading, joining professional societies,
+            attending
+            courses, and conferences.
+
+            <br><br>
+            <em style="font-weight: bold;">c) Management Skills:</em>
+            <br>
+            - Resource Management: <br> Effectively utilizing resources like documentation, budget, and people within
+            the
+            project team.
+            <br>
+            - Project Management: <br> Ensuring projects stay on track and are completed within the given time and
+            budget.
+            <br>
+            - Risk Management: <br>Anticipating potential risks and finding ways to minimize their impact on the
+            project.
+            <br>
+            - Change Management: <br>Helping people transition smoothly from old systems to new ones.
+
+            <br><br>
+            <em style="font-weight: bold;">d) Interpersonal Skills:</em>
+            <br>
+            - Working effectively with people from different backgrounds and roles within the organization.
+
+            <br><br>
+            <em style="font-weight: bold;">e) Communication Skills:</em>
+            <br>
+            - Interviewing, Listening, and Questionnaires: <br> Gathering information from users through effective
+            communication.
+            <br>
+            - Written and Oral Presentations: <br> Clearly conveying project progress, schedules, and details to
+            stakeholders
+            through
+            various communication methods.
+
+
+
+
           </div>
-
 
         </li>
 
 
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Tuesday 15th (Week 02)</div>
-          <div class="title">09:00 - 11:00</div>
-          <div class="descr" style="margin-bottom: -8px;"> <b style="font-weight: bold;   color: #452302b3; ">Unit:</b>
-            INTE 226 (SYSTEM ANALYSIS AND DESIGN)</div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
-
-          <div class="title">14:00 - 16:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                ">Unit:</b> BIBL 222 (CHRISTIAN ETHICS) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
 
 
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Tests Completed!</b>
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">High-Performance Team
           </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <strong style="font-weight: bold; color:#c87405;">Characteristics of a High-Performance Team:</strong>
+            <br> <br>
+            <em style="font-weight: bold;">Shared, Elevated Vision or Goal:</em>
+            <br>
+            A high-performance team is driven by a clear and inspiring vision or goal. Every team member understands the
+            project's
+            objectives, and this clarity keeps their priorities aligned. The vision should challenge the team,
+            motivating them to
+            work towards a common purpose.
+            <br><br>
+            <em style="font-weight: bold;">Sense of Team Identity:</em>
+            <br>
+            As team members work closely together, they develop a shared team identity. This creates a strong bond among
+            team
+            members, leading to a common language and shared humor. A strong team identity fosters a sense of belonging
+            and mutual
+            support.
+            <br><br>
+            <em style="font-weight: bold;">Result-Driven Structure:</em>
+            <br>
+            An effective team has a well-defined structure that promotes results. This includes clear roles and
+            responsibilities for
+            each team member, an efficient communication system, performance monitoring mechanisms, and decision-making
+            based on
+            facts rather than emotions. This structured approach ensures that the team remains focused on achieving its
+            goals.
+            <br><br>
+            <em style="font-weight: bold;">Competent Team Members:</em>
+            <br>
+            High-performance teams consist of skilled and capable individuals who bring their expertise to the table.
+            Each team
+            member's competence contributes to the overall success of the project.
+            <br><br>
+            <em style="font-weight: bold;">Commitment to the Team:</em>
+            <br>
+            Team members are committed to the success of the team and the project. They are dedicated to working
+            together and
+            supporting one another to achieve the shared goals.
+            <br><br>
+            <em style="font-weight: bold;">Mutual Trust Among the Team:</em>
+            <br>
+            Trust is a fundamental element of high-performance teams. Team members trust one another's abilities,
+            intentions, and
+            contributions. This trust fosters collaboration and openness within the team.
+            <br><br>
+            <em style="font-weight: bold;">Interdependence Among Team Members:</em>
+            <br>
+            High-performance teams recognize the importance of interdependence. Each member's work complements and
+            supports the work
+            of others, leading to a cohesive and efficient team effort.
+            <br><br>
+            <em style="font-weight: bold;">Effective Communication Means:</em>
+            <br>
+            Open and effective communication is crucial for a successful team. Team members must be able to express
+            their ideas,
+            concerns, and progress transparently to maintain alignment and resolve any issues promptly.
+            <br><br>
+            <em style="font-weight: bold;">Sense of Autonomy:</em>
+            <br>
+            Each team member should have the freedom and autonomy to make decisions they believe are best for the team
+            and the
+            project. This empowers individuals and encourages ownership of their work.
+            <br><br>
+            <em style="font-weight: bold;">Sense of Empowerment:</em>
+            <br>
+            High-performance teams empower each member, allowing them to take initiative and contribute meaningfully to
+            the
+            project's success.
+            <br><br>
+            <em style="font-weight: bold;">Small Team Size:</em>
+            <br>
+            An optimal team size, usually no larger than 8-10 people, enables better communication, coordination, and
+            collaboration
+            among team members.
+            <br><br>
+            <em style="font-weight: bold;">High Level of Enjoyment:</em>
+            <br>
+            Finally, a high-performance team enjoys working together. A positive and enjoyable work environment enhances
+            team spirit
+            and motivates team members to give their best effort.
+
+
+          </div>
+
+        </li>
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">CASE Tools
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom: -8px; font-size:16px;">
+
+
+            <strong style="font-weight: bold;">Computer-Aided Software Engineering (CASE) Tools:</strong>
+            <br>
+            CASE tools are automated software tools used by systems analysts to support the development of information
+            systems.
+            These tools offer numerous advantages in the systems development process:
+            <br><br>
+            <strong style="font-weight: bold;">Objectives of CASE in an organization:</strong>
+            <br>
+            - Improve the quality of system development.
+            <br>
+            - Increase the speed of designing and developing systems.
+            <br>
+            - Simplify and enhance the testing process through automated checking.
+            <br>
+            - Improve integration across development activities using common methodologies.
+            <br>
+            - Enhance the quality and completeness of documentation.
+            <br>
+            - Standardize the development process.
+            <br>
+            - Improve project management.
+            <br>
+            - Simplify program maintenance.
+            <br>
+            - Promote reusability of modules and documentation.
+            <br>
+            - Enhance software portability across environments.
+            <br>
+            - Shorten development time.
+            <br><br>
+            <strong style="font-weight: bold;">However, organizations may sometimes reject CASE due to several
+              reasons:</strong>
+            <br>
+            - High cost of purchasing CASE tools.
+            <br>
+            - High cost of training personnel to use CASE effectively.
+            <br>
+            - Lengthy planning, analysis, and design duration, which may not fully show CASE benefits until later stages
+            of
+            development.
+            <br>
+            - Some CASE tools may lack seamless information sharing capabilities between different tools.
+            <br>
+            - Difficulty in providing a complete set of tools for all aspects of the Systems Development Life Cycle
+            (SDLC).
+            <br>
+            - Lack of methodology standards within the organization, making it challenging to align CASE with the
+            existing
+            practices.
+            <br>
+            - Fear of CASE tools threatening job security.
+            <br>
+            - Lack of confidence in the effectiveness and reliability of CASE products.
+            <br><br>
+            <strong style="font-weight: bold;">Components of CASE include:</strong>
+            <br>
+            - Diagramming Tools: Used to represent system processes, data, and control structures visually, such as Data
+            Flow
+            Diagrams (DFD) and Entity-Relationship Diagrams (ER).
+            <br>
+            - CASE Form and Report Generation Tools: Support the creation of computer display forms and reports to
+            prototype the
+            system's user interface.
+            <br>
+            - CASE Analysis Tools: Help in automatic checking for incomplete, inconsistent, or incorrect specifications
+            in diagrams,
+            forms, and reports.
+            <br>
+            - CASE Repository: A centralized database containing all system-related information, facilitating seamless
+            data and tool
+            integration across SDLC activities.
+            <br>
+            - CASE Documentation: Modules that create technical and user documentation in standard formats based on the
+            repository's
+            contents.
+            <br>
+            - CASE Code Generation Tools: Automatically produce high-level program source code from diagrams and forms.
+            <br><br>
+            CASE has significant impacts on individuals within the organization, affecting their roles and
+            responsibilities. It
+            automates routine tasks for analysts and programmers, involves users more actively in the development
+            process, and
+            encourages top managers to be engaged in planning and user-oriented development methods.
+            <br><br>
+            Additionally, "reverse engineering" and "reengineering" tools are categories of CASE products that breathe
+            new life into
+            existing systems by creating design specifications from program code and data definitions, allowing
+            modifications and
+            improvements. Visual and emerging development tools, such as Object-Oriented (OO) and Visual Development
+            Tools, are also
+            gaining popularity in modern software development.
+
+          </div>
+
         </li>
 
 
@@ -842,22 +1153,20 @@
 
 
 
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Thursday 17th (Week 02)</div>
-          <div class="title">09:00 - 11:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                      ">Unit:</b> COMP 326 (OBJECT ORIENTED PROGRAMMING WITH JAVA) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
 
 
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>And Just Like That😎</b>
-          </div>
-        </li>
+
+
+
+
+
+
+
+
+
+
+
+
       </ul>
     </div>
   </div>
@@ -865,7 +1174,7 @@
 
 
 
-   <div class="wrapper-loader">
+  <div class="wrapper-loader">
 
 
 
@@ -907,11 +1216,7 @@
   <script>
 
     document.addEventListener("DOMContentLoaded", () => {
-
-
-      var targetDate = new Date(new Date().getFullYear(), 7, 17, 9, 30).getTime() / 1000;
-
-
+      var targetDate = new Date(new Date().getFullYear(), 7, 15, 9, 0).getTime() / 1000;
 
       // Set up FlipDown
       var flipdown = new FlipDown(targetDate)

@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timetable</title>
+  <title>OOP With JAVA</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../assets/css/page-style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -157,7 +157,7 @@
       background-color: var(--accent-color);
 
       color: white;
-      font-size: 1.25rem;
+      font-size: 1.0rem;
       font-weight: 700;
 
       display: grid;
@@ -299,7 +299,7 @@
 
     /* Rotor group headings */
     .flipdown.flipdown__theme-dark .rotor-group-heading:before {
-      color: #d07527;
+      color: #008080;
       font-weight: bold;
       margin-bottom: 10px;
 
@@ -308,7 +308,7 @@
     /* Delimeters */
     .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,
     .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-      background-color: #a18974;
+      background-color: #869393;
     }
 
     /* Rotor tops */
@@ -318,7 +318,7 @@
       color: #FFFFFF;
       font-weight: bold;
       font-size: 28px;
-      background-color: #974f10;
+      background-color: #008080;
     }
 
     /* Rotor bottoms */
@@ -327,12 +327,12 @@
       color: #FFFFFF;
       font-weight: bold;
       font-size: 28px;
-      background-color: #974f10;
+      background-color: #008080;
     }
 
     /* Hinge */
     .flipdown.flipdown__theme-dark .rotor:after {
-      border-top: solid 0.1px #b2937a;
+      border-top: solid 0.1px#a2b3b3;
     }
 
 
@@ -613,7 +613,7 @@
       font-size: 1.5em;
       margin-top: 0;
       margin-bottom: 20px;
-      color: #966336;
+      color: #616b6b;
     }
 
     .example p {
@@ -705,10 +705,6 @@
         display: inline-block;
       }
     }
-
-    .date {
-      font-size: 18px !important;
-    }
   </style>
 </head>
 
@@ -721,7 +717,7 @@
 
     <div class="container">
 
-      <h2 class="sem2" style="font-size: 18px;">Exam Timetable</h2>
+      <h2 class="sem2" style="font-size: 17px;">Java Revision </h2>
 
       <div class="menu">
 
@@ -757,84 +753,300 @@
 
 
     <div class="example" style="text-align: center;">
+      <h3>Countdown To Java exam</h3>
 
-      <h3>Happy Holidays Everyone</h3>
-
-      
-
+      <div id="flipdown" class="flipdown" style="display: flex; flex-wrap:wrap; flex-direction:column;"></div>
     </div>
 
 
     <div class="timeline">
       <h1 data-aos="fade-down" data-aos-delay="100"
-        style="font-size: 1.4rem; margin-top: 0px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
-        Exam Timetable</h1>
+        style="font-size: 1.4rem; margin-top: -50px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(106, 74, 34); ">
+        Object-oriented Programming with JAVA</h1>
       <ul class="uli">
+        <li style="--accent-color:#3D1F00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Introduction</div>
 
+          <div class="descr" style="margin-top:30px;margin-bottom:-8px;font-size:16px;">
+            <strong style="font-weight:bold;">Object-oriented programming (OOP) is a programming paradigm that organizes and conceptualizes a
+              program
+              as a set of interacting objects</strong>
+            <br><br>
+            <strong style="font-weight:bold;">Objects and Classes:</strong>
+            <br>
+            Objects are instances of classes, representing real-world entities or concepts. They encapsulate data and
+            behavior.
+            <br><br>
+            Classes, on the other hand, are blueprints or templates that define the structure and behavior of objects.
+            <br><br>
+            <strong style="font-weight:bold;">Encapsulation:</strong>
+            <br>
+            Encapsulation is the concept of bundling data (variables) and methods (functions) within a class, hiding the
+            internal
+            implementation details from the outside world. <br>
 
-        <li style="--accent-color:#8B4513" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Friday 11th (Week 01)</div>
-          <div class="title">14:00 - 16:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                      ">Unit:</b> INTE 223 (ASSEMBLY LANGUAGE PROGRAMMING) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3; ">Venue:</b> New Meeting Facility - Door 01
+            It allows for better control and protection of data, ensuring that it can only be accessed through defined
+            methods.
+            <br><br>
+            <strong style="font-weight:bold;">Methods and Variables:</strong>
+            <br>
+            Methods are blocks of code (functions) defined within a class to perform specific tasks or actions. They
+            represent the
+            behavior of objects.
+            <br><br>
+            Variables, on the other hand, are used to store data and represent the state of an object.
+            <br><br>
+            <strong style="font-weight:bold;">Inheritance:</strong>
+            <br>
+            Inheritance is a mechanism in Java where one class (subclass) inherits properties and behaviors from another
+            class
+            (superclass).
+            The subclass can access the public and protected members of the superclass, allowing code reuse and
+            establishing an
+            "is-a" relationship between classes.
+            <br><br>
+            <strong style="font-weight:bold;">A constructor is a special method in a class that is automatically called
+              when an
+              object of the class is created.</strong>
+            <br><br>
+            <strong style="font-weight:bold;">Message Passing and Polymorphism:</strong>
+            <br>
+            Message Passing is the process of objects communicating with each other by invoking methods. <br> When a method
+            is called
+            on an object, it sends a message to that object requesting the execution of the method. This allows objects
+            to
+            interact and collaborate in a Java program.
+            <br><br>
+            Polymorphism is the ability of a method to take on multiple forms based on the type of object it is called
+            on.
+            <br>
+            - True Polymorphism: Different classes have methods with the same name but different behaviors (e.g., draw()
+            for
+            Circle and Square classes).
+            <br>
+            - Parametric Polymorphism: Within a class, the same method name is used with different signatures (different
+            parameters).
+            <br>
+            - Overloading: Operators (+,-,/,*, etc.) can be applied to multiple types, such as int, floats, strings,
+            etc.
+            <br>
+            - Overriding: Subclasses replace the behavior of a parent class with new or modified behavior.
           </div>
 
-
-
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Smashed
-              This!</b>
-          </div>
         </li>
 
 
 
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Monday 14th (Week 02)</div>
-          <div class="title">11:30 - 13:30</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                      ">Unit:</b> INTE 221 (WEB APPLICATIONS PROGRAMMING) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
+
+        <li style="--accent-color: #6D4C00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Advantages of Java
           </div>
 
+          <div class="descr" style="margin-top:30px;margin-bottom:-8px;font-size:16px;">
+            <strong style="font-weight:bold;">Object-Oriented Paradigm:</strong>
+            <br>
+            Java's object-oriented nature allows for easy extension and promotes code reusability.
+            <br><br>
+            <strong style="font-weight:bold;">Platform Independence:</strong>
+            <br>
+            Java's platform independence enables distribution of byte code over the web, making it executable on any
+            platform with
+            the help of the JVM.
+            <br><br>
+            <strong style="font-weight:bold;">Simplicity and Learnability:</strong>
+            <br>
+            Java's simplicity makes it easy to learn and master, especially for those familiar with OOP concepts.
+            <br><br>
+            <strong style="font-weight:bold;">Strong Security:</strong>
+            <br>
+            Java's secure features facilitate the development of virus-free and tamper-free systems with strong
+            authentication
+            techniques based on public-key encryption.
+            <br><br>
+            <strong style="font-weight:bold;">Architectural Neutrality and Portability:</strong>
+            <br>
+            Java's architectural-neutrality and portability ensure compatibility across various processors and systems,
+            allowing
+            smooth execution in different environments.
+            <br><br>
+            <strong style="font-weight:bold;">Robustness and Error Prevention:</strong>
+            <br>
+            Java's robustness minimizes error-prone situations through rigorous compile-time and runtime checks.
+            <br><br>
+            <strong style="font-weight:bold;">Multithreading Capability:</strong>
+            <br>
+            Java's multithreading capability allows developers to create applications that efficiently perform multiple
+            tasks
+            simultaneously.
+            <br><br>
+            <strong style="font-weight:bold;">Rapid Development with Interpretation:</strong>
+            <br>
+            Java's interpreted nature speeds up development and linking processes, making it a rapid and analytical
+            development
+            environment.
+            <br><br>
+            <strong style="font-weight:bold;">High Performance with JIT Compilation:</strong>
+            <br>
+            Java's use of Just-In-Time compilers ensures high performance in executing code.
+            <br><br>
+            <strong style="font-weight:bold;">Distributed Environment:</strong>
+            <br>
+            Java's design for the distributed environment of the internet makes it well-suited for building networked
+            applications.
+            <br><br>
+            <strong style="font-weight:bold;">Dynamic Adaptability:</strong>
+            <br>
+            Java's dynamic features enable adaptability to an evolving environment, carrying extensive runtime
+            information for
+            verifying and resolving accesses to objects.
+          </div>
 
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Crashed
-              This!</b>
+        </li>
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Implementing Java
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom:-8px;font-size:16px;">
+            <strong style="font-weight:bold;">Basic JAVA syntax</strong><br>
+            Java has a specific set of rules and conventions for writing code, such as using semicolons to end
+            statements,
+            defining classes with the "class" keyword, and using curly braces to enclose blocks of code.<br><br>
+            public class HelloWorld {<br>
+            &nbsp;&nbsp;public static void main(String[] args) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello, World!");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+            <strong style="font-weight:bold;">First JAVA program</strong><br>
+            When starting to learn Java, the first program usually prints a simple message like "Hello, World!" on the
+            screen. It
+            serves as an introduction to the basic structure of a Java program.<br><br>
+            public class FirstProgram {<br>
+            &nbsp;&nbsp;public static void main(String[] args) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("This is my first Java program!");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+            <strong style="font-weight:bold;">Modifiers</strong><br>
+            Modifiers in Java are keywords that provide additional information about classes, methods, or variables.
+            They can
+            specify access levels (e.g., public, private) or behavior (e.g., static, final) for different elements in
+            the
+            code.<br><br>
+            public class ExampleClass {<br>
+            &nbsp;&nbsp;// Private access modifier restricts access to only within this class<br>
+            &nbsp;&nbsp;private int privateVariable;<br>
+            &nbsp;&nbsp;// Public access modifier allows access from anywhere<br>
+            &nbsp;&nbsp;public void publicMethod() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// Code for the method<br>
+            &nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;// Static modifier allows the method to be accessed without creating an instance of the
+            class<br>
+            &nbsp;&nbsp;public static void staticMethod() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// Code for the static method<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+            <strong style="font-weight:bold;">Addition of two numbers program</strong><br>
+            A common beginner's program in Java is one that takes two numbers as input from the user or pre-defined in
+            the code
+            and then adds them together, displaying the result on the screen. It's a simple way to understand
+            input/output and
+            basic arithmetic operations in Java.<br><br>
+            import java.util.Scanner;<br>
+            public class AddTwoNumbers {<br>
+            &nbsp;&nbsp;public static void main(String[] args) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Scanner scanner = new Scanner(System.in);<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.print("Enter the first number: ");<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int num1 = scanner.nextInt();<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.print("Enter the second number: ");<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int num2 = scanner.nextInt();<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;int sum = num1 + num2;<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("The sum of " + num1 + " and " + num2 + " is: " + sum);<br>
+            &nbsp;&nbsp;}<br>
+            }
           </div>
 
 
         </li>
 
 
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Tuesday 15th (Week 02)</div>
-          <div class="title">09:00 - 11:00</div>
-          <div class="descr" style="margin-bottom: -8px;"> <b style="font-weight: bold;   color: #452302b3; ">Unit:</b>
-            INTE 226 (SYSTEM ANALYSIS AND DESIGN)</div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
-
-          <div class="title">14:00 - 16:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                ">Unit:</b> BIBL 222 (CHRISTIAN ETHICS) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
-          </div>
 
 
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>Tests Completed!</b>
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date"> Classes, Objects & Methods
           </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom:-8px;font-size:16px;">
+            <strong style="font-weight:bold;">Java class:</strong><br>
+            A Java class is a blueprint that defines the structure and behavior of objects.<br> <br>
+            &nbsp;&nbsp;&nbsp;class ClassName {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Fields: Used to store data<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Constructor: Special method to initialise a method<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Methods: Used to perform operations<br>
+            &nbsp;&nbsp;&nbsp;}<br> <br>
+
+            <strong style="font-weight:bold;">Java Objects:</strong><br>
+            Objects are instances of classes representing real-world entities or concepts. <br> <br>
+
+            <strong style="font-weight:bold;">Creating an Object in Java:</strong><br>
+            To create an object, use the following syntax:<br>
+            &nbsp;&nbsp;&nbsp;ClassName object = new ClassName();
+
+            <strong style="font-weight:bold;">Example using a class named "Bicycle":</strong><br>
+            &nbsp;&nbsp;&nbsp;Bicycle sportsBicycle = new Bicycle();<br>
+            &nbsp;&nbsp;&nbsp;Bicycle touringBicycle = new Bicycle();<br>
+            In the example above, we create two Bicycle objects: "sportsBicycle" and "touringBicycle". These objects are
+            instances
+            of the Bicycle class and can have their own data and perform operations defined in the class. <br> <br>
+
+            <strong style="font-weight:bold;">Creating Method:</strong><br>
+            Considering the following example to explain the syntax of a method:<br>
+            &nbsp;&nbsp;&nbsp;public static int methodName(int a, int b) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// body<br>
+            &nbsp;&nbsp;&nbsp;}<br>
+            Here,<br>
+            &nbsp;&nbsp;&nbsp;public static: modifier.<br>
+            &nbsp;&nbsp;&nbsp;int: return type<br>
+            &nbsp;&nbsp;&nbsp;methodName: name of the method<br>
+            &nbsp;&nbsp;&nbsp;a, b: formal parameters<br>
+            &nbsp;&nbsp;&nbsp;int a, int b: list of parameters <br> <br>
+
+            <strong style="font-weight:bold;">Method Overloading:</strong><br>
+            Method overloading is when multiple methods in the same class have the same name but different parameter
+            lists. It
+            allows a single method name to represent different behaviors based on the number or type of parameters
+            passed to
+            it.<br> <br>
+            &nbsp;&nbsp;&nbsp;public int add(int a, int b) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return a + b;<br>
+            &nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;public double add(double a, double b) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return a + b;<br>
+            &nbsp;&nbsp;&nbsp;} <br> <br>
+
+            <strong style="font-weight:bold;">Method Overriding:</strong><br>
+            Method overriding occurs when a subclass provides a specific implementation for a method that is already
+            defined in
+            its superclass. The method in the subclass has the same name, return type, and parameters as the one in the
+            superclass, effectively replacing its behavior.<br> <br>
+            &nbsp;&nbsp;&nbsp;class Shape {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public void draw() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Drawing a shape");<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;class Circle extends Shape {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public void draw() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Drawing a circle");<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;}<br>
+            In this example, the Circle class overrides the draw method from its superclass Shape to provide a specific
+            implementation for drawing a circle.
+          </div>
+
+
         </li>
 
 
@@ -842,22 +1054,236 @@
 
 
 
-        <li style="--accent-color:#AA4C39" data-aos="fade-up" data-aos-delay="100">
-          <div class="date">Thursday 17th (Week 02)</div>
-          <div class="title">09:00 - 11:00</div>
-          <div class="descr" style="margin-bottom: -8px;"><b style="font-weight: bold;   color: #452302b3;
-                                      ">Unit:</b> COMP 326 (OBJECT ORIENTED PROGRAMMING WITH JAVA) </div>
-          <div class="descr"><b style="font-weight: bold;  color: #452302b3;">Venue:</b> New Meeting Facility - Door 01
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Inheritance
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom:-8px;font-size:16px;">
+            <strong style="font-weight:bold;">Inheritance:</strong><br>
+            A fundamental concept in OOP where a new class (subclass) inherits properties and behaviors from an existing
+            class
+            (superclass)<br><br>
+
+            // Superclass<br>
+            class Animal {<br>
+            &nbsp;&nbsp;String name;<br><br>
+            &nbsp;&nbsp;Animal(String name) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;this.name = name;<br>
+            &nbsp;&nbsp;}<br><br>
+            &nbsp;&nbsp;void eat() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name + " is eating");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+
+            // Subclass<br>
+            class Dog extends Animal {<br>
+            &nbsp;&nbsp;Dog(String name) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;super(name); // Call the superclass constructor<br>
+            &nbsp;&nbsp;}<br><br>
+            &nbsp;&nbsp;void bark() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println(name + " is barking");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+
+            // Main class<br>
+            public class Main {<br>
+            &nbsp;&nbsp;public static void main(String[] args) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// Creating an instance of Dog class<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Dog dog = new Dog("Buddy");<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// Calling methods from the Dog class<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dog.eat(); // This method is inherited from the Animal class<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dog.bark(); // This method is specific to the Dog class<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+
+            <strong style="font-weight:bold;">Output:</strong><br>
+            <span style="color: orange; font-weight:bold;">Buddy is eating</span><br>
+            <span style="color: orange; font-weight:bold;">Buddy is barking</span><br><br>
+
+            In this example, we have two classes, Animal and Dog.<br><br>
+
+            <strong style="font-weight:bold;">The super keyword:</strong><br>
+            The super keyword in Java is used to access and call members of the superclass from the subclass. It enables
+            method
+            overriding and allows the subclass to reuse functionality provided by the superclass.<br><br>
+
+            Example:<br>
+            class Animal {<br>
+            &nbsp;&nbsp;void makeSound() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Roar");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+            class Dog extends Animal {<br>
+            &nbsp;&nbsp;void makeSound() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;super.makeSound(); // Calls the makeSound() method of the superclass<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Bark");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+            public class Main {<br>
+            &nbsp;&nbsp;public static void main(String[] args) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Animal animal = new Animal();<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;animal.makeSound(); // Output: Roar<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Dog dog = new Dog();<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dog.makeSound(); // Output: Roar Bark<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+
+            <strong style="font-weight:bold;">"Is-A" relationship:</strong><br>
+            It represents inheritance, where one class (subclass) extends another class (superclass) and inherits its
+            properties
+            and behaviors. It establishes a hierarchical relationship between classes.<br><br>
+
+            <strong style="font-weight:bold;">"Has-A" relationship:</strong><br>
+            It represents composition or aggregation, where one class contains an object of another class as a member.
+            It allows a
+            class to use the features of another class without inheriting from it.
           </div>
 
 
-          <div class="descr">
-            <b
-              style="font-weight: bold; color: #fcfaf8fb; padding: 10px; background-color: rgb(73, 156, 73); border-radius: 20px; padding-top: 8px; padding-left: 20px; padding-right: 20px; font-size: small;">
-              <i class="fas fa-check"
-                style="color: rgb(220, 244, 220); margin-left: -8px; margin-right:8px; font-size:12px;"></i>And Just Like That😎</b>
-          </div>
         </li>
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Encapsulation & Polymorphism
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom:-8px;font-size:16px;">
+            <strong style="font-weight:bold;">Encapsulation:</strong><br>
+            Bundling data (balance) and methods (deposit, withdraw) within the BankAccount class, hiding internal
+            implementation
+            details.<br><br>
+            class BankAccount {<br>
+            &nbsp;&nbsp;private double balance; // Private variable to store the account balance<br><br>
+            &nbsp;&nbsp;public void deposit(double amount) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// Deposit logic<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;balance += amount;<br>
+            &nbsp;&nbsp;}<br><br>
+            &nbsp;&nbsp;public void withdraw(double amount) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// Withdrawal logic<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;if (amount <= balance) {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;balance -= amount;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Insufficient balance.");<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;}<br>
+              }<br><br>
+
+              <strong style="font-weight:bold;">Polymorphism:</strong><br>
+              The draw() method takes different forms based on the object it is called on, showing different shapes
+              being
+              drawn.<br><br>
+              class Shape {<br>
+              &nbsp;&nbsp;void draw() {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Drawing a shape");<br>
+              &nbsp;&nbsp;}<br>
+              }<br><br>
+              class Circle extends Shape {<br>
+              &nbsp;&nbsp;void draw() {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Drawing a circle");<br>
+              &nbsp;&nbsp;}<br>
+              }<br><br>
+              class Square extends Shape {<br>
+              &nbsp;&nbsp;void draw() {<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Drawing a square");<br>
+              &nbsp;&nbsp;}<br>
+              }<br><br>
+
+              <strong style="font-weight:bold;">Explanation:</strong><br>
+              Encapsulation: The BankAccount class encapsulates the data (balance) and methods (deposit, withdraw) to
+              hide the
+              implementation details and provide controlled access to them.<br><br>
+              Polymorphism: The Shape class and its subclasses (Circle and Square) demonstrate polymorphism, where the
+              draw()
+              method takes different forms depending on the type of object it is called on, allowing different shapes to
+              be drawn
+              with the same method name.<br><br>
+              <strong style="font-weight:bold;">Advantages of encapsulation:</strong><br>
+              - Data Protection: Encapsulation hides internal data and allows controlled access, preventing unauthorized
+              modifications.<br>
+              - Code Flexibility: Internal implementation details can be changed without affecting the external
+              interface,
+              promoting code flexibility.<br>
+              - Code Maintenance: Encapsulation makes it easier to maintain and update code since changes are localized
+              within the
+              class.<br>
+              - Reusability: Encapsulation enables code reuse through well-defined interfaces, increasing code
+              reusability.<br>
+              - Security: Encapsulation enhances security by controlling access to sensitive data and methods,
+              protecting the
+              integrity of the code.<br>
+              - Design Modularity: Encapsulation promotes a modular design, making the code more organized and easier to
+              understand.<br>
+              - Team Collaboration: Encapsulation allows different team members to work independently on different parts
+              of the
+              code without interfering with each other's work.<br><br>
+          </div>
+
+
+        </li>
+
+
+
+
+
+
+
+
+        <li style="--accent-color: #964B00" data-aos="fade-up" data-aos-delay="100">
+          <div class="date">Abstraction
+          </div>
+
+          <div class="descr" style="margin-top:30px;margin-bottom:-8px;font-size:16px;">
+            <strong style="font-weight:bold;">Abstraction:</strong><br>
+            Abstraction is a process of hiding the implementation details and showing only functionality to the
+            user.<br><br>
+            abstract class Shape {<br>
+            &nbsp;&nbsp;abstract void draw();<br>
+            }<br><br>
+            class Circle extends Shape {<br>
+            &nbsp;&nbsp;void draw() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Drawing a circle");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+            class Square extends Shape {<br>
+            &nbsp;&nbsp;void draw() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Drawing a square");<br>
+            &nbsp;&nbsp;}<br>
+            }<br><br>
+            <strong style="font-weight:bold;">In this example, we have:</strong><br>
+            - An abstract class Shape with an abstract method draw(). The abstract method does not have any
+            implementation in the
+            abstract class. Instead, it is implemented in its subclasses Circle and Square, which extend the Shape
+            class. These
+            subclasses provide specific implementations for the draw() method, showing how each shape is drawn.<br><br>
+            - The abstract class Shape hides the complexity of drawing shapes and focuses on the essential feature of
+            the shapes'
+            ability to be drawn. This is an example of abstraction in Java, where we only show what the shapes can do
+            (draw),
+            without exposing how they do it (the specific drawing logic).<br><br>
+          </div>
+
+
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </ul>
     </div>
   </div>
@@ -865,7 +1291,7 @@
 
 
 
-   <div class="wrapper-loader">
+  <div class="wrapper-loader">
 
 
 
@@ -897,7 +1323,13 @@
 
 
 
-
+<style>
+  .descr {
+    width: 95%;
+    word-wrap: break-word;
+    overflow-x: scroll;
+  }
+</style>
 
 
 
@@ -907,11 +1339,8 @@
   <script>
 
     document.addEventListener("DOMContentLoaded", () => {
-
-
+      // Set the target date to August 10th of the current year
       var targetDate = new Date(new Date().getFullYear(), 7, 17, 9, 30).getTime() / 1000;
-
-
 
       // Set up FlipDown
       var flipdown = new FlipDown(targetDate)
