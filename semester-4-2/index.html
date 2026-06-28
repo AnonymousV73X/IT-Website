@@ -1,418 +1,1626 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- ======== 😎😎 Head actually starts here 😎😎 ======== -->
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Semester 4.1</title>
+  <title>Semester 4.2</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
-
+  <link rel="stylesheet" href="../assets/css/page-style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-...your-integrity-hash...=" crossorigin="anonymous" />
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
   <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
 </head>
 
 
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
-
-
-  body {
-
-    background-color: #f5ede6;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    font-family: "Bai Jamjuree", sans-serif;
-    
-
-  }
-
-
-  .get {
-    color: #894f1d;
-    font-size: 14px;
-    text-align: center;
-    font-weight: bold;
-    opacity: 0.8;
-    margin-top: 450px;
-    max-width: 300px;
-    text-align: center;
-    margin-left: 40px!important;
-  }
-
-
-
-
-
-  .bookshelf_wrapper {
-  position: relative;
-  top: 300px;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.books_list {
-  margin: 0 auto;
-  width: 300px;
-  padding: 0;
-}
-
-.book_item {
-  position: absolute;
-  top: -120px;
-  box-sizing: border-box;
-  list-style: none;
-  width: 40px;
-  height: 120px;
-  opacity: 0;
-  background-color: #894f1dbc;
-  border: 5px solid white;
-  -webkit-transform-origin: bottom left;
-          transform-origin: bottom left;
-  -webkit-transform: translateX(300px);
-          transform: translateX(300px);
-  -webkit-animation: travel 2500ms linear infinite;
-          animation: travel 2500ms linear infinite;
-}
-.book_item.first {
-  top: -140px;
-  height: 140px;
-}
-.book_item.first:before, .book_item.first:after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: white;
-}
-.book_item.first:after {
-  top: initial;
-  bottom: 10px;
-}
-.book_item.second:before, .book_item.second:after, .book_item.fifth:before, .book_item.fifth:after {
-  box-sizing: border-box;
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 0;
-  width: 100%;
-  height: 17.5px;
-  border-top: 5px solid white;
-  border-bottom: 5px solid white;
-}
-.book_item.second:after, .book_item.fifth:after {
-  top: initial;
-  bottom: 10px;
-}
-.book_item.third:before, .book_item.third:after {
-  box-sizing: border-box;
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 9px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 5px solid white;
-}
-.book_item.third:after {
-  top: initial;
-  bottom: 10px;
-}
-.book_item.fourth {
-  top: -130px;
-  height: 130px;
-}
-.book_item.fourth:before {
-  box-sizing: border-box;
-  content: '';
-  position: absolute;
-  top: 46px;
-  left: 0;
-  width: 100%;
-  height: 17.5px;
-  border-top: 5px solid white;
-  border-bottom: 5px solid white;
-}
-.book_item.fifth {
-  top: -100px;
-  height: 100px;
-}
-.book_item.sixth {
-  top: -140px;
-  height: 140px;
-}
-.book_item.sixth:before {
-  box-sizing: border-box;
-  content: '';
-  position: absolute;
-  bottom: 31px;
-  left: 0px;
-  width: 100%;
-  height: 5px;
-  background-color: white;
-}
-.book_item.sixth:after {
-  box-sizing: border-box;
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 9px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 5px solid white;
-}
-.book_item:nth-child(2) {
-  -webkit-animation-delay: 416.66667ms;
-          animation-delay: 416.66667ms;
-}
-.book_item:nth-child(3) {
-  -webkit-animation-delay: 833.33333ms;
-          animation-delay: 833.33333ms;
-}
-.book_item:nth-child(4) {
-  -webkit-animation-delay: 1250ms;
-          animation-delay: 1250ms;
-}
-.book_item:nth-child(5) {
-  -webkit-animation-delay: 1666.66667ms;
-          animation-delay: 1666.66667ms;
-}
-.book_item:nth-child(6) {
-  -webkit-animation-delay: 2083.33333ms;
-          animation-delay: 2083.33333ms;
-}
-
-.shelf {
-  width: 300px;
-  height: 5px;
-  margin: 0 auto;
-  background-color: white;
-  position: relative;
-}
-.shelf:before, .shelf:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #894f1da7;
-  background-image: -webkit-radial-gradient(rgba(255, 255, 255, 0.5) 30%, rgba(0, 0, 0, 0) 0%);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.5) 30%, rgba(0, 0, 0, 0) 0%);
-  background-size: 10px 10px;
-  background-position: 0 -2.5px;
-  top: 200%;
-  left: 5%;
-  -webkit-animation: move 250ms linear infinite;
-          animation: move 250ms linear infinite;
-}
-.shelf:after {
-  top: 400%;
-  left: 7.5%;
-}
-
-@-webkit-keyframes move {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: 10px;
-  }
-}
-
-@keyframes move {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: 10px;
-  }
-}
-@-webkit-keyframes travel {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(300px) rotateZ(0deg) scaleY(1);
-            transform: translateX(300px) rotateZ(0deg) scaleY(1);
-  }
-  6.5% {
-    -webkit-transform: translateX(279.5px) rotateZ(0deg) scaleY(1.1);
-            transform: translateX(279.5px) rotateZ(0deg) scaleY(1.1);
-  }
-  8.8% {
-    -webkit-transform: translateX(273.6px) rotateZ(0deg) scaleY(1);
-            transform: translateX(273.6px) rotateZ(0deg) scaleY(1);
-  }
-  10% {
-    opacity: 1;
-    -webkit-transform: translateX(270px) rotateZ(0deg);
-            transform: translateX(270px) rotateZ(0deg);
-  }
-  17.6% {
-    -webkit-transform: translateX(247.2px) rotateZ(-30deg);
-            transform: translateX(247.2px) rotateZ(-30deg);
-  }
-  45% {
-    -webkit-transform: translateX(165px) rotateZ(-30deg);
-            transform: translateX(165px) rotateZ(-30deg);
-  }
-  49.5% {
-    -webkit-transform: translateX(151.5px) rotateZ(-45deg);
-            transform: translateX(151.5px) rotateZ(-45deg);
-  }
-  61.5% {
-    -webkit-transform: translateX(115.5px) rotateZ(-45deg);
-            transform: translateX(115.5px) rotateZ(-45deg);
-  }
-  67% {
-    -webkit-transform: translateX(99px) rotateZ(-60deg);
-            transform: translateX(99px) rotateZ(-60deg);
-  }
-  76% {
-    -webkit-transform: translateX(72px) rotateZ(-60deg);
-            transform: translateX(72px) rotateZ(-60deg);
-  }
-  83.5% {
-    opacity: 1;
-    -webkit-transform: translateX(49.5px) rotateZ(-90deg);
-            transform: translateX(49.5px) rotateZ(-90deg);
-  }
-  90% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateX(0px) rotateZ(-90deg);
-            transform: translateX(0px) rotateZ(-90deg);
-  }
-}
-@keyframes travel {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(300px) rotateZ(0deg) scaleY(1);
-            transform: translateX(300px) rotateZ(0deg) scaleY(1);
-  }
-  6.5% {
-    -webkit-transform: translateX(279.5px) rotateZ(0deg) scaleY(1.1);
-            transform: translateX(279.5px) rotateZ(0deg) scaleY(1.1);
-  }
-  8.8% {
-    -webkit-transform: translateX(273.6px) rotateZ(0deg) scaleY(1);
-            transform: translateX(273.6px) rotateZ(0deg) scaleY(1);
-  }
-  10% {
-    opacity: 1;
-    -webkit-transform: translateX(270px) rotateZ(0deg);
-            transform: translateX(270px) rotateZ(0deg);
-  }
-  17.6% {
-    -webkit-transform: translateX(247.2px) rotateZ(-30deg);
-            transform: translateX(247.2px) rotateZ(-30deg);
-  }
-  45% {
-    -webkit-transform: translateX(165px) rotateZ(-30deg);
-            transform: translateX(165px) rotateZ(-30deg);
-  }
-  49.5% {
-    -webkit-transform: translateX(151.5px) rotateZ(-45deg);
-            transform: translateX(151.5px) rotateZ(-45deg);
-  }
-  61.5% {
-    -webkit-transform: translateX(115.5px) rotateZ(-45deg);
-            transform: translateX(115.5px) rotateZ(-45deg);
-  }
-  67% {
-    -webkit-transform: translateX(99px) rotateZ(-60deg);
-            transform: translateX(99px) rotateZ(-60deg);
-  }
-  76% {
-    -webkit-transform: translateX(72px) rotateZ(-60deg);
-            transform: translateX(72px) rotateZ(-60deg);
-  }
-  83.5% {
-    opacity: 1;
-    -webkit-transform: translateX(49.5px) rotateZ(-90deg);
-            transform: translateX(49.5px) rotateZ(-90deg);
-  }
-  90% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateX(0px) rotateZ(-90deg);
-            transform: translateX(0px) rotateZ(-90deg);
-  }
-}
-
-
-
-  
-</style>
-
+<!-- ================ Head Ends 🗣️🗣️🪦🪦 ================== -->
 
 <body>
 
 
+  <!-- 🔻🔴🔴🔴🔴 START: Navbar Starts Here 🔴🔴🔴🔴🔻 -->
 
-  <div class="wrapper-loader">
+
+  <nav class="navbar">
+
+    <div class="container">
+
+      <h2 class="sem2">Semester 4.2</h2>
+
+      <div class="menu">
 
 
-    <div class="bookshelf_wrapper">
-      <ul class="books_list">
-        <li class="book_item first"></li>
-        <li class="book_item second"></li>
-        <li class="book_item third"></li>
-        <li class="book_item fourth"></li>
-        <li class="book_item fifth"></li>
-        <li class="book_item sixth"></li>
-      </ul>
-      <div class="shelf"></div>
+        <a class="menu-link" onclick="navigateTo('tutorials')" style="color: #6B5840; cursor: pointer;">
+          <i class="unique-fas fas fa-book-open" style="margin-right: 5px;"></i>Tutorials
+        </a>
+
+        <a class="menu-link" onclick="navigateTo('past-papers')" style="color: #6B5840; cursor: pointer;">
+          <i class="unique-fas fas fa-file-alt" style="margin-right: 5px;"></i>Exe Files
+        </a>
+
+        <style>
+          /* Change the icon color on hover */
+          .menu-link:hover .unique-fas {
+            color: #fff8dc;
+          }
+        </style>
+
+        <script>
+          function navigateThis(page) {
+            window.location.href = page;
+          }
+
+          function navigateTo(section) {
+            document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
+          }
+        </script>
+
+
+      </div>
+
+      <button class="hamburger" onclick="toggleHamburger()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
     </div>
 
+  </nav>
 
-    <p class="get" id="typing-dots"></p>
+
+
+  <!--------------------------- ⬆️ Navbar Ends Here ⬆️ --------------------->
+
+
+
+
+
+
+
+  <!------------------- ⬇️ Units Summary Start Here 😄 --------------------->
+
+
+
+  <div class="intro">
+
+    <div class=" text-center">
+
+      <h1 data-aos="fade-down" data-aos-delay="300"
+        style="font-size: 1.6rem; margin-top: 0px; margin-bottom:40px;   font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(95, 83, 68); ">
+        Semester Units</h1>
+
+
+      <ul data-aos="fade-up" data-aos-delay="300" class="border border-light shadow-soft ul-units"
+        style="margin-bottom: 100px;">
+
+        <li style="display: flex; padding-top:0%">
+          <p class="" style="font-weight: bold;">INTE 421</p>
+          <p style="margin-left: 10%; font-size: 12px; font-weight: 450;">DATA MINING AND WAREHOUSING</p>
+        </li>
+
+        <li style="display: flex;">
+          <p class="" style="font-weight: bold;">INTE 422</p>
+          <p style="margin-left: 10%; font-size: 12px; font-weight: 450;">IT SECURITY, AUDIT AND ETHICS</p>
+        </li>
+
+        <li style="display: flex;">
+          <p class="" style="font-weight: bold;">INTE 423</p>
+          <p style="margin-left: 10%; font-size: 12px; font-weight: 450;">BUSINESS PROCESS RE-ENGINEERING</p>
+        </li>
+
+        <li style="display: flex;">
+          <p class="" style="font-weight: bold;">INTE 424</p>
+          <p style="margin-left: 10%; font-size: 12px; font-weight: 450;">RESEARCH PROJECT</p>
+        </li>
+
+        <li style="display: flex;">
+          <p class="" style="font-weight: bold;">INTE 462</p>
+          <p style="margin-left: 10%; font-size: 12px; font-weight: 450;">WEB BASED INFORMATION SYSTEM</p>
+        </li>
+
+        <li style="display: flex;">
+          <p class="" style="font-weight: bold;">INTE 472</p>
+          <p style="margin-left: 10%; font-size: 12px; font-weight: 450;">SCRIPTING LANGUAGES</p>
+        </li>
+
+        <style>
+          @media (min-width: 768px) {
+            .ul-units li {
+              padding-left: 2.0% !important;
+              gap: 8% !important;
+            }
+          }
+        </style>
+      </ul>
+
+
+    </div>
+
+  </div>
+
+  <!---------------------- 📲👥 Timetable 📲👥 -------------------------->
+
+
+  <div style="display: flex; justify-content: center; margin-top:-60px;  margin-bottom:50px;">
+
+    <button class="btn btn-primary neumorphic shadow-soft border border-light" id="timetableButton" data-aos="fade-up"
+      data-aos-delay="100" onclick="redirectToTimetable()">
+      <span class="mr-1" style="font-weight: 500!important;">
+        <span class="far fa-calendar-alt"></span>
+        Timetable
+      </span>
+    </button>
 
     <script>
-
-      const dotsElement = document.getElementById('typing-dots');
-          const sentence = " ANON-V73X is still developing this page...";
-      let charIndex = 0;
-
-      function animateTypingDots() {
-        if (charIndex === 0) {
-          dotsElement.textContent = sentence.charAt(charIndex);
-          charIndex++;
-        } else if (charIndex < sentence.length) {
-          dotsElement.textContent = sentence.substring(0, charIndex + 1);
-          charIndex++;
-        } else {
-          charIndex = 0; // Reset charIndex to 0 when it reaches the end of the sentence
-          dotsElement.textContent = sentence.charAt(0); // Set the first character of the sentence
-          charIndex++;
-        }
-
-        setTimeout(animateTypingDots, 100);
+      function redirectToTimetable() {
+        window.location.href = './timetable';
       }
-
-      animateTypingDots();
-
-
-
-
     </script>
 
+  </div>
 
+
+
+  <!---------------------- 📲👥 WhatsApp Group Link 📲👥 -------------------------->
+
+
+  <div style="display: flex; justify-content: center; margin-top:-65px; " data-aos="fade-up" data-aos-delay="100">
+    <a href="https://chat.whatsapp.com/Ku4SnGprq21FSy0L2FTeju" target="_blank">
+      <button class="btn btn-primary neumorphic shadow-soft border border-light">
+        <span class="mr-1" style="font-weight: 500!important;"><span class="fab fa-whatsapp"></span>
+          Whatsapp Group
+        </span>
+      </button>
+
+    </a>
+
+  </div>
+
+
+  <!----------------------- 📎 Whatsapp Group Link Ends Here 📎 ---------------------->
+
+
+
+  <button data-aos="fade-up" data-aos-delay="100" class="btn btn-primary neumorphic shadow-soft border border-light"
+    style="margin: 0 auto!important; display: flex; margin-bottom: 100px!important;" id="timetableButton"
+    data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='http://pastpapers.kabarak.ac.ke';">
+    <span class="mr-1" style="font-weight: 500!important;">
+      <span class="far fa-newspaper"></span>
+      Past Papers
+    </span>
+  </button>
+
+
+  <!------------------------ 📚 End Of Units Summary 📚 ------------------------------>
+
+
+
+
+
+  <!-----------------------------------=======  ⏸️ Break ⏸️ =============--------------->
+
+
+  <div style="border-top: 0.5px solid #a1a09f; margin-top: 10px; margin-bottom: 100px; opacity: 0.2;"></div>
+
+
+  <!-----------------------------------=======  ⏸️ Break ⏸️ =============--------------->
+
+
+
+
+
+
+  <!-----------------------------  📝📚 Notes Section Starts Here  ------------------------->
+
+
+  <!--  🌟 Title 🌟  -->
+
+
+
+  <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+
+
+    <h1
+      style="font-size: 1.6rem; margin-top: -50px; margin-bottom:10px; font-weight:bold; font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(95, 83, 68);">
+      Unit Notes </h1>
+
+    <div class="introX">
+      <p class="notes-intro" style="max-width: 380px; text-align:center;">
+        Get ready to finish strong! Access the collection of notes
+        for Semester 4.2 to master Data Mining, IT Security, Web Systems, and more.
+      </p>
+
+    </div>
 
 
   </div>
 
+
+  <!------------------------  📝📚 Scroll To Top Icon 📝📚 ---------------->
+
+
+  <div data-aos="fade-left" data-aos-delay="200" class="scroll-to-top" onclick="scrollToTop()"></div>
+
+
+  <!------------------------  📝📚 Scroll To Top Icon 📝📚 ---------------->
+
+
+
+  <!------------------    📝 Notes Download links 📥   ---------------------->
+
+
+
+  <div class="row mt-6">
+
+    <div data-aos="fade-up" data-aos-delay="200" class="col-md-4">
+
+
+      <!-- 📚 Icon box INTE 421 -->
+
+      <div class="icon-box text-center mb-5">
+
+
+        <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
+          <span class="fas fa-database"></span>
+        </div>
+
+
+        <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 421</h2>
+
+
+        <a href="#" onclick="alert('Notes for Data Mining coming soon!'); return false;">
+
+          <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button">
+
+            <span class="mr-1">
+              <span class="fas fa-arrow-circle-down"></span>
+            </span>
+            Download Notes
+
+          </button>
+
+        </a>
+
+      </div>
+
+
+      <!-- 🛑 End of Icon box -->
+
+    </div>
+
+
+    <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
+
+      <!-- 💻 Icon box INTE 422 -->
+
+
+      <div class="icon-box text-center mb-5">
+        <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
+          <span class="fas fa-shield-alt"></span>
+        </div>
+
+        <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 422</h2>
+
+        <a href="#" onclick="alert('Notes for IT Security coming soon!'); return false;">
+          <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button">
+            <span class="mr-1"><span class="fas fa-file-download"></span></span>
+            Download Notes
+          </button>
+        </a>
+
+      </div>
+
+
+      <!-- 🛑 End of Icon box -->
+
+
+    </div>
+
+
+
+    <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
+
+      <!-------- 🌟 Icon Box INTE 423 🌟 ---------->
+
+
+      <div class="icon-box text-center mb-5">
+
+        <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
+          <span class="fas fa-cogs"></span>
+        </div>
+
+        <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 423</h2>
+
+
+        <a href="#" onclick="alert('Notes for Business Process Re-Engineering coming soon!'); return false;">
+
+          <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button">
+            <span class="mr-1"><span class="fas fa-cloud-download-alt"></span></span>
+            Download Notes
+          </button>
+        </a>
+
+      </div>
+
+      <!-- 🛑 End of Icon box -->
+
+    </div>
+
+
+
+
+    <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
+
+      <!-------- 🌟 Icon Box INTE 424 🌟 ---------->
+
+
+      <div class="icon-box text-center mb-5">
+
+        <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
+          <span class="fas fa-flask"></span>
+        </div>
+
+        <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 424</h2>
+
+
+        <a href="#" onclick="alert('Notes for Research Project coming soon!'); return false;">
+
+          <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button">
+            <span class="mr-1"><span class="fas fa-cloud-download-alt"></span></span>
+            Download Notes
+          </button>
+        </a>
+
+      </div>
+
+      <!-- 🛑 End of Icon box -->
+
+
+
+    </div>
+
+
+
+
+
+
+    <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
+
+      <!------- 🎓 Icon Box INTE 462 🎓 ------->
+
+
+      <div class="icon-box text-center mb-5">
+
+        <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
+          <span class="fas fa-globe"></span>
+        </div>
+
+        <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 462</h2>
+
+
+        <a href="#" onclick="alert('Notes for Web Based Information System coming soon!'); return false;">
+
+          <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button">
+
+            <span class="mr-1"><span class="far fa-arrow-alt-circle-down"></span></span>
+            Download Notes
+
+          </button>
+
+        </a>
+
+      </div>
+
+      <!-- 🛑 End of Icon box -->
+
+
+    </div>
+
+
+    <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
+
+      <!------- 🎓 Icon Box INTE 472 🎓 ------->
+
+
+      <div class="icon-box text-center mb-5">
+
+        <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
+          <span class="fas fa-code"></span>
+        </div>
+
+        <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">INTE 472</h2>
+
+        <a href="#" onclick="alert('Notes for Scripting Languages coming soon!'); return false;">
+
+          <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button">
+
+            <span class="mr-1"><span class="far fa-arrow-alt-circle-down"></span></span>
+            Download Notes
+
+          </button>
+
+        </a>
+
+      </div>
+
+      <!-- 🛑 End of Icon box -->
+
+
+    </div>
+
+
+    <!-- Full Bundle Placeholder -->
+    <div data-aos="fade-up" data-aos-delay="100" class="col-md-4">
+      <div class="icon-box text-center mb-5">
+        <div class="icon icon-shape icon-shape-sm shadow-soft border border-light rounded-circle">
+          <span class="fas fa-layer-group"></span>
+        </div>
+        <h2 class="h5" style="margin-top: 30px; margin-bottom: 30px;">FULL BUNDLE</h2>
+        <a href="#" onclick="alert('Full bundle for 4.2 coming soon!'); return false;">
+          <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button">
+            <span class="mr-1"><span class="far fa-arrow-alt-circle-down"></span></span>
+            Download All
+          </button>
+        </a>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <!----------------🔚 End of the notes section 🔚---------------->
+
+
+
+
+
+
+  <!-------- ⏸️ Break ⏸️ ------------>
+
+  <div style="border-top: 0.5px solid #a1a09f; margin-top: 10px; opacity: 0.2;"></div>
+
+  <!-------- ⏸️ Break ⏸️ ------------>
+
+
+
+
+
+
+
+  <!-------- 📚 Key Resources Section Starts Here--------->
+
+
+
+  <!--------🔖====== Title ======🔖-------->
+
+
+  <div id="past-papers" data-aos="fade-up" data-aos-delay="100" class="row">
+
+    <div class="col text-center">
+      <div class="mb-5" style="margin-top: 40px;
+        margin-bottom: 5px!important; font-weight:bold; font-family: 'Signika', sans-serif !important;
+        font-weight:bold; color: rgb(95, 83, 68);">
+        <span class="h5 text-center key-resources-intro">Key Resources</span>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  <!--------👋 Introduction 👋------------>
+
+
+
+  <div class="introX">
+    <p data-aos="fade-up" data-aos-delay="200" class="notes-intro"
+      style="text-align: center; margin-bottom:50px; max-width:380px;" id="panel-0">
+      Access past papers, essential software, and study guides tailored for Semester 4.2.
+    </p>
+  </div>
+
+
+
+  <!--------📜 Main Contents Start Here 📜------------>
+
+
+
+
+
+
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+
+
+
+
+      <!--🔽========= Accordion Starts Here =========🔽-->
+
+
+
+
+
+      <div data-aos="fade-up" data-aos-delay="100" class="accordion shadow-soft rounded" id="accordionExample1">
+
+
+        <div class="card card-sm card-body bg-primary border-light mb-0">
+
+          <a href="#panel-1" data-target="#panel-1" class="accordion-panel-header" data-toggle="collapse" role="button"
+            aria-expanded="false" aria-controls="panel-1">
+            <span class="h6 mb-0 font-weight-bold">Past Papers</span>
+            <span class="icon"><span class="fas fa-plus"></span></span>
+          </a>
+
+
+          <div class="collapse" id="panel-1">
+
+
+            <!--------📚 Past Papers 📚------------>
+
+
+            <style>
+              .download-link {
+                padding: 0 4%;
+              }
+            </style>
+
+            <div class="pt-3">
+              <p class="download-link" style="text-align: center; font-weight: bold; margin-left: -8%;">
+                INTE 421:
+                <a style="margin-left: 13.5%; color: rgb(88, 132, 132);" href="#" onclick="showPopup(11)">Download</a>
+              </p>
+
+              <p class="download-link" style="text-align: center; font-weight: bold; margin-left: -8%;">
+                INTE 422:
+                <a style="margin-left: 13.5%; color: rgb(88, 132, 132);" href="#" onclick="showPopup(11)">Download</a>
+              </p>
+
+              <p class="download-link" style="text-align: center; font-weight: bold; margin-left: -8%;">
+                INTE 423:
+                <a style="margin-left: 13.5%; color: rgb(88, 132, 132);" href="#" onclick="showPopup(11)">Download</a>
+              </p>
+
+              <p class="download-link" style="text-align: center; font-weight: bold; margin-left: -8%;">
+                INTE 424:
+                <a style="margin-left: 13.5%; color: rgb(88, 132, 132);" href="#" onclick="showPopup(11)">Download</a>
+              </p>
+
+              <p class="download-link" style="text-align: center; font-weight: bold; margin-left: -8%;">
+                INTE 462:
+                <a style="margin-left: 13.5%; color: rgb(88, 132, 132);" href="#" onclick="showPopup(11)">Download</a>
+              </p>
+
+              <p class="download-link" style="text-align: center; font-weight: bold; margin-left: -8%;">
+                INTE 472:
+                <a style="margin-left: 13.5%; color: rgb(88, 132, 132);" href="#" onclick="showPopup(11)">Download</a>
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <!--------💻 Executable Files 💻------------>
+
+
+        <div class="card card-sm card-body bg-primary border-light mb-0">
+
+          <a href="#panel-2" data-target="#panel-2" class="accordion-panel-header" data-toggle="collapse" role="button"
+            aria-expanded="false" aria-controls="panel-2">
+
+            <span class="h6 mb-0 font-weight-bold">Exe Files (Dev Tools)</span>
+            <span class="icon">
+              <span class="fas fa-plus"></span>
+            </span>
+
+          </a>
+
+
+          <div class="collapse" id="panel-2">
+            <div class="pt-3"
+              style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+              <a href="https://liquidtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Windows/8.2.12/xampp-windows-x64-8.2.12-0-VS16-installer.exe"
+                target="_blank">
+                <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
+                  style="max-width: 200px; margin-bottom:0px!important">
+                  <span class="mr-1"><i class="fas fa-server"></i></span>
+                  XAMPP
+                </button>
+              </a>
+
+
+              <a href="https://www.python.org/downloads/" target="_blank">
+                <button class="btn btn-primary neumorphic shadow-soft border border-light"
+                  style="margin-top: 30px; margin-bottom:30px!important; max-width: 200px">
+                  <span class="mr-1"><i class="fab fa-python" style="height: 20px!important;"></i></span>
+                  <strong>Python (For Scripting)</strong>
+
+                </button>
+              </a>
+
+              <a href="https://nodejs.org/en/download" target="_blank">
+                <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
+                  style="max-width: 200px; margin-bottom:35px!important; ">
+                  <span class="mr-1"><i class="fab fa-node-js"></i></span>
+                  Node.js
+                </button>
+              </a>
+
+              <a href="https://code.visualstudio.com/" target="_blank">
+                <button class="btn btn-primary neumorphic shadow-soft border border-light" type="button"
+                  style="max-width: 200px;">
+                  <span class="mr-1"><i class="fab fa-windows"></i></span>
+                  VS Code
+                </button>
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+
+
+        <!--------🎓 Study Tips 🎓------------>
+
+
+        <div class="card card-sm card-body bg-primary border-light">
+
+          <a href="#panel-3" data-target="#panel-3" class="accordion-panel-header" data-toggle="collapse" role="button"
+            aria-expanded="false" aria-controls="panel-3">
+            <span class="h6 mb-0 font-weight-bold">Study Hacks</span>
+            <span class="icon"><span class="fas fa-plus"></span></span>
+          </a>
+
+
+          <div class="collapse" id="panel-3">
+            <div class="pt-3">
+              <p><strong style="font-weight: bold; font-size:13px;">DATA MINING AND WAREHOUSING:</strong><br> Study data
+                warehouse architecture, ETL processes, mining techniques, and OLAP for decision support.</p>
+              <p><strong style="font-weight: bold; font-size:13px;">IT SECURITY, AUDIT AND ETHICS:</strong><br>
+                Understand threat models, security auditing frameworks, cryptography, access control, and ethical
+                responsibilities in IT.</p>
+              <p><strong style="font-weight: bold; font-size:13px;">BUSINESS PROCESS RE-ENGINEERING:</strong><br> Learn
+                BPR methodologies, process modelling, change management, and how to redesign workflows for efficiency.
+              </p>
+              <p><strong style="font-weight: bold; font-size:13px;">RESEARCH PROJECT:</strong><br> This is your capstone
+                — implement your research proposal. Focus on data collection, analysis, and writing a complete technical
+                report.</p>
+              <p><strong style="font-weight: bold; font-size:13px;">WEB BASED INFORMATION SYSTEM:</strong><br> Master
+                server-side scripting, databases integration, REST APIs, and deploying full-stack web applications.</p>
+              <p><strong style="font-weight: bold; font-size:13px;">SCRIPTING LANGUAGES:</strong><br> Explore shell
+                scripting, Python automation, regular expressions, and task automation for system administration and dev
+                workflows.</p>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+        <!--------🔚 End Of the Main Content🔚------------>
+
+
+
+      </div>
+
+      <!---------------------- 🔼End of Accordion🔼 ------------------------>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <div data-aos="fade-up" data-aos-delay="200" style="display: flex; justify-content: center; margin-top:20px;">
+    <a href="#">
+      <button class="btn btn-primary neumorphic shadow-soft border border-light">
+        <span class="mr-1" style="font-weight: 500!important;">
+          <i class="fas fa-comments"></i>
+          Request File
+
+        </span>
+      </button>
+    </a>
+
+  </div>
+
+  <!-------- ⏸️ Break ⏸️ ------------>
+
+
+  <div style="border-top: 0.5px solid #a1a09f; margin-top: 10px; opacity: 0.2;"></div>
+
+  <!-------- ⏸️ Break ⏸️ ------------>
+
+
+
+
+
+
+
+
+
+  <!---------🎥 Video Tutorials Start Here 🎥--------->
+
+
+
+
+
+
+  <!--------🌟 Title 🌟------------>
+
+
+  <div id="tutorials" data-aos="fade-up" data-aos-delay="100" class="row">
+
+
+    <div class="col text-center">
+      <div class="mb-5"
+        style="margin-top: 40px; margin-bottom: 0px!important; font-weight: bold; font-family: 'Signika', sans-serif !important; color: rgb(95, 83, 68);">
+        <span class="h5 text-center key-resources-intro">YouTube Tutorials</span>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  <!--------👋 Introduction 👋------------>
+
+  <div class="introX">
+    <p data-aos="fade-up" data-aos-delay="200" class="notes-intro" style="text-align: center; max-width:380px;">
+
+      Explore curated playlists for Data Mining, IT Security, Web Development, Scripting Languages, and more.
+
+    </p>
+  </div>
+
+
+
+
+
+  <!-------------💡 Quick Tip 💡------------>
+
+
+  <div data-aos="fade-up" data-aos-delay="100" class="centered-container" id="container" style="margin-bottom: 30px;">
+    <i class="fas fa-exclamation-circle mr-2" id="icon"></i>
+    <p class="hidden" id="instruction" style="text-align: center; padding-right:4%;">tap image to watch online</p>
+  </div>
+
+
+
+
+
+  <!--------📜 Main Contents Start Here 📜------------>
+  <style>
+    /* 1. Container for the videos: Forces 3 columns */
+    .video-grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      /* 3 Equal Columns */
+      gap: 30px;
+      /* Space between cards */
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    /* 2. Fix for the Individual Cards */
+    .video-card {
+      width: 100% !important;
+      margin: 0 !important;
+      height: 100%;
+      /* Ensures all cards in a row are same height */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      /* Keeps image corners rounded */
+    }
+
+    /* 3. FIX FOR PADDING & TITLES */
+
+    .video-card .card-body {
+      margin: 0 !important;
+      /* overrides the inline -10% -4% style */
+      padding: 0px 15px !important;
+      /* Adds proper padding inside the card */
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      /* Aligns buttons to bottom */
+    }
+
+
+
+    /* 4. Responsive: 2 Cards on Tablets */
+    @media (max-width: 992px) {
+      .video-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* 5. Responsive: 1 Card on Mobile Phones */
+    @media (max-width: 768px) {
+      .video-grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+
+  <div class="video-tutorials video-grid-container">
+
+
+
+    <!------------📺 First Video (Data Mining) 📺-------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://www.youtube.com/watch?v=uFDUXQ3JFBs" target="_blank">
+        <!-- Data Mining Thumbnail -->
+        <img class="thumbnail" src="https://img.youtube.com/vi/uFDUXQ3JFBs/maxresdefault.jpg"
+          class="card-img-top rounded-top">
+
+      </a>
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Data Warehouse &amp; Data Mining - Full Syllabus</h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Roadmap CS</span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(1)">
+          <span class="mr-1">
+            <i class="fab fa-youtube"></i>
+          </span>
+          Watch Video
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-------------⚙️ Select Quality For Video 1 ⚙️---------------->
+
+
+
+    <div class="popup-card" id="popupCard1">
+      <!-- Popup Content -->
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column; align-items:center;">
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important; margin-bottom: 40px; opacity:0.5;text-align:center;">Redirecting...</h3>
+          <a href="https://www.youtube.com/watch?v=uFDUXQ3JFBs" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">Open in YouTube</button>
+          </a>
+          <span class="close-btn" onclick="rotateAndHidePopup(1)"><i class="fa fa-times-circle"
+              style="font-size: 30px;"></i></span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!------------🎥 Second Video (IT Security) 🎥-------------->
+
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://www.youtube.com/watch?v=woNY9og8H_s" target="_blank">
+        <img class="thumbnail" src="https://img.youtube.com/vi/woNY9og8H_s/maxresdefault.jpg"
+          class="card-img-top rounded-top">
+      </a>
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Ethical Hacking Full Course 2026</h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Simplilearn</span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(2)">
+          <span class="mr-1">
+            <i class="fab fa-youtube"></i>
+          </span>
+          Watch Video
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Popup 2 -->
+    <div class="popup-card" id="popupCard2">
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column; align-items:center;">
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important; margin-bottom: 40px; opacity:0.5;text-align:center;">Redirecting...</h3>
+          <a href="https://www.youtube.com/watch?v=woNY9og8H_s" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">Open in YouTube</button>
+          </a>
+          <span class="close-btn" onclick="rotateAndHidePopup(2)"><i class="fa fa-times-circle"
+              style="font-size: 30px;"></i></span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <!------------📹 Third Video (BPR) 📹-------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://www.youtube.com/watch?v=iSHcC-QNCP4" target="_blank">
+        <img class="thumbnail" src="https://img.youtube.com/vi/iSHcC-QNCP4/maxresdefault.jpg"
+          class="card-img-top rounded-top">
+      </a>
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Business Process Reengineering - Full Course</h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Learnvern</span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(3)">
+          <span class="mr-1">
+            <i class="fab fa-youtube"></i>
+          </span>
+          Watch Video
+        </button>
+      </div>
+    </div>
+
+    <!-- Popup 3 -->
+    <div class="popup-card" id="popupCard3">
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column; align-items:center;">
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important; margin-bottom: 40px; opacity:0.5;text-align:center;">Redirecting...</h3>
+          <a href="https://www.youtube.com/watch?v=iSHcC-QNCP4" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">Open in YouTube</button>
+          </a>
+          <span class="close-btn" onclick="rotateAndHidePopup(3)"><i class="fa fa-times-circle"
+              style="font-size: 30px;"></i></span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!------------📽️ Fourth Video (Research Project) 📽️-------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://www.youtube.com/watch?v=nJza2kfI8GU" target="_blank">
+        <img class="thumbnail" src="https://img.youtube.com/vi/nJza2kfI8GU/maxresdefault.jpg"
+          class="card-img-top rounded-top">
+      </a>
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Research Methodology - Full Step-By-Step Tutorial</h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Grad Coach</span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(4)">
+          <span class="mr-1">
+            <i class="fab fa-youtube"></i>
+          </span>
+          Watch Video
+        </button>
+      </div>
+    </div>
+
+    <!-- Popup 4 -->
+    <div class="popup-card" id="popupCard4">
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column; align-items:center;">
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important; margin-bottom: 40px; opacity:0.5;text-align:center;">Redirecting...</h3>
+          <a href="https://www.youtube.com/watch?v=nJza2kfI8GU" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">Open in YouTube</button>
+          </a>
+          <span class="close-btn" onclick="rotateAndHidePopup(4)"><i class="fa fa-times-circle"
+              style="font-size: 30px;"></i></span>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!------------🎞️ Fifth Video (Web Info Systems) 🎞️-------------->
+
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://www.youtube.com/watch?v=ysz5S6PUM-U" target="_blank">
+        <img class="thumbnail" src="https://img.youtube.com/vi/ysz5S6PUM-U/maxresdefault.jpg"
+          class="card-img-top rounded-top">
+      </a>
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Web Development Full Course for Beginners</h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Simplilearn</span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(5)">
+          <span class="mr-1">
+            <i class="fab fa-youtube"></i>
+          </span>
+          Watch Video
+        </button>
+      </div>
+    </div>
+
+
+    <!-- Popup 5 -->
+    <div class="popup-card" id="popupCard5">
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column; align-items:center;">
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important; margin-bottom: 40px; opacity:0.5;text-align:center;">Redirecting...</h3>
+          <a href="https://www.youtube.com/watch?v=ysz5S6PUM-U" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">Open in YouTube</button>
+          </a>
+          <span class="close-btn" onclick="rotateAndHidePopup(5)"><i class="fa fa-times-circle"
+              style="font-size: 30px;"></i></span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!------------📼 Sixth Video (Scripting Languages) 📼-------------->
+
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary border-light shadow-soft">
+      <a href="https://www.youtube.com/watch?v=fAgz66M4aNc" target="_blank">
+        <img class="thumbnail" src="https://img.youtube.com/vi/fAgz66M4aNc/maxresdefault.jpg"
+          class="card-img-top rounded-top">
+      </a>
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%">
+
+        <h3 class="h5 card-title mt-3">Shell Scripting Full Course - Bash Mastery</h3>
+        <span class="h6 icon-tertiary small">
+          <i class="fas fa-user-circle mr-2"></i> <span class="channel-name">Kiran Tutorials</span>
+        </span>
+
+        <button class="btn btn-primary neumorphic shadow-soft border border-light"
+          style="display: block; margin: 10% auto 0;" onclick="showPopup(6)">
+          <span class="mr-1">
+            <i class="fab fa-youtube"></i>
+          </span>
+          Watch Video
+        </button>
+      </div>
+    </div>
+
+    <!-- Popup 6 -->
+    <div class="popup-card" id="popupCard6">
+      <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+        style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+        <div class="card-body"
+          style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column; align-items:center;">
+          <h3 class="h5 card-title mt-3"
+            style="margin-top:40px !important; margin-bottom: 40px; opacity:0.5;text-align:center;">Redirecting...</h3>
+          <a href="https://www.youtube.com/watch?v=fAgz66M4aNc" target="_blank">
+            <button class="btn btn-primary neumorphic shadow-soft border border-light">Open in YouTube</button>
+          </a>
+          <span class="close-btn" onclick="rotateAndHidePopup(6)"><i class="fa fa-times-circle"
+              style="font-size: 30px;"></i></span>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <!-------------🎬 Videos End Here 🎬---------------->
+
+
+
+
+
+
+
+
+
+
+
+  <!------------📚 More Tutorials 📚--------------->
+
+
+  <div data-aos="fade-up" data-aos-delay="200" style="display: flex; justify-content: center;">
+
+    <a href="http://youtube.com">
+      <button class="btn btn-primary neumorphic shadow-soft border border-light">
+        <span class="mr-1" style="font-weight: 500!important;">
+          <i class="fab fa-youtube"></i>
+          More Tutorials
+        </span>
+      </button>
+    </a>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <!-------------🗒️ Notes Download Pop Up Card 🗒️---------------->
+
+
+
+  <div class="popup-card" id="popupCard11">
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+      style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                align-items:center;">
+
+        <h3 class="h5 card-title mt-3" style="margin-top:20px !important;
+                                    margin-bottom: 15px; opacity:0.5;text-align:center;">Please Wait!</h3>
+
+        <div class="blob">
+          <div class="box">
+
+          </div>
+        </div>
+
+        <p data-aos="fade-up" data-aos-delay="200" class="notes-intro" style="text-align: center; margin-bottom: 60px !important;
+                            margin-top:30px !important; color: #735c3d; font-weight:500;opacity:0.8;">
+          We are fetching the latest files for 4.2...
+        </p>
+
+        <span data-aos="fade-up" data-aos-delay="200" class="close-btn" onclick="rotateAndHidePopup(11)
+                            " style="bottom: 6% ;">
+          <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);
+                                "></i>
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!---------⏸️ Break ⏸️------------------>
+
+
+  <div style="border-top: 0.5px solid #a1a09f; margin-top: 0px; opacity: 0.2;"></div>
+
+
+  <!---------⏸️ Break ⏸️------------------>
+
+
+  <!-----------------🚀 Progress Starts Here 🚀------------------>
+
+  <style>
+    @media(max-width:400px) {
+      .title-1 {
+
+        padding-top: 10% !important;
+      }
+    }
+  </style>
+
+  <div data-aos="fade-up" data-aos-delay="200" class="container-1">
+    <h2 class="title-1"
+      style="font-size: 1.5rem;  margin-bottom:0px; font-weight:bold; font-family: 'Signika', sans-serif;font-weight:bold; color: rgb(95, 83, 68);"">Progress Update</h2>
+        <p class=" paragraph-1" style="font-size: 15px;max-width:500px">If you're at this stage, it means you have
+      successfully completed semester 4.1 (first half of your final year).
+      Congratulations! You are now entering the final stretch of your final year (4.2). You are 87.5% through your
+      program. Keep up the
+      excellent
+      work and push through the final stretch!</p>
+
+
+
+      <div class="progress">
+        <div class="progress__fill"></div>
+      </div>
+  </div>
+
+
+
+
+
+  <style>
+    .progress {
+      max-width: 400px;
+      width: 100%;
+      height: 24px;
+      grid-column-start: 1;
+      grid-column-end: 5;
+      grid-row-start: 7;
+      grid-row-end: 7;
+      position: relative;
+      margin-top: 16px;
+      border-radius: 12px;
+      box-shadow: 6px 6px 12px #c2c2c2c8, -6px -6px 12px #ffffff98 !important;
+      background-color: #ebecf0;
+    }
+
+    .progress__fill {
+      width: 87.5%;
+      /* Updated to 87.5% for 4.2 */
+      height: 100%;
+      position: absolute;
+      border-radius: inherit;
+      background-image: linear-gradient(to right, #cf9972, #fff8dc);
+    }
+
+    .progress__fill:before {
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 18px;
+      color: #6c7587;
+      content: "87.5%";
+      padding: 11px 15px;
+      margin-top: -16px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -100%);
+      border-radius: 8px;
+      box-shadow: 8px 8px 12px -2px rgba(72, 79, 96, 0.4), -6px -6px 12px -1px white;
+      background-color: #ebecf0;
+    }
+
+    .progress__fill:after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      right: 0;
+      bottom: 24px;
+      transform: translate(50%, -100%);
+      border-top: 9px solid #ebecf0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
+  </style>
+
+
+  <!-------------🏁 Progress Ends Here 🏁----------------->
+
+
+
+
+
+  <div class="popup-card" id="popupCard12">
+
+    <div data-aos="fade-up" data-aos-delay="200" class="card video-card bg-primary "
+      style="border: rgba(246, 245, 243, 0.957) 3px solid;">
+
+      <div class="card-body" style="margin-top: -10%; margin-left:-4%; display:flex; flex-direction:column;
+                                      align-items:center;">
+
+        <h3 class="h5 card-title mt-3" style="margin-top:20px !important;
+                                          margin-bottom: 15px; opacity:0.5;text-align:center;">Scroll Down!</h3>
+
+
+
+
+
+        <div class="blob">
+          <div class="box">
+
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <p data-aos="fade-up" data-aos-delay="200" class="notes-intro" style="text-align: center; margin-bottom: 60px !important;
+                                  margin-top:30px !important; color: #735c3d; font-weight:500;opacity:0.8;">
+          Please scroll down to download this semester's resources
+        </p>
+
+
+
+
+
+
+
+
+        <span data-aos="fade-up" data-aos-delay="200" class="close-btn" onclick="rotateAndHidePopup(12)
+                                  " style="bottom: 6% ;">
+          <i class="fa fa-times-circle" style="font-size: 30px; color: rgb(92, 64, 51);
+                                      "></i>
+        </span>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!------------------------   ⏸️ Break ⏸️ -------------------------->
+
+
+  <div style="border-top: 0.5px solid #a1a09f; margin-top: -20px; opacity: 0.2;"></div>
+
+  <!------------------------   ⏸️ Break ⏸️ -------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-------------========= 😁😁 Footer Starts Here 😁😁 =======----------------------->
+
+
+  <footer data-aos="fade-up" data-aos-delay="300" class="foot">
+
+    <!------------------------ 📜 Credits 📜 ------------------------>
+
+
+    <div class="foot-links" style="display: flex; flex-wrap: wrap; padding: 10px; ">
+      <div class="col-md-4 text-center">
+        <h4 style="font-weight: bold; text-align: start;
+              margin-bottom: 20px; ">Credits</h4>
+
+
+
+
+
+        <div class="credit-links " style="margin-bottom: 30px;">
+          <p><a href="https://www.vecteezy.com" class="credits">- Vecteezy</a></p>
+          <p><a href="https://www.vecteezy.com" class="credits">- Brandify</a></p>
+          <p><a href="https://www.kabarak.ac.ke" class="credits">- Kabarak University</a></p>
+          <p><a href="https://www.pngtree.com" class="credits">- pngTree</a></p>
+          <p style="opacity: 1 !important;color: rgb(118, 116, 116) !important;"><a class="credits">-
+              Others</a></p>
+        </div>
+
+
+
+      </div>
+
+
+      <!------------------------ 📞 Contacts 📞 ------------------------>
+
+
+
+
+      <div class="col-md-4 text-center con">
+        <h4 style="font-weight: bold;
+              text-align: start; margin-bottom: 20px; ">Contacts</h4>
+
+
+        <div class="contact-links" style="margin-bottom: 30px;">
+
+          <p><a href="https://t.me/Kabarak_University_bot" class="credits" target="_blank">- Telegram
+              Bot</a>
+          </p>
+          <p><a href="#" class="credits" target="_blank">- Twitter</a></p>
+
+          <p><a href="#" class="credits" target="_blank">- Whatsapp</a></p>
+          <p><a href="#" class="credits" target="_blank">- Telegram</a></p>
+        </div>
+
+
+
+      </div>
+
+      <!------------------------ 🔗 Links 🔗 ------------------------>
+
+
+
+      <div class="col-md-4 text-center">
+        <h4 style="font-weight: bold; text-align: start; margin-bottom: 20px; ">Links</h4>
+
+
+        <div class="linkz">
+          <p><a href="https://ithub.surge.sh" class="lin">- Home</a></p>
+          <p><a href="https://ithub.surge.sh#semesters" class="lin">- Semesters</a></p>
+          <p><a href="https://ithub.surge.sh#contact" class="lin">- Contact Us</a></p>
+          <p><a href="https://moodle.kabarak.ac.ke/login/index.php" class="lin">- Moodle</a></p>
+          <p><a href="https://www.kabarak.ac.ke" class="lin">- Kabarak University</a></p>
+          <p><a href="https://chat.openai.com" class="lin">- ChatGPT</a></p>
+          <p><a href="https://www.youtube.com" class="lin">- YouTube</a></p>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!------------------------ ©️ Copyright ©️ ------------------------>
+
+
+
+    <div style="display: flex; justify-content:center; text-align:center;margin-top: 90px;  ">
+      <p class="mb-0" style="opacity: 0.4; font-weight:bold !important; font-size:small"> © 2026 IT Course Hub.
+        All rights reserved.</p>
+    </div>
+
+
+    <!------------------------ 😁😁 Sir Alex 😁😁 -------------------------->
+
+
+    <div style="margin: 10px 0; margin-top:-10px!important; display: flex; justify-content: center; font-size:10px">
+      <p style="font-weight: bold; opacity:0.8;
+      font-size:13px;">Developed by: <a href="#" style="font-weight: bold; font-size:12px; color: rgb(150, 90, 5);">
+          Sir Anonymous-V73X</a></p>
+    </div>
+
+
+
+  </footer>
+
+
+
+
+
+  <!---------========= 😁😁😁Footer Ends Here😁😁😁 ==========-------->
+
+
+
+  <div class="wrapper-loader">
+    <div class="loader">
+
+
+
+
+
+
+      <div class="book">
+        <div class="book__pg-shadow"></div>
+        <div class="book__pg"></div>
+        <div class="book__pg book__pg--2"></div>
+        <div class="book__pg book__pg--3"></div>
+        <div class="book__pg book__pg--4"></div>
+        <div class="book__pg book__pg--5"></div>
+      </div>
+
+
+
+      <p class="get" id="typing-dots">Getting Things Ready</p>
+
+      <script>
+
+        const dotsElement = document.getElementById('typing-dots');
+        const dots = '...';
+        let dotCount = 0;
+
+        function animateTypingDots() {
+          dotsElement.textContent = 'Getting Things Ready' + dots.substring(0, dotCount);
+          dotCount = (dotCount + 1) % (dots.length + 1);
+          setTimeout(animateTypingDots, 300);
+        }
+
+        animateTypingDots();
+
+      </script>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ======== 😎😎 Script actually starts here 😎😎 ======== -->
+
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/semesters.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 600,
+    });
+  </script>
+
 </body>
+
+<!-- ======== Script Ends 🗣️🗣️🪦🪦 ======== -->
 
 </html>

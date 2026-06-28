@@ -1,0 +1,3594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafePass – High Fidelity Prototype</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f1f3d;
+      --navy-mid: #1a3460;
+      --navy-light: #2a4a7f;
+      --amber: #f5a623;
+      --amber-light: #ffd07a;
+      --amber-pale: #fff8ec;
+      --green: #1a9f6e;
+      --green-light: #e8f8f2;
+      --red: #d93f3f;
+      --red-light: #fde8e8;
+      --cream: #faf8f4;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --shadow-sm: 0 1px 3px rgba(15, 31, 61, 0.08), 0 1px 2px rgba(15, 31, 61, 0.04);
+      --shadow-md: 0 4px 16px rgba(15, 31, 61, 0.1), 0 2px 6px rgba(15, 31, 61, 0.06);
+      --shadow-lg: 0 12px 40px rgba(15, 31, 61, 0.15), 0 4px 12px rgba(15, 31, 61, 0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-xs: 6px;
+    }
+
+    /* ── DARK MODE VARIABLES ── */
+    .dark {
+      --cream: #131a27;
+      --white: #1c2438;
+      --gray-50: #161f30;
+      --gray-100: #1e2a3f;
+      --gray-200: #253048;
+      --gray-300: #334060;
+      --gray-400: #6b7fa0;
+      --gray-500: #8a9bb8;
+      --gray-600: #a8b8d0;
+      --gray-700: #c4d0e4;
+      --gray-900: #e8edf5;
+      --amber-pale: #1f1a0e;
+      --green-light: #0a1f18;
+      --red-light: #1f0e0e;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .dark body {
+      background: #0c1220;
+    }
+
+    .dark .screen-stage {
+      background: radial-gradient(ellipse at 60% 0%, rgba(42, 74, 127, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 100%, rgba(245, 166, 35, 0.06) 0%, transparent 50%),
+        #0c1220;
+    }
+
+    .dark .iface-header {
+      background: #0f1928;
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .dark .card {
+      background: var(--gray-100);
+    }
+
+    .dark .card-accent {
+      background: linear-gradient(135deg, #0a1628 0%, #162240 100%);
+    }
+
+    .dark .app-header {
+      background: var(--gray-100);
+      border-color: var(--gray-200);
+    }
+
+    .dark .bottom-nav {
+      background: var(--gray-100);
+      border-color: var(--gray-200);
+    }
+
+    .dark .inp {
+      background: var(--gray-200);
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .dark .inp-select {
+      background: var(--gray-200);
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .dark .btn-outline {
+      background: transparent;
+      border-color: var(--gray-300);
+      color: var(--gray-600);
+    }
+
+    .dark .otp-box {
+      background: var(--gray-200);
+      border-color: var(--gray-300);
+      color: var(--gray-900);
+    }
+
+    .dark .otp-box.filled {
+      border-color: var(--navy-light);
+    }
+
+    .dark .otp-box.cursor {
+      border-color: var(--amber);
+    }
+
+    .dark .phone-screen-wrap {
+      background: var(--gray-100);
+    }
+
+    .dark .phone-body {
+      background: var(--gray-50);
+    }
+
+    .dark .desktop-screen {
+      background: var(--gray-50);
+    }
+
+    .dark .admin-content {
+      background: var(--gray-50);
+    }
+
+    .dark .stat-box {
+      background: var(--gray-100);
+    }
+
+    .dark .wf-card {
+      background: var(--gray-100);
+    }
+
+    .dark .anno-card {
+      background: var(--gray-100);
+      border-left-color: var(--amber);
+    }
+
+    .dark .anno-card * {
+      color: var(--gray-600);
+    }
+
+    .dark .anno-card .anno-title {
+      color: var(--gray-900);
+    }
+
+    .dark .anno-card .anno-label {
+      color: var(--amber);
+    }
+
+    .dark .anno-note {
+      background: #1a1408;
+    }
+
+    .dark .section-title {
+      color: var(--gray-500);
+    }
+
+    .dark .admin-inp {
+      background: var(--gray-200);
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .dark .admin-textarea {
+      background: var(--gray-200);
+      border-color: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .dark .data-table th {
+      background: var(--gray-200);
+    }
+
+    .dark .data-table td {
+      background: transparent;
+      border-color: var(--gray-200);
+      color: var(--gray-600);
+    }
+
+    .dark .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .dark .picker-profile {
+      background: var(--gray-100);
+      border-color: var(--green);
+    }
+
+    .dark .status-screen-auth {
+      background: linear-gradient(160deg, #0a1f18 0%, #161f30 60%);
+    }
+
+    .dark .status-screen-declined {
+      background: linear-gradient(160deg, #1f0e0e 0%, #161f30 60%);
+    }
+
+    .dark .scanner-box {
+      background: #0f1928;
+    }
+
+    .dark .welcome-hero {
+      background: linear-gradient(135deg, #0a1628 0%, #162240 100%);
+    }
+
+    .dark .quick-stat {
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .dark .screen-body {
+      background: var(--cream);
+    }
+
+    .dark .notif-pill {
+      background: var(--navy-mid);
+    }
+
+    .dark input,
+    .dark textarea {
+      background: var(--gray-200) !important;
+      color: var(--gray-700) !important;
+    }
+
+    /* ── DARK MODE TOGGLE BUTTON ── */
+    .dark-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .dark-toggle:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: white;
+    }
+
+    .toggle-track {
+      width: 32px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 9px;
+      position: relative;
+      transition: background 0.25s;
+    }
+
+    .toggle-thumb {
+      width: 13px;
+      height: 13px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2.5px;
+      left: 3px;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .dark .toggle-track {
+      background: var(--amber);
+    }
+
+    .dark .toggle-thumb {
+      transform: translateX(14px);
+      background: var(--navy);
+    }
+
+    .toggle-icon {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #e8ecf3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s;
+    }
+
+    /* smooth dark transitions on common surfaces */
+    .card,
+    .card-accent,
+    .app-header,
+    .bottom-nav,
+    .screen-body,
+    .screen-stage,
+    .anno-card,
+    .stat-box,
+    .iface-header,
+    .desktop-screen,
+    .admin-content,
+    .phone-screen-wrap {
+      transition: background 0.3s, border-color 0.3s, color 0.2s;
+    }
+
+    /* ── PROTOTYPE SHELL ── */
+    .proto-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── TOP NAV BAR ── */
+    .proto-nav {
+      background: var(--navy);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .proto-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .proto-nav-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--amber);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .proto-nav-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.5px;
+    }
+
+    .proto-nav-subtitle {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    .proto-tabs {
+      display: flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 3px;
+    }
+
+    .proto-tab {
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .proto-tab:hover {
+      color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .proto-tab.active {
+      background: var(--amber);
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .proto-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── INTERFACE PANELS ── */
+    .interfaces {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interface-panel {
+      display: none;
+    }
+
+    .interface-panel.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── INTERFACE HEADER ── */
+    .iface-header {
+      background: var(--navy-mid);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .iface-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      color: white;
+    }
+
+    .iface-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 3px;
+    }
+
+    .screen-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .screen-pill {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .screen-pill:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: white;
+    }
+
+    .screen-pill.active {
+      background: var(--amber);
+      color: var(--navy);
+      border-color: var(--amber);
+      font-weight: 700;
+    }
+
+    /* ── SCREEN STAGE ── */
+    .screen-stage {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 24px 60px;
+      gap: 48px;
+      background: radial-gradient(ellipse at 60% 0%, rgba(42, 74, 127, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 100%, rgba(245, 166, 35, 0.07) 0%, transparent 50%),
+        #dde2ec;
+    }
+
+    /* ── PHONE DEVICE ── */
+    .phone-device {
+      width: 375px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 24px 60px rgba(15, 31, 61, 0.22));
+    }
+
+    .phone-shell {
+      background: #111;
+      border-radius: 44px;
+      padding: 14px;
+      position: relative;
+    }
+
+    .phone-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 44px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .phone-screen-wrap {
+      background: white;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch-bar {
+      background: #111;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .phone-notch-pill {
+      width: 96px;
+      height: 26px;
+      background: #000;
+      border-radius: 0 0 18px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .camera-dot {
+      width: 10px;
+      height: 10px;
+      background: #1a1a1a;
+      border-radius: 50%;
+    }
+
+    .status-bar-inside {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .status-time {
+      font-size: 12px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .status-icons {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .status-icon {
+      font-size: 11px;
+      color: white;
+    }
+
+    .phone-content {
+      min-height: 680px;
+      overflow: hidden;
+    }
+
+    /* ── SCREENS (hidden/shown) ── */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── ANNOTATION PANEL ── */
+    .annotation-panel {
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 60px;
+    }
+
+    .anno-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      border-left: 4px solid var(--amber);
+    }
+
+    .anno-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--amber);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .anno-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .anno-text {
+      font-size: 12px;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    .anno-bullets {
+      list-style: none;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .anno-bullets li {
+      font-size: 12px;
+      color: var(--gray-600);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .anno-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-size: 10px;
+      top: 1px;
+    }
+
+    .anno-note {
+      background: var(--amber-pale);
+      border-radius: var(--radius-xs);
+      padding: 10px 12px;
+      font-size: 11px;
+      color: var(--gray-700);
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .anno-note strong {
+      color: var(--navy);
+    }
+
+    /* ── DESKTOP DEVICE ── */
+    .desktop-device {
+      width: 900px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 24px 60px rgba(15, 31, 61, 0.22));
+    }
+
+    .desktop-shell {
+      background: #1c1c1e;
+      border-radius: 16px;
+      padding: 10px 10px 20px;
+    }
+
+    .desktop-topbar {
+      background: #2c2c2e;
+      border-radius: 8px 8px 0 0;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .mac-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .mac-red {
+      background: #ff5f57;
+    }
+
+    .mac-yellow {
+      background: #febc2e;
+    }
+
+    .mac-green {
+      background: #28c840;
+    }
+
+    .desktop-url-bar {
+      flex: 1;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 4px;
+      margin-left: 12px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.3px;
+    }
+
+    .desktop-screen {
+      background: var(--gray-50);
+      border-radius: 0 0 8px 8px;
+      min-height: 580px;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* ══════════════════════════════════════════════
+   SCREEN CONTENTS
+═══════════════════════════════════════════════ */
+
+    /* ── SHARED APP COMPONENTS ── */
+    .app-header {
+      background: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-100);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .app-header-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .app-logo-mark {
+      width: 30px;
+      height: 30px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .app-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.3px;
+    }
+
+    .app-back {
+      width: 34px;
+      height: 34px;
+      background: var(--gray-100);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--gray-600);
+    }
+
+    .app-bell {
+      width: 34px;
+      height: 34px;
+      background: var(--amber-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .app-bell::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      border: 2px solid white;
+    }
+
+    .screen-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      background: white;
+      border-top: 1px solid var(--gray-100);
+      display: flex;
+      padding: 8px 0 16px;
+    }
+
+    .bnav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+      cursor: default;
+    }
+
+    .bnav-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .bnav-label {
+      font-size: 9px;
+      color: var(--gray-400);
+      letter-spacing: 0.3px;
+    }
+
+    .bnav-item.active .bnav-label {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .bnav-item.active .bnav-icon {
+      background: var(--navy);
+      border-radius: 10px;
+      color: white;
+      font-size: 14px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-accent {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: var(--radius);
+      padding: 20px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-accent::before {
+      content: '';
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      right: -40px;
+      top: -60px;
+    }
+
+    .card-accent::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: rgba(245, 166, 35, 0.15);
+      border-radius: 50%;
+      right: 30px;
+      bottom: -20px;
+    }
+
+    /* ── LABELS / TYPOGRAPHY ── */
+    .label {
+      font-size: 11px;
+      color: var(--gray-500);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+    }
+
+    .title-lg {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .title-md {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .title-sm {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .body-sm {
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .caption {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    /* ── FORM INPUTS ── */
+    .inp-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .inp-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .inp {
+      width: 100%;
+      height: 48px;
+      background: white;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 0 14px;
+      font-size: 14px;
+      color: var(--gray-700);
+      font-family: 'Outfit', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .inp:focus {
+      border-color: var(--navy);
+    }
+
+    .inp-focus {
+      border-color: var(--navy) !important;
+      box-shadow: 0 0 0 3px rgba(15, 31, 61, 0.08);
+    }
+
+    .inp-hint {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    .inp-select {
+      width: 100%;
+      height: 48px;
+      background: white;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      padding: 0 14px;
+      font-size: 14px;
+      color: var(--gray-700);
+      font-family: 'Outfit', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .inp-select .arrow {
+      color: var(--gray-400);
+      font-size: 12px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      width: 100%;
+      height: 52px;
+      background: var(--navy);
+      color: white;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-amber {
+      width: 100%;
+      height: 52px;
+      background: var(--amber);
+      color: var(--navy);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-outline {
+      width: 100%;
+      height: 48px;
+      background: transparent;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .btn-ghost {
+      background: none;
+      border: none;
+      font-size: 13px;
+      color: var(--navy);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── OTP BOX ── */
+    .otp-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin: 4px 0;
+    }
+
+    .otp-box {
+      width: 46px;
+      height: 56px;
+      background: white;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      transition: border-color 0.2s;
+    }
+
+    .otp-box.filled {
+      border-color: var(--navy);
+    }
+
+    .otp-box.cursor {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.2);
+    }
+
+    /* ── BADGE / TAG ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-green {
+      background: var(--green-light);
+      color: var(--green);
+    }
+
+    .badge-amber {
+      background: #fff3dc;
+      color: #b87d00;
+    }
+
+    .badge-navy {
+      background: #e8ecf3;
+      color: var(--navy-mid);
+    }
+
+    .badge-red {
+      background: var(--red-light);
+      color: var(--red);
+    }
+
+    /* ── AVATAR ── */
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--amber-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .avatar-lg {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      font-size: 22px;
+      overflow: hidden;
+    }
+
+    .avatar-sm {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      font-size: 13px;
+      overflow: hidden;
+    }
+
+    .picker-photo {
+      overflow: hidden;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin: 4px 0;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--gray-500);
+    }
+
+    /* ── QR CODE ── */
+    .qr-display {
+      width: 180px;
+      height: 180px;
+      background: white;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .qr-inner {
+      width: 100%;
+      height: 100%;
+      background:
+        repeating-conic-gradient(var(--navy) 0% 25%, transparent 0% 50%) 0 0 / 12px 12px,
+        repeating-conic-gradient(var(--navy) 0% 25%, transparent 0% 50%) 6px 6px / 12px 12px;
+      border-radius: 4px;
+      opacity: 0.85;
+    }
+
+    .qr-corner {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 5px solid var(--navy);
+      border-radius: 6px;
+    }
+
+    .qr-corner.tl {
+      top: 14px;
+      left: 14px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .qr-corner.tr {
+      top: 14px;
+      right: 14px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .qr-corner.bl {
+      bottom: 14px;
+      left: 14px;
+      border-right: none;
+      border-top: none;
+    }
+
+    /* ── STATUS SCREENS ── */
+    .status-screen-auth {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      background: linear-gradient(160deg, #e8f8f2 0%, white 60%);
+      gap: 12px;
+      text-align: center;
+    }
+
+    .status-screen-declined {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      background: linear-gradient(160deg, #fde8e8 0%, white 60%);
+      gap: 12px;
+      text-align: center;
+    }
+
+    .status-icon-wrap {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+    }
+
+    .status-icon-auth {
+      background: var(--green-light);
+    }
+
+    .status-icon-declined {
+      background: var(--red-light);
+    }
+
+    .status-title-auth {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: 1px;
+    }
+
+    .status-title-declined {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: 1px;
+    }
+
+    /* ── PROGRESS STEP ── */
+    .step-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      margin: 4px 0;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      transition: all 0.2s;
+    }
+
+    .step-dot.active {
+      background: var(--navy);
+      width: 22px;
+      border-radius: 4px;
+    }
+
+    .step-dot.done {
+      background: var(--green);
+    }
+
+    /* ── SCANNER BOX ── */
+    .scanner-box {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f5f5f5;
+    }
+
+    .scanner-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .scan-corner {
+      width: 24px;
+      height: 24px;
+      border-color: var(--navy);
+      border-style: solid;
+      position: absolute;
+      border-width: 4px;
+    }
+
+    .scan-corner.tl {
+      top: 12px;
+      left: 12px;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 4px 0 0 0;
+    }
+
+    .scan-corner.tr {
+      top: 12px;
+      right: 12px;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0 4px 0 0;
+    }
+
+    .scan-corner.bl {
+      bottom: 12px;
+      left: 12px;
+      border-right: none;
+      border-top: none;
+      border-radius: 0 0 0 4px;
+    }
+
+    .scan-corner.br {
+      bottom: 12px;
+      right: 12px;
+      border-left: none;
+      border-top: none;
+      border-radius: 0 0 4px 0;
+    }
+
+    .scan-line {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      animation: scanMove 2s ease-in-out infinite;
+      top: 40px;
+    }
+
+    @keyframes scanMove {
+      0% {
+        top: 20px;
+        opacity: 1;
+      }
+
+      50% {
+        top: 190px;
+        opacity: 1;
+      }
+
+      100% {
+        top: 20px;
+        opacity: 1;
+      }
+    }
+
+    .scanner-icon-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scanner-icon-center span {
+      font-size: 50px;
+      opacity: 0.15;
+    }
+
+    /* ── USSD SCREEN ── */
+    .ussd-body {
+      background: #1a1a2e;
+      flex: 1;
+      padding: 20px 16px;
+      font-family: 'Outfit', monospace;
+      color: #00d084;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .ussd-title {
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .ussd-divider {
+      border-top: 1px solid rgba(0, 208, 132, 0.3);
+      margin: 8px 0;
+    }
+
+    .ussd-otp-big {
+      font-size: 28px;
+      letter-spacing: 8px;
+      color: white;
+      font-weight: bold;
+      margin: 12px 0;
+      text-align: center;
+    }
+
+    /* ── CIRCLE MEMBER ── */
+    .circle-member {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .circle-member:last-child {
+      border-bottom: none;
+    }
+
+    /* ── ACTIVITY ITEM ── */
+    .activity-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .activity-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .activity-dot.green {
+      background: var(--green);
+    }
+
+    .activity-dot.red {
+      background: var(--red);
+    }
+
+    .activity-dot.amber {
+      background: var(--amber);
+    }
+
+    /* ── STAT BOX ── */
+    .stat-box {
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--gray-500);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ─── ADMIN LAYOUT ── */
+    .admin-layout {
+      display: flex;
+      flex: 1;
+      min-height: 580px;
+    }
+
+    .admin-sidebar {
+      width: 200px;
+      background: var(--navy);
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .admin-sidebar-logo {
+      padding: 0 20px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--amber);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .admin-logo-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .admin-nav-item {
+      padding: 10px 20px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: default;
+      border-left: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .admin-nav-item.active {
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+      border-left-color: var(--amber);
+    }
+
+    .admin-nav-icon {
+      font-size: 14px;
+    }
+
+    .admin-content {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      background: var(--gray-50);
+    }
+
+    .admin-page-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .admin-page-sub {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-bottom: 20px;
+    }
+
+    /* ── TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .data-table th {
+      background: var(--gray-100);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--gray-500);
+      font-weight: 700;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .data-table td {
+      padding: 12px 14px;
+      color: var(--gray-700);
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: middle;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(15, 31, 61, 0.02);
+    }
+
+    /* ── FORM SECTION (admin) ── */
+    .form-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .admin-inp {
+      width: 100%;
+      height: 40px;
+      background: white;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-xs);
+      padding: 0 12px;
+      font-size: 13px;
+      font-family: 'Outfit', sans-serif;
+      color: var(--gray-700);
+      outline: none;
+    }
+
+    .admin-inp-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 4px;
+    }
+
+    .admin-textarea {
+      width: 100%;
+      height: 80px;
+      background: white;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-xs);
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: 'Outfit', sans-serif;
+      color: var(--gray-700);
+      resize: none;
+    }
+
+    /* ─── GRID HELPERS ─── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .gap-4 {
+      gap: 4px;
+    }
+
+    .gap-8 {
+      gap: 8px;
+    }
+
+    .gap-12 {
+      gap: 12px;
+    }
+
+    .gap-16 {
+      gap: 16px;
+    }
+
+    .mt-4 {
+      margin-top: 4px;
+    }
+
+    .mt-8 {
+      margin-top: 8px;
+    }
+
+    .mt-12 {
+      margin-top: 12px;
+    }
+
+    .mt-16 {
+      margin-top: 16px;
+    }
+
+    .mb-4 {
+      margin-bottom: 4px;
+    }
+
+    .mb-8 {
+      margin-bottom: 8px;
+    }
+
+    .mb-12 {
+      margin-bottom: 12px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .flex-1 {
+      flex: 1;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    /* ── PICKER PROFILE CARD ── */
+    .picker-profile {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 2px solid var(--green);
+      box-shadow: 0 0 0 4px rgba(26, 159, 110, 0.08);
+    }
+
+    .picker-photo {
+      width: 70px;
+      height: 70px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #e8f2ff, #d4e6ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    /* ── INFO ROW ── */
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    /* ── NOTIFICATION PILL ── */
+    .notif-pill {
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .notif-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .notif-text {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .notif-time {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 4px;
+    }
+
+    /* ─── HERO WELCOME ─── */
+    .welcome-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 24px 20px 32px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-hero::before {
+      content: '🛡️';
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      font-size: 100px;
+      opacity: 0.05;
+    }
+
+    .welcome-greeting {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .welcome-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .welcome-school {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 3px;
+    }
+
+    .quick-stats {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .quick-stat {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 10px 14px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .quick-stat-num {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .quick-stat-label {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 2px;
+    }
+
+    /* ─── FLOW LINE ─── */
+    .flow-overview {
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .flow-step-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .flow-step-label {
+      font-size: 9px;
+      color: var(--gray-500);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .flow-arrow-h {
+      font-size: 18px;
+      color: var(--gray-300);
+      padding: 0 4px;
+      margin-bottom: 20px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .desktop-device {
+        width: 700px;
+      }
+
+      .admin-sidebar {
+        width: 170px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .screen-stage {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .annotation-panel {
+        max-width: 375px;
+        padding-top: 0;
+      }
+
+      .desktop-device {
+        width: 100%;
+        max-width: 700px;
+      }
+
+      .proto-tabs {
+        flex-wrap: wrap;
+      }
+
+      .proto-tab {
+        font-size: 11px;
+        padding: 5px 10px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .iface-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 20px;
+      }
+
+      .proto-nav {
+        padding: 10px 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .phone-device {
+        width: 340px;
+      }
+
+      .desktop-device {
+        width: 100%;
+      }
+
+      .admin-sidebar {
+        width: 140px;
+      }
+
+      .admin-nav-item {
+        font-size: 10px;
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="proto-shell">
+
+    <!-- ── PROTOTYPE NAV ── -->
+    <div class="proto-nav">
+      <div class="proto-nav-brand">
+        <div class="proto-nav-logo">🛡️</div>
+        <div>
+          <div class="proto-nav-title">SafePass</div>
+          <div class="proto-nav-subtitle">Hi-Fi Prototype · INTE 451</div>
+        </div>
+      </div>
+      <div class="proto-tabs">
+        <div class="proto-tab active" onclick="switchInterface('parent')">① Parent App</div>
+        <div class="proto-tab" onclick="switchInterface('picker')">② Picker App</div>
+        <div class="proto-tab" onclick="switchInterface('teacher')">③ Teacher Gate</div>
+        <div class="proto-tab" onclick="switchInterface('admin')">④ Admin Dashboard</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="proto-badge">Lo-Fi → Hi-Fi</div>
+        <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">
+          <span class="toggle-icon" id="toggleIcon">🌙</span>
+          <div class="toggle-track">
+            <div class="toggle-thumb"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="interfaces">
+
+      <!-- ════════════════════════════════════════
+  INTERFACE 1: PARENT APP
+════════════════════════════════════════ -->
+      <div class="interface-panel active" id="panel-parent">
+        <div class="iface-header">
+          <div>
+            <div class="iface-title">Parent / Guardian App</div>
+            <div class="iface-desc">Mobile · Android-first · OTP login · Pickup Circle · Authorization</div>
+          </div>
+          <div class="screen-pills">
+            <div class="screen-pill active" onclick="switchScreen('parent','login')">Login & OTP</div>
+            <div class="screen-pill" onclick="switchScreen('parent','national-id')">National ID</div>
+            <div class="screen-pill" onclick="switchScreen('parent','home')">Home</div>
+            <div class="screen-pill" onclick="switchScreen('parent','circle')">Pickup Circle</div>
+            <div class="screen-pill" onclick="switchScreen('parent','auth')">Authorize</div>
+          </div>
+        </div>
+        <div class="screen-stage">
+
+          <!-- PHONE DEVICE -->
+          <div class="phone-device">
+            <div class="phone-shell">
+              <div class="phone-screen-wrap">
+                <div class="phone-notch-bar">
+                  <div class="status-bar-inside">
+                    <span class="status-time">9:41</span>
+                    <div class="status-icons">
+                      <span class="status-icon">●●●</span>
+                      <span class="status-icon">WiFi</span>
+                      <span class="status-icon">🔋</span>
+                    </div>
+                  </div>
+                  <div class="phone-notch-pill">
+                    <div class="camera-dot"></div>
+                  </div>
+                </div>
+                <div class="phone-content">
+
+                  <!-- SCREEN: LOGIN -->
+                  <div class="screen active" id="parent-login">
+                    <div style="padding: 24px 24px 20px; background: white;">
+                      <div style="text-align: center; margin-bottom: 24px;">
+                        <div
+                          style="width: 56px; height: 56px; background: var(--navy); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 28px;">
+                          🛡️</div>
+                        <div
+                          style="font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; color: var(--navy);">
+                          SafePass</div>
+                        <div
+                          style="font-size: 12px; color: var(--gray-400); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px;">
+                          Digital Pickup Authorization</div>
+                      </div>
+                      <div class="step-dots">
+                        <div class="step-dot active"></div>
+                        <div class="step-dot"></div>
+                      </div>
+                      <div
+                        style="font-size: 11px; text-align: center; color: var(--gray-400); margin-top: 6px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;">
+                        Step 1 of 2</div>
+                      <div class="inp-group mb-12">
+                        <div class="inp-label">Mobile Number</div>
+                        <div class="inp inp-focus" style="display: flex; align-items: center; gap: 8px;">
+                          <span style="color: var(--gray-400); font-size: 13px;">🇰🇪 +254</span>
+                          <span style="color: var(--gray-700);">722 XXX XXX</span>
+                        </div>
+                        <div class="inp-hint">Free SMS · No data needed</div>
+                      </div>
+                      <div class="btn-outline mb-12" style="border-color: var(--navy); color: var(--navy);">
+                        <span>Send OTP via SMS</span>
+                      </div>
+                      <div class="inp-group mb-12">
+                        <div class="inp-label">Enter 6-digit OTP</div>
+                        <div class="otp-row">
+                          <div class="otp-box filled">4</div>
+                          <div class="otp-box filled">7</div>
+                          <div class="otp-box filled">2</div>
+                          <div class="otp-box cursor">_</div>
+                          <div class="otp-box">—</div>
+                          <div class="otp-box">—</div>
+                        </div>
+                        <div class="inp-hint" style="text-align: center;">Expires in <strong>4:32</strong> · <span
+                            style="color: var(--navy);">Resend</span></div>
+                      </div>
+                      <button class="btn-primary" onclick="switchScreen('parent','national-id')">Verify &amp; Continue
+                        →</button>
+                      <div style="text-align: center; margin-top: 16px;">
+                        <div style="font-size: 12px; color: var(--gray-400);">Feature phone? Dial <strong
+                            style="color: var(--navy);">*384#</strong></div>
+                        <div style="margin-top: 8px; display: flex; gap: 12px; justify-content: center;">
+                          <span style="font-size: 12px; color: var(--navy); font-weight: 600;">Kiswahili</span>
+                          <span style="font-size: 12px; color: var(--gray-300);">|</span>
+                          <span style="font-size: 12px; color: var(--gray-400);">English</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: NATIONAL ID (Step 2) -->
+                  <div class="screen" id="parent-national-id">
+                    <div
+                      style="background: var(--navy); padding: 16px 20px 20px; display: flex; align-items: center; gap: 12px;">
+                      <div onclick="switchScreen('parent','login')"
+                        style="width: 34px; height: 34px; background: rgba(255,255,255,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; cursor: pointer; flex-shrink: 0;">
+                        ←</div>
+                      <div style="flex: 1;">
+                        <div style="font-size: 16px; font-weight: 700; color: white; letter-spacing: 0.3px;">Verify
+                          Identity</div>
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 1px;">First login only —
+                          takes 2 minutes</div>
+                      </div>
+                      <div style="font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px;">STEP 2 OF 2
+                      </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div
+                      style="height: 4px; background: rgba(255,255,255,0.1); position: relative; background: var(--gray-100);">
+                      <div
+                        style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(90deg, var(--navy) 50%, var(--amber) 100%); border-radius: 2px;">
+                      </div>
+                    </div>
+
+                    <div
+                      style="flex: 1; overflow-y: auto; padding: 20px; background: var(--cream); display: flex; flex-direction: column; gap: 14px;">
+
+                      <!-- Step dots -->
+                      <div style="display: flex; gap: 6px; align-items: center; justify-content: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--green);"></div>
+                        <div style="width: 22px; height: 8px; border-radius: 4px; background: var(--navy);"></div>
+                      </div>
+
+                      <!-- Info card -->
+                      <div
+                        style="background: var(--amber-pale); border-radius: var(--radius-sm); padding: 14px 16px; border: 1px solid #ffe0a0; display: flex; gap: 12px; align-items: flex-start;">
+                        <div style="font-size: 22px; flex-shrink: 0;">🪪</div>
+                        <div>
+                          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 4px;">Why we
+                            need your National ID</div>
+                          <div style="font-size: 12px; color: var(--gray-600); line-height: 1.6;">To keep students safe,
+                            every parent is verified once using your <strong>Kenyan National ID</strong>. This ties your
+                            account to a real, verifiable person before any pickup can be authorized.</div>
+                        </div>
+                      </div>
+
+                      <!-- ID Number -->
+                      <div class="inp-group">
+                        <div class="inp-label">National ID Number <span style="color: var(--red);">*</span></div>
+                        <div class="inp inp-focus"
+                          style="display: flex; align-items: center; gap: 8px; font-family: 'Outfit', sans-serif; letter-spacing: 1px;">
+                          <span style="color: var(--gray-700); font-size: 14px; font-weight: 500;">12 345 678</span>
+                        </div>
+                        <div class="inp-hint">8-digit number on the front of your Kenyan National ID</div>
+                      </div>
+
+                      <!-- Full Name -->
+                      <div class="inp-group">
+                        <div class="inp-label">Full Name (as it appears on ID) <span style="color: var(--red);">*</span>
+                        </div>
+                        <div class="inp" style="display: flex; align-items: center; font-family: 'Outfit', sans-serif;">
+                          <span style="color: var(--gray-700);">Grace Wanjiku Kamau</span>
+                        </div>
+                      </div>
+
+                      <!-- Divider -->
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="flex: 1; height: 1px; background: var(--gray-200);"></div>
+                        <div style="font-size: 11px; color: var(--gray-400);">optional — speeds up approval</div>
+                        <div style="flex: 1; height: 1px; background: var(--gray-200);"></div>
+                      </div>
+
+                      <!-- ID Card Photo Upload -->
+                      <div class="inp-group">
+                        <div class="inp-label">ID Card Photo</div>
+                        <div
+                          style="border: 2px dashed var(--gray-300); border-radius: var(--radius-sm); height: 100px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; background: white; cursor: pointer; transition: border-color 0.2s;">
+                          <div
+                            style="width: 40px; height: 40px; background: var(--gray-100); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                            📷</div>
+                          <div style="font-size: 12px; color: var(--gray-500); text-align: center;">Tap to photograph
+                            your ID card<br><span style="font-size: 10px; color: var(--gray-400);">JPG / PNG · Max
+                              5MB</span></div>
+                        </div>
+                        <div class="inp-hint">Photo optional — admin can verify with ID number alone</div>
+                      </div>
+
+                      <!-- Security note -->
+                      <div
+                        style="background: white; border-radius: var(--radius-sm); padding: 12px 14px; border: 1px solid var(--gray-100); display: flex; gap: 10px; align-items: flex-start;">
+                        <div style="font-size: 16px; flex-shrink: 0;">🔒</div>
+                        <div style="font-size: 11px; color: var(--gray-500); line-height: 1.6;">Your ID details are
+                          encrypted and only used for one-time verification. They are never shared with third parties.
+                        </div>
+                      </div>
+
+                      <button class="btn-primary" onclick="switchScreen('parent','home')"
+                        style="margin-top: 4px;">Submit &amp; Enter SafePass →</button>
+                      <button class="btn-outline" onclick="switchScreen('parent','home')">Skip photo — submit ID number
+                        only</button>
+
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: HOME -->
+                  <div class="screen" id="parent-home">
+                    <div class="welcome-hero">
+                      <div class="welcome-greeting">Good afternoon,</div>
+                      <div class="welcome-name">Grace Wanjiku 👋</div>
+                      <div class="welcome-school">Moi Kabarak High School</div>
+                      <div class="quick-stats">
+                        <div class="quick-stat">
+                          <div class="quick-stat-num">2</div>
+                          <div class="quick-stat-label">Circle<br>Members</div>
+                        </div>
+                        <div class="quick-stat">
+                          <div class="quick-stat-num">1</div>
+                          <div class="quick-stat-label">Active<br>Auth</div>
+                        </div>
+                        <div class="quick-stat">
+                          <div class="quick-stat-num">5</div>
+                          <div class="quick-stat-label">Pickups<br>This Year</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="screen-body" style="background: var(--cream);">
+                      <!-- Student card -->
+                      <div class="card-accent">
+                        <div
+                          style="font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); margin-bottom: 6px;">
+                          Your Student</div>
+                        <div style="font-size: 20px; font-weight: 800; margin-bottom: 3px;">Amina Wanjiku</div>
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.6);">Form 3A · Moi Kabarak High School
+                        </div>
+                        <div
+                          style="position: relative; z-index: 1; margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                          <span class="badge" style="background: rgba(255,255,255,0.15); color: white;">✓ Pickup Circle
+                            Active</span>
+                          <span class="badge" style="background: rgba(245,166,35,0.25); color: var(--amber-light);">📋
+                            Closing Day: 21 Apr</span>
+                        </div>
+                      </div>
+
+                      <!-- CTA -->
+                      <button class="btn-amber" style="box-shadow: 0 4px 16px rgba(245,166,35,0.35); font-family:Outfit, sans-serif;">
+                        <span>🔐</span> Authorize a Pickup
+                      </button>
+
+                      <!-- Recent activity -->
+                      <div>
+                        <div class="section-title mb-8">Recent Activity</div>
+                        <div class="card" style="padding: 0 18px;">
+                          <div class="activity-item">
+                            <div class="activity-dot green" style="margin-top: 6px;"></div>
+                            <div class="flex-1">
+                              <div class="title-sm">Amina collected safely</div>
+                              <div class="body-sm">Faith Njeri · 14 Mar · 4:32 PM</div>
+                            </div>
+                            <span class="badge badge-green">✓ Done</span>
+                          </div>
+                          <div class="activity-item">
+                            <div class="activity-dot amber" style="margin-top: 6px;"></div>
+                            <div class="flex-1">
+                              <div class="title-sm">Closing Day · 21 April</div>
+                              <div class="body-sm">Authorization pending</div>
+                            </div>
+                            <span class="badge badge-amber">Pending</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Upcoming event -->
+                      <div class="card" style="background: var(--amber-pale); border: 1px solid #ffe0a0;">
+                        <div class="flex items-center gap-12">
+                          <div style="font-size: 28px;">📅</div>
+                          <div>
+                            <div class="title-sm" style="color: var(--navy);">Closing Day — 21 April 2026</div>
+                            <div class="body-sm" style="color: #9a7000;">No authorization set yet · <strong>8 days
+                                away</strong></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bottom-nav">
+                      <div class="bnav-item active">
+                        <div class="bnav-icon">🏠</div>
+                        <div class="bnav-label">Home</div>
+                      </div>
+                      <div class="bnav-item">
+                        <div class="bnav-icon">👥</div>
+                        <div class="bnav-label">Circle</div>
+                      </div>
+                      <div class="bnav-item">
+                        <div class="bnav-icon">🔐</div>
+                        <div class="bnav-label">Auth</div>
+                      </div>
+                      <div class="bnav-item">
+                        <div class="bnav-icon">🔔</div>
+                        <div class="bnav-label">Alerts</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: PICKUP CIRCLE -->
+                  <div class="screen" id="parent-circle">
+                    <div class="app-header">
+                      <div class="flex items-center gap-8">
+                        <div class="app-back">←</div>
+                        <div class="title-md">Pickup Circle</div>
+                      </div>
+                      <div
+                        style="width: 34px; height: 34px; background: var(--navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
+                        +</div>
+                    </div>
+                    <div class="screen-body">
+                      <div
+                        style="background: var(--amber-pale); border-radius: var(--radius-sm); padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start;">
+                        <span style="font-size: 18px;">ℹ️</span>
+                        <div style="font-size: 12px; color: var(--gray-700); line-height: 1.5;">Pre-verify trusted
+                          relatives once. They can collect Amina any time you authorize — no letters, no phone calls.
+                        </div>
+                      </div>
+                      <div>
+                        <div class="section-title mb-8">Approved Members</div>
+                        <div class="card" style="padding: 0 16px;">
+                          <div class="circle-member">
+                            <img src="https://i.pravatar.cc/88?img=47" class="avatar"
+                              style="object-fit:cover;padding:0;" />
+                            <div class="flex-1">
+                              <div class="title-sm">Faith Njeri</div>
+                              <div class="body-sm">Aunt · +254 722 XXX XXX</div>
+                            </div>
+                            <span class="badge badge-green">✓ Active</span>
+                          </div>
+                          <div class="circle-member">
+                            <img src="https://i.pravatar.cc/88?img=70" class="avatar"
+                              style="object-fit:cover;padding:0;" />
+                            <div class="flex-1">
+                              <div class="title-sm">Baba James</div>
+                              <div class="body-sm">Grandfather · +254 710 XXX XXX</div>
+                            </div>
+                            <span class="badge badge-green">✓ Active</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="section-title mb-8">Pending Approval</div>
+                        <div class="card" style="padding: 0 16px; opacity: 0.7;">
+                          <div class="circle-member">
+                            <img src="https://i.pravatar.cc/88?img=32" class="avatar"
+                              style="object-fit:cover;padding:0;filter:grayscale(1);opacity:0.5;" />
+                            <div class="flex-1">
+                              <div class="title-sm" style="color: var(--gray-500);">Agnes Mwangi</div>
+                              <div class="body-sm">ID verification in progress</div>
+                            </div>
+                            <span class="badge badge-amber">Pending</span>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn-outline" style="border-style: dashed;">
+                        <span>+</span> Add Circle Member
+                      </button>
+                      <div style="font-size: 11px; color: var(--gray-400); text-align: center; line-height: 1.6;">No
+                        smartphone? They can verify at the school office.<br>Admin will add them to your circle.</div>
+                    </div>
+                    <div class="bottom-nav">
+                      <div class="bnav-item">
+                        <div class="bnav-icon">🏠</div>
+                        <div class="bnav-label">Home</div>
+                      </div>
+                      <div class="bnav-item active">
+                        <div class="bnav-icon">👥</div>
+                        <div class="bnav-label">Circle</div>
+                      </div>
+                      <div class="bnav-item">
+                        <div class="bnav-icon">🔐</div>
+                        <div class="bnav-label">Auth</div>
+                      </div>
+                      <div class="bnav-item">
+                        <div class="bnav-icon">🔔</div>
+                        <div class="bnav-label">Alerts</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: AUTHORIZE -->
+                  <div class="screen" id="parent-auth">
+                    <div class="app-header">
+                      <div class="flex items-center gap-8">
+                        <div class="app-back">←</div>
+                        <div class="title-md">New Authorization</div>
+                      </div>
+                      <div></div>
+                    </div>
+                    <div class="screen-body" style="padding-bottom: 100px;">
+                      <div class="card"
+                        style="padding: 14px 16px; background: var(--amber-pale); border: 1px solid #ffe0a0;">
+                        <div style="font-size: 12px; color: #8a6000;">Creating authorization for <strong>Amina Wanjiku,
+                            Form 3A</strong></div>
+                      </div>
+                      <div class="inp-group">
+                        <div class="inp-label">Event Type</div>
+                        <div class="inp-select">
+                          <span>📅 Closing Day — 21 April 2026</span>
+                          <span class="arrow">▾</span>
+                        </div>
+                      </div>
+                      <div class="inp-group">
+                        <div class="inp-label">Authorized Picker</div>
+                        <div class="inp-select" style="border-color: var(--green); background: var(--green-light);">
+                          <div class="flex items-center gap-8">
+                            <img src="https://i.pravatar.cc/68?img=47" class="avatar-sm"
+                              style="object-fit:cover;padding:0;" />
+                            <div>
+                              <span style="font-weight: 600;">Faith Njeri</span>
+                              <span style="color: var(--gray-400); font-size: 12px;"> · Aunt</span>
+                            </div>
+                          </div>
+                          <span class="arrow">▾</span>
+                        </div>
+                        <div style="font-size: 11px; color: var(--green);">✓ ID verified · Approved by school admin
+                        </div>
+                      </div>
+                      <div class="inp-group">
+                        <div class="inp-label">Time Window</div>
+                        <div class="flex gap-8">
+                          <div class="inp" style="text-align: center; color: var(--navy); font-weight: 600;">3:00 PM
+                          </div>
+                          <div
+                            style="display: flex; align-items: center; color: var(--gray-400); font-size: 14px; padding-top: 2px;">
+                            –</div>
+                          <div class="inp" style="text-align: center; color: var(--navy); font-weight: 600;">6:00 PM
+                          </div>
+                        </div>
+                      </div>
+                      <div class="inp-group">
+                        <div class="inp-label">Instructions (optional)</div>
+                        <div class="inp"
+                          style="height: 60px; display: flex; align-items: flex-start; padding-top: 12px; font-size: 13px; color: var(--gray-500);">
+                          Amina's trunk is in Dorm 3 Block B...</div>
+                      </div>
+                      <div class="card" style="background: #f0f4fb; padding: 14px 16px;">
+                        <div class="section-title mb-8">Token Delivery</div>
+                        <div class="flex items-center gap-8 mb-4">
+                          <span style="font-size: 16px;">📱</span>
+                          <span class="body-sm"><strong>QR Code</strong> → Faith's SafePass app</span>
+                        </div>
+                        <div class="flex items-center gap-8">
+                          <span style="font-size: 16px;">📨</span>
+                          <span class="body-sm"><strong>SMS OTP</strong> → +254 722 XXX (fallback)</span>
+                        </div>
+                      </div>
+                      <button class="btn-primary" style="background: var(--green);">✓ Confirm &amp; Send
+                        Authorization</button>
+                      <button class="btn-outline">Cancel</button>
+                    </div>
+                  </div>
+
+                </div><!-- phone-content -->
+              </div><!-- phone-screen-wrap -->
+            </div><!-- phone-shell -->
+          </div><!-- phone-device -->
+
+          <!-- ANNOTATION -->
+          <div class="annotation-panel">
+            <div class="anno-card" id="anno-parent-login" style="">
+              <div class="anno-label">Screen 1A-i · Login</div>
+              <div class="anno-title">OTP-Only Authentication</div>
+              <div class="anno-text">No password ever. One tap sends a free SMS OTP — mirroring M-Pesa, eCitizen, and
+                KCB flows that parents already use daily.</div>
+              <ul class="anno-bullets">
+                <li>Kenyan phone number with +254 flag pre-selected</li>
+                <li>6-digit OTP with live countdown timer</li>
+                <li>USSD fallback *384# for feature phone users</li>
+                <li>Swahili toggle — primary, not secondary</li>
+              </ul>
+              <div class="anno-note"><strong>Jakob's Law:</strong> Zero new mental model required. Same flow as every
+                Kenyan bank and government service.</div>
+            </div>
+            <div class="anno-card" id="anno-parent-national-id" style="display:none;">
+              <div class="anno-label">Screen 1A-ii · National ID</div>
+              <div class="anno-title">One-Time Identity Verification</div>
+              <div class="anno-text">Step 2 of 2 — first login only. Parent enters their National ID number and full
+                name. An optional ID card photo speeds up admin approval. This step never repeats on subsequent logins.
+              </div>
+              <ul class="anno-bullets">
+                <li>Progress bar + step dots show exactly where user is</li>
+                <li>Navy header maintains context from Step 1</li>
+                <li>Amber info card explains <em>why</em> — reduces friction</li>
+                <li>ID photo upload is optional — admin can verify with number alone</li>
+                <li>Encryption reassurance note reduces privacy anxiety</li>
+                <li>"Skip photo" path ensures no user is blocked</li>
+              </ul>
+              <div class="anno-note"><strong>Addresses As-Is Scenario 1:</strong> Faith's identity was never verified at
+                any point in the original process. This screen ensures every parent is a named, verifiable person before
+                any authorization can be issued — UC-01 precondition.</div>
+            </div>
+            <div class="anno-card" id="anno-parent-home" style="display:none;">
+              <div class="anno-label">Screen 1B · Home</div>
+              <div class="anno-title">Parent Dashboard</div>
+              <div class="anno-text">Single-glance status: active student, pickup circle status, one large CTA. The most
+                important action (authorize) is always one tap away.</div>
+              <ul class="anno-bullets">
+                <li>Welcome hero with real-time stats</li>
+                <li>Student card with school + form</li>
+                <li>Amber CTA for authorize — highest contrast</li>
+                <li>Activity feed with timestamped events</li>
+                <li>Upcoming event reminder with urgency signal</li>
+              </ul>
+            </div>
+            <div class="anno-card" id="anno-parent-circle" style="display:none;">
+              <div class="anno-label">Screen 1C · Pickup Circle</div>
+              <div class="anno-title">Pre-Verified Trusted People</div>
+              <div class="anno-text">Parents build their circle once, valid for the academic year. Each person verified
+                via National ID — removes the need for handwritten letters entirely.</div>
+              <ul class="anno-bullets">
+                <li>Clear approved / pending status for each member</li>
+                <li>Relationship + masked phone number shown</li>
+                <li>One-tap add new member</li>
+                <li>Offline fallback note for elderly relatives</li>
+                <li>Admin must approve each member before they're active</li>
+              </ul>
+              <div class="anno-note"><strong>Addresses As-Is Scenario 1:</strong> Faith's identity was never verified at
+                any point. This screen ensures every picker is a named, verifiable person before any authorization is
+                issued.</div>
+            </div>
+            <div class="anno-card" id="anno-parent-auth" style="display:none;">
+              <div class="anno-label">Screen 1D · Authorize</div>
+              <div class="anno-title">Time-Bound Authorization in ~90 seconds</div>
+              <div class="anno-text">Parent selects event, picker, and time window. System generates QR + OTP
+                automatically. Replaces handwritten letters and WhatsApp messages to teachers.</div>
+              <ul class="anno-bullets">
+                <li>Event type dropdown (Closing Day / Emergency / Visiting Day)</li>
+                <li>Picker selected from pre-approved circle only</li>
+                <li>Time window limits token validity precisely</li>
+                <li>Optional instructions for the picker</li>
+                <li>Dual delivery: QR to app + OTP via SMS</li>
+              </ul>
+              <div class="anno-note"><strong>Covers UC-02:</strong> The entire authorization process that previously
+                took 40+ minutes of phone calls is reduced to one form, under 90 seconds.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════════════
+  INTERFACE 2: PICKER APP
+════════════════════════════════════════ -->
+      <div class="interface-panel" id="panel-picker">
+        <div class="iface-header">
+          <div>
+            <div class="iface-title">Authorized Picker App</div>
+            <div class="iface-desc">Mobile · QR Code display · SMS OTP fallback · USSD for feature phones</div>
+          </div>
+          <div class="screen-pills">
+            <div class="screen-pill active" onclick="switchScreen('picker','token')">Token Screen</div>
+            <div class="screen-pill" onclick="switchScreen('picker','ussd')">USSD / Feature Phone</div>
+          </div>
+        </div>
+        <div class="screen-stage">
+
+          <div class="phone-device">
+            <div class="phone-shell">
+              <div class="phone-screen-wrap">
+                <div class="phone-notch-bar">
+                  <div class="status-bar-inside">
+                    <span class="status-time">4:15</span>
+                    <div class="status-icons"><span class="status-icon">●●●</span><span class="status-icon">🔋</span>
+                    </div>
+                  </div>
+                  <div class="phone-notch-pill">
+                    <div class="camera-dot"></div>
+                  </div>
+                </div>
+                <div class="phone-content">
+
+                  <!-- SCREEN: TOKEN -->
+                  <div class="screen active" id="picker-token">
+                    <div class="app-header">
+                      <div class="app-header-logo">
+                        <div class="app-logo-mark">SP</div>
+                        <div class="app-name">My Token</div>
+                      </div>
+                      <div class="app-bell">🔔</div>
+                    </div>
+                    <div class="screen-body">
+                      <!-- Token info card -->
+                      <div class="card" style="border: 2px solid var(--navy); padding: 16px;">
+                        <div class="label">Authorized to Collect</div>
+                        <div style="font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 2px;">Amina
+                          Wanjiku</div>
+                        <div class="body-sm">Form 3A · Moi Kabarak High School</div>
+                        <div class="divider mt-12 mb-12"></div>
+                        <div class="flex items-center justify-between">
+                          <div>
+                            <div class="label">Valid Window</div>
+                            <div class="title-sm">3:00 PM – 6:00 PM</div>
+                            <div class="body-sm">21 April 2026</div>
+                          </div>
+                          <div style="text-align: right;">
+                            <div class="label">Expires in</div>
+                            <div style="font-size: 20px; font-weight: 800; color: var(--green);">1:47:22</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- QR code -->
+                      <div style="text-align: center;">
+                        <div class="label mb-8">Show this QR code at the gate</div>
+                        <div class="qr-display">
+                          <div class="qr-inner"></div>
+                          <div class="qr-corner tl"></div>
+                          <div class="qr-corner tr"></div>
+                          <div class="qr-corner bl"></div>
+                        </div>
+                        <div style="font-size: 11px; color: var(--gray-400); margin-top: 8px;">Tap to enlarge ·
+                          Single-use token</div>
+                      </div>
+
+                      <!-- OTP fallback -->
+                      <div
+                        style="background: var(--gray-50); border-radius: var(--radius-sm); padding: 14px 16px; border: 1.5px dashed var(--gray-200);">
+                        <div
+                          style="font-size: 11px; color: var(--gray-500); text-align: center; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;">
+                          No app? Read this code aloud</div>
+                        <div style="display: flex; gap: 8px; justify-content: center;">
+                          <div class="otp-box" style="border-color: var(--navy);">4</div>
+                          <div class="otp-box" style="border-color: var(--navy);">7</div>
+                          <div class="otp-box" style="border-color: var(--navy);">2</div>
+                          <div class="otp-box" style="border-color: var(--navy);">9</div>
+                          <div class="otp-box" style="border-color: var(--navy);">1</div>
+                          <div class="otp-box" style="border-color: var(--navy);">3</div>
+                        </div>
+                        <div style="font-size: 11px; color: var(--gray-400); text-align: center; margin-top: 8px;">
+                          Expires at 6:00 PM · Do not share</div>
+                      </div>
+
+                      <button class="btn-outline"><span>📤</span> Share OTP via SMS to picker</button>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: USSD -->
+                  <div class="screen" id="picker-ussd">
+                    <div class="phone-notch-bar" style="background: #000; height: 8px;"></div>
+                    <div class="ussd-body">
+                      <div class="ussd-title">SafePass Kenya</div>
+                      <div class="ussd-divider"></div>
+                      <div>Karibu / Welcome</div>
+                      <div style="margin-top: 8px;">
+                        1. Ruhusa ya Kuchukua<br>
+                        &nbsp;&nbsp;&nbsp;(Authorize Pickup)<br>
+                        2. <span style="color: white; font-weight: bold;">Angalia Token</span><br>
+                        &nbsp;&nbsp;&nbsp;(Check My Token)<br>
+                        3. Wasiliana Shule<br>
+                        &nbsp;&nbsp;&nbsp;(Contact School)<br>
+                        4. Msaada / Help<br>
+                      </div>
+                      <div class="ussd-divider"></div>
+                      <div>Chagua / Select: <span style="color: white;">2_</span></div>
+                      <div style="margin-top: 6px; font-size: 10px; color: rgba(0,208,132,0.5);">*384# · Bila malipo /
+                        Free</div>
+                    </div>
+                    <div style="background: #111; padding: 12px 16px; border-top: 1px solid rgba(0,208,132,0.2);">
+                      <div style="font-size: 11px; color: rgba(0,208,132,0.7); margin-bottom: 10px;">Nambari yako ya
+                        OTP:</div>
+                      <div class="ussd-otp-big">4 7 2 9 1 3</div>
+                      <div style="font-size: 12px; color: rgba(0,208,132,0.7); text-align: center; line-height: 1.6;">
+                        Mwambie askari wa mlangoni<br>nambari hii.<br>
+                        <span style="color: rgba(255,255,255,0.5);">Inaisha saa 12:00 jioni</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="annotation-panel">
+            <div class="anno-card" id="anno-picker-token" style="">
+              <div class="anno-label">Screen 2A · Picker Token</div>
+              <div class="anno-title">Gate Access — QR + OTP Dual Mode</div>
+              <div class="anno-text">What Faith sees when she arrives at the school gate. She shows the QR code to the
+                teacher's scanner — or reads the 6-digit OTP aloud if connectivity is an issue.</div>
+              <ul class="anno-bullets">
+                <li>QR code is the primary — fast, no reading required</li>
+                <li>Live countdown timer creates urgency awareness</li>
+                <li>OTP backup for low-data or elderly pickers</li>
+                <li>Token is single-use — consumed after one successful scan</li>
+                <li>Works fully offline — pre-downloaded at auth time</li>
+              </ul>
+              <div class="anno-note"><strong>Covers UC-03 + Mzee Peter scenario:</strong> An elderly grandfather with a
+                feature phone receives the OTP via plain SMS and reads it aloud at the gate. No app, no data, no
+                confusion.</div>
+            </div>
+            <div class="anno-card" id="anno-picker-ussd" style="display:none;">
+              <div class="anno-label">Screen 2B · USSD / Feature Phone</div>
+              <div class="anno-title">Zero-Data Pickup Authorization</div>
+              <div class="anno-text">For pickers without smartphones — grandparents, elderly relatives in rural Kenya.
+                Dial *384#, free of charge. Menu in Swahili first, English second.</div>
+              <ul class="anno-bullets">
+                <li>Dial *384# — completely free, no data needed</li>
+                <li>Swahili primary language throughout</li>
+                <li>OTP displayed large on screen + voice readout</li>
+                <li>Covers 38% of alt-pickers with no smartphone (survey)</li>
+                <li>Parents can also authorize via USSD if data is off</li>
+              </ul>
+              <div class="anno-note"><strong>Covers UC-06:</strong> The USSD layer ensures no user is excluded from the
+                system due to device limitations or data access.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════════════
+  INTERFACE 3: TEACHER GATE APP
+════════════════════════════════════════ -->
+      <div class="interface-panel" id="panel-teacher">
+        <div class="iface-header">
+          <div>
+            <div class="iface-title">Teacher / Gate Verification App</div>
+            <div class="iface-desc">Mobile / Tablet · QR scanner · OTP entry · AUTHORIZED / DECLINED result</div>
+          </div>
+          <div class="screen-pills">
+            <div class="screen-pill active" onclick="switchScreen('teacher','scan')">Scan</div>
+            <div class="screen-pill" onclick="switchScreen('teacher','authorized')">Authorized ✓</div>
+            <div class="screen-pill" onclick="switchScreen('teacher','declined')">Declined ✗</div>
+          </div>
+        </div>
+        <div class="screen-stage">
+
+          <div class="phone-device">
+            <div class="phone-shell">
+              <div class="phone-screen-wrap">
+                <div class="phone-notch-bar">
+                  <div class="status-bar-inside">
+                    <span class="status-time">4:28</span>
+                    <div class="status-icons"><span class="status-icon">●●●</span><span class="status-icon">🔋</span>
+                    </div>
+                  </div>
+                  <div class="phone-notch-pill">
+                    <div class="camera-dot"></div>
+                  </div>
+                </div>
+                <div class="phone-content">
+
+                  <!-- SCREEN: SCAN -->
+                  <div class="screen active" id="teacher-scan">
+                    <div class="app-header">
+                      <div class="app-header-logo">
+                        <div class="app-logo-mark" style="background: var(--navy);">G</div>
+                        <div class="app-name">Gate Verify</div>
+                      </div>
+                      <div style="font-size: 12px; color: var(--gray-500);">21 April 2026</div>
+                    </div>
+                    <div
+                      style="background: var(--navy); padding: 12px 20px 14px; display: flex; justify-content: space-between; align-items: center;">
+                      <div>
+                        <div
+                          style="font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.8px;">
+                          Closing Day</div>
+                        <div style="font-size: 14px; font-weight: 700; color: white;">Form 3A — Ms. Akinyi</div>
+                      </div>
+                      <div style="text-align: right;">
+                        <div style="font-size: 10px; color: rgba(255,255,255,0.5);">Released</div>
+                        <div style="font-size: 22px; font-weight: 800; color: var(--amber);">14<span
+                            style="font-size: 14px; color: rgba(255,255,255,0.4);">/30</span></div>
+                      </div>
+                    </div>
+                    <div
+                      style="padding: 16px; background: var(--cream); flex: 1; display: flex; flex-direction: column; gap: 14px;">
+                      <!-- Scanner -->
+                      <div class="scanner-box">
+                        <div class="scanner-icon-center"><span>📷</span></div>
+                        <div class="scan-corner tl"></div>
+                        <div class="scan-corner tr"></div>
+                        <div class="scan-corner bl"></div>
+                        <div class="scan-corner br"></div>
+                        <div class="scan-line"></div>
+                      </div>
+                      <div style="text-align: center; font-size: 12px; color: var(--gray-500);">Point camera at picker's
+                        QR code</div>
+
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="flex: 1; height: 1px; background: var(--gray-200);"></div>
+                        <div style="font-size: 11px; color: var(--gray-400);">or enter OTP manually</div>
+                        <div style="flex: 1; height: 1px; background: var(--gray-200);"></div>
+                      </div>
+
+                      <div class="otp-row">
+                        <div class="otp-box cursor">_</div>
+                        <div class="otp-box">—</div>
+                        <div class="otp-box">—</div>
+                        <div class="otp-box">—</div>
+                        <div class="otp-box">—</div>
+                        <div class="otp-box">—</div>
+                      </div>
+                      <button class="btn-primary">Verify</button>
+
+                      <!-- Class list summary -->
+                      <div>
+                        <div class="section-title mb-8">Today's Releases — Form 3A</div>
+                        <div class="card" style="padding: 0 14px;">
+                          <div class="activity-item">
+                            <div class="activity-dot amber"></div>
+                            <div class="flex-1">
+                              <div class="title-sm">Amina Wanjiku</div>
+                              <div class="body-sm">Awaiting pickup · Faith Njeri</div>
+                            </div>
+                            <span class="badge badge-amber">Waiting</span>
+                          </div>
+                          <div class="activity-item" style="opacity: 0.5;">
+                            <div class="activity-dot green"></div>
+                            <div class="flex-1">
+                              <div class="title-sm">Brian Otieno</div>
+                              <div class="body-sm">Released · 3:12 PM</div>
+                            </div>
+                            <span class="badge badge-green">Done</span>
+                          </div>
+                          <div class="activity-item" style="opacity: 0.5;">
+                            <div class="activity-dot green"></div>
+                            <div class="flex-1">
+                              <div class="title-sm">Carol Mutua</div>
+                              <div class="body-sm">Released · 3:28 PM</div>
+                            </div>
+                            <span class="badge badge-green">Done</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: AUTHORIZED -->
+                  <div class="screen" id="teacher-authorized">
+                    <div class="status-screen-auth" style="min-height: 660px;">
+                      <div class="status-icon-wrap status-icon-auth">✅</div>
+                      <div class="status-title-auth">AUTHORIZED</div>
+                      <div style="font-size: 13px; color: var(--gray-500); margin-top: -4px;">Token verified · Confirmed
+                        by parent</div>
+
+                      <div class="picker-profile w-full" style="text-align: left; margin-top: 4px;">
+                        <img src="https://i.pravatar.cc/140?img=47" class="picker-photo"
+                          style="object-fit:cover;padding:0;" />
+                        <div class="flex-1">
+                          <div class="label">Authorized Picker</div>
+                          <div style="font-size: 17px; font-weight: 800; color: var(--navy);">Faith Njeri</div>
+                          <div class="body-sm">Aunt of Amina Wanjiku</div>
+                          <div style="font-size: 11px; color: var(--green); margin-top: 4px;">✓ ID Verified · Pickup
+                            Circle Member</div>
+                        </div>
+                      </div>
+
+                      <div class="card w-full" style="text-align: left;">
+                        <div class="info-row">
+                          <div class="label">Student to Release</div>
+                          <div class="title-sm">Amina Wanjiku</div>
+                        </div>
+                        <div class="info-row">
+                          <div class="label">Class</div>
+                          <div class="body-sm">Form 3A</div>
+                        </div>
+                        <div class="info-row">
+                          <div class="label">Valid Until</div>
+                          <div style="font-size: 13px; font-weight: 600; color: var(--green);">6:00 PM Today</div>
+                        </div>
+                        <div class="info-row">
+                          <div class="label">Authorized By</div>
+                          <div class="body-sm">Grace Wanjiku (Mother)</div>
+                        </div>
+                      </div>
+
+                      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+                        <button class="btn-primary"
+                          style="background: var(--green); height: 56px; font-size: 16px; box-shadow: 0 4px 16px rgba(26,159,110,0.35);">✓
+                          Confirm Release</button>
+                        <button class="btn-outline">⚑ Flag an Issue</button>
+                      </div>
+                      <div style="font-size: 11px; color: var(--gray-400); margin-top: -4px;">Token consumed · Event
+                        logged automatically</div>
+                    </div>
+                  </div>
+
+                  <!-- SCREEN: DECLINED -->
+                  <div class="screen" id="teacher-declined">
+                    <div class="status-screen-declined" style="min-height: 660px;">
+                      <div class="status-icon-wrap status-icon-declined">⛔</div>
+                      <div class="status-title-declined">DECLINED</div>
+                      <div style="font-size: 13px; color: var(--gray-500); margin-top: -4px;">Token could not be
+                        verified</div>
+
+                      <div class="card w-full" style="border: 2px solid var(--red); text-align: left;">
+                        <div class="info-row">
+                          <div class="label">Reason</div>
+                          <div style="font-size: 13px; font-weight: 600; color: var(--red);">Token expired</div>
+                        </div>
+                        <div class="info-row">
+                          <div class="label">Time</div>
+                          <div class="body-sm">Presented at 6:12 PM — window closed 6:00 PM</div>
+                        </div>
+                        <div class="info-row" style="border-bottom: none;">
+                          <div class="label">Next Step</div>
+                          <div class="body-sm">Contact school administrator</div>
+                        </div>
+                      </div>
+
+                      <div class="card w-full" style="background: var(--amber-pale); text-align: left;">
+                        <div style="font-size: 12px; color: var(--gray-700); line-height: 1.6;"><strong>Student remains
+                            on school premises</strong> until a valid authorization is presented or an admin emergency
+                          override is issued.</div>
+                      </div>
+
+                      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+                        <button class="btn-outline" style="border-color: var(--navy); color: var(--navy);">📞 Contact
+                          Administrator</button>
+                        <button class="btn-outline" style="border-color: var(--amber);">⚡ Request Emergency
+                          Override</button>
+                      </div>
+                      <div style="font-size: 11px; color: var(--gray-400); margin-top: -4px;">Declined attempt logged in
+                        D4: Audit Logs</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="annotation-panel">
+            <div class="anno-card" id="anno-teacher-scan" style="">
+              <div class="anno-label">Screen 3A · Gate Scan</div>
+              <div class="anno-title">Fast Gate Verification — Under 10 Seconds</div>
+              <div class="anno-text">Teacher processes 20–30 pickups in a 3-hour window. The scanner fills the screen,
+                class list is instantly visible, and there's no login overhead per student.</div>
+              <ul class="anno-bullets">
+                <li>Animated scan line — clear visual feedback</li>
+                <li>Manual OTP entry as fallback (no-data scenario)</li>
+                <li>Live progress counter: 14 of 30 released</li>
+                <li>Class list shows pending vs done at a glance</li>
+                <li>Offline QR verification — no live internet needed</li>
+              </ul>
+              <div class="anno-note"><strong>Designed for time pressure:</strong> Closing day gate queue observed at
+                18–25 min per family. SafePass targets &lt;90 seconds per pickup, including confirmation tap.</div>
+            </div>
+            <div class="anno-card" id="anno-teacher-authorized" style="display:none;">
+              <div class="anno-label">Screen 3B · Authorized</div>
+              <div class="anno-title">Clear, Unambiguous AUTHORIZED State</div>
+              <div class="anno-text">Large ✅, green background, picker photo, student name, and time validity — designed
+                for low-literacy gate security who need a visual result, not a text-first result.</div>
+              <ul class="anno-bullets">
+                <li>Picker photo shown for face match by watchman</li>
+                <li>One large green CTA: "Confirm Release"</li>
+                <li>Token automatically consumed after confirmation tap</li>
+                <li>Parent push notification sent instantly</li>
+                <li>Event written to D4 Audit Logs</li>
+              </ul>
+            </div>
+            <div class="anno-card" id="anno-teacher-declined" style="display:none;">
+              <div class="anno-label">Screen 3C · Declined</div>
+              <div class="anno-title">Clear Rejection + Escalation Path</div>
+              <div class="anno-text">Failure is just as important as success. Teacher knows exactly why and what to do
+                next — contact admin or request emergency override. Student stays safe.</div>
+              <ul class="anno-bullets">
+                <li>Reason for decline clearly stated (expired / invalid / reused)</li>
+                <li>Student is not released — implicit safe default</li>
+                <li>Direct shortcut to contact admin</li>
+                <li>Emergency override request button</li>
+                <li>All declined attempts logged with timestamp + reason</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════════════
+  INTERFACE 4: ADMIN DASHBOARD
+════════════════════════════════════════ -->
+      <div class="interface-panel" id="panel-admin">
+        <div class="iface-header">
+          <div>
+            <div class="iface-title">School Administrator Dashboard</div>
+            <div class="iface-desc" style="font-family: 'Outfit', sans-serif;">Web · Desktop-first · Real-time stats · Emergency override · Audit logs</div>
+          </div>
+          <div class="screen-pills">
+            <div class="screen-pill active" onclick="switchScreen('admin','dashboard')">Dashboard</div>
+            <div class="screen-pill" style="font-family: 'Outfit', sans-serif;"" onclick="switchScreen('admin','override')"">Emergency Override</div>
+            <div class="screen-pill" onclick="switchScreen('admin','audit')">Audit Logs</div>
+          </div>
+        </div>
+        <div class="screen-stage"
+          style="padding: 28px 16px 40px; justify-content: center; align-items: flex-start; flex-direction: column; gap: 24px;">
+
+          <div class="desktop-device" style="width: 100%; max-width: 1000px; margin: 0 auto;">
+            <div class="desktop-shell">
+              <div class="desktop-topbar">
+                <div class="mac-dot mac-red"></div>
+                <div class="mac-dot mac-yellow"></div>
+                <div class="mac-dot mac-green"></div>
+                <div class="desktop-url-bar" id="admin-url">safepass.ke/admin/dashboard</div>
+              </div>
+              <div class="desktop-screen">
+                <!-- SIDEBAR -->
+                <div class="admin-sidebar">
+                  <div class="admin-sidebar-logo">
+                    <div class="admin-logo-mark">🛡️</div>
+                    <div class="admin-logo-text">SafePass</div>
+                  </div>
+                  <div class="admin-nav-item active" id="anav-dashboard" onclick="switchScreen('admin','dashboard')">
+                    <span class="admin-nav-icon">📊</span>Dashboard</div>
+                  <div class="admin-nav-item" id="anav-circle" onclick="switchScreen('admin','dashboard')"><span
+                      class="admin-nav-icon">👥</span>Pickup Registry</div>
+                  <div class="admin-nav-item" id="anav-auth" onclick="switchScreen('admin','dashboard')"><span
+                      class="admin-nav-icon">🔐</span>Authorizations</div>
+                  <div class="admin-nav-item" id="anav-gate" onclick="switchScreen('admin','dashboard')"><span
+                      class="admin-nav-icon">🚪</span>Gate Activity</div>
+                  <div class="admin-nav-item" id="anav-audit" onclick="switchScreen('admin','audit')"><span
+                      class="admin-nav-icon">📋</span>Reports & Audit</div>
+                  <div class="admin-nav-item" id="anav-override" style="font-family: 'Outfit', sans-serif;" onclick="switchScreen('admin','override')"><span
+                      class="admin-nav-icon">⚡</span>Emergency Override</div>
+                  <div class="admin-nav-item" id="anav-settings"><span class="admin-nav-icon">⚙️</span>Settings</div>
+                </div>
+                <!-- CONTENT -->
+                <div class="admin-content">
+
+                  <!-- DASHBOARD SCREEN -->
+                  <div id="admin-dashboard">
+                    <div
+                      style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                      <div>
+                        <div class="admin-page-title">Dashboard</div>
+                        <div class="admin-page-sub">Moi Kabarak High School · 21 April 2026 — Closing Day</div>
+                      </div>
+                      <button class="btn-amber"
+                        style="width: auto; padding: 0 18px; height: 40px; font-size: 13px; border-radius: var(--radius-xs); font-family: 'Outfit', sans-serif;">⚡
+                        Emergency Override</button>
+                    </div>
+
+                    <div class="grid-3 mb-12" style="grid-template-columns: repeat(6, 1fr); gap: 10px;">
+                      <div class="stat-box">
+                        <div class="stat-num">347</div>
+                        <div class="stat-label">Students<br>Enrolled</div>
+                      </div>
+                      <div class="stat-box">
+                        <div class="stat-num">214</div>
+                        <div class="stat-label">Auths<br>Issued</div>
+                      </div>
+                      <div class="stat-box" style="border-top: 3px solid var(--green);">
+                        <div class="stat-num" style="color: var(--green);">89</div>
+                        <div class="stat-label">Released<br>Today</div>
+                      </div>
+                      <div class="stat-box" style="border-top: 3px solid var(--amber);">
+                        <div class="stat-num" style="color: #b87d00;">12</div>
+                        <div class="stat-label">Pending<br>Approvals</div>
+                      </div>
+                      <div class="stat-box" style="border-top: 3px solid var(--red);">
+                        <div class="stat-num" style="color: var(--red);">3</div>
+                        <div class="stat-label">Declined<br>Attempts</div>
+                      </div>
+                      <div class="stat-box">
+                        <div class="stat-num">2</div>
+                        <div class="stat-label">Emergency<br>Overrides</div>
+                      </div>
+                    </div>
+
+                    <div class="grid-2" style="gap: 16px;">
+                      <!-- Left col -->
+                      <div style="display: flex; flex-direction: column; gap: 14px;">
+                        <div>
+                          <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <div
+                              style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gray-500);">
+                              Pending Circle Approvals</div>
+                            <span class="badge badge-amber">12 pending</span>
+                          </div>
+                          <div
+                            style="background: white; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--gray-100);">
+                            <div
+                              style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--gray-100);">
+                              <img src="https://i.pravatar.cc/68?img=70" class="avatar-sm"
+                                style="object-fit:cover;padding:0;" />
+                              <div style="flex: 1;">
+                                <div style="font-size: 13px; font-weight: 600; color: var(--gray-900);">Peter Kamau
+                                </div>
+                                <div style="font-size: 11px; color: var(--gray-500);">Grandfather · Kevin K. · ID:
+                                  12XXXXXX</div>
+                              </div>
+                              <div style="display: flex; gap: 6px;">
+                                <button
+                                  style="height: 28px; padding: 0 12px; background: var(--green); color: white; border: none; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;font-family: 'Outfit', sans-serif;">Approve</button>
+                                <button
+                                  style="height: 28px; padding: 0 12px; background: var(--gray-100); color: var(--gray-600); border: none; border-radius: 6px; font-size: 11px; cursor: pointer;font-family: 'Outfit', sans-serif;">Review</button>
+                              </div>
+                            </div>
+                            <div
+                              style="padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--gray-100);">
+                              <img src="https://i.pravatar.cc/68?img=32" class="avatar-sm"
+                                style="object-fit:cover;padding:0;" />
+                              <div style="flex: 1;">
+                                <div style="font-size: 13px; font-weight: 600; color: var(--gray-900);">Agnes Mwangi
+                                </div>
+                                <div style="font-size: 11px; color: var(--gray-500);">Aunt · Sarah M. · ID: 34XXXXXX
+                                </div>
+                              </div>
+                              <div style="display: flex; gap: 6px;">
+                                <button
+                                  style="height: 28px; padding: 0 12px; background: var(--green); color: white; border: none; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer;   font-family: 'Outfit', sans-serif;">Approve</button>
+                                <button
+                                  style="height: 28px; padding: 0 12px; background: var(--gray-100); color: var(--gray-600); border: none; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: 'Outfit', sans-serif;">Review</button>
+                              </div>
+                            </div>
+                            <div style="padding: 10px 16px; text-align: center; font-family: 'Outfit', sans-serif;">
+                              <button class="btn-ghost" style="font-size: 12px; font-family: 'Outfit', sans-serif;">View all 12 pending →</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Right col -->
+                      <div>
+                        <div
+                          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                          <div
+                            style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gray-500);">
+                            Live Gate Activity</div>
+                          <div style="display: flex; align-items: center; gap: 6px;">
+                            <div
+                              style="width: 7px; height: 7px; background: var(--green); border-radius: 50; animation: pulse 2s infinite;">
+                            </div><span style="font-size: 11px; color: var(--green); font-weight: 600;">LIVE</span>
+                          </div>
+                        </div>
+                        <div
+                          style="background: white; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--gray-100);">
+                          <div
+                            style="padding: 10px 14px; border-bottom: 1px solid var(--gray-100); display: flex; gap: 10px; align-items: flex-start;">
+                            <div
+                              style="width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-top: 5px; flex-shrink: 0;">
+                            </div>
+                            <div>
+                              <div style="font-size: 12px; font-weight: 600; color: var(--gray-900);">Amina Wanjiku
+                                released</div>
+                              <div style="font-size: 11px; color: var(--gray-500);">Faith Njeri · 4:32 PM · QR token
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            style="padding: 10px 14px; border-bottom: 1px solid var(--gray-100); display: flex; gap: 10px; align-items: flex-start;">
+                            <div
+                              style="width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-top: 5px; flex-shrink: 0;">
+                            </div>
+                            <div>
+                              <div style="font-size: 12px; font-weight: 600; color: var(--gray-900);">Brian Otieno
+                                released</div>
+                              <div style="font-size: 11px; color: var(--gray-500);">Mary Otieno · 4:18 PM · QR token
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            style="padding: 10px 14px; border-bottom: 1px solid var(--gray-100); display: flex; gap: 10px; align-items: flex-start; background: #fff8f8;">
+                            <div
+                              style="width: 8px; height: 8px; background: var(--red); border-radius: 50%; margin-top: 5px; flex-shrink: 0;">
+                            </div>
+                            <div>
+                              <div style="font-size: 12px; font-weight: 600; color: var(--red);">⚠ DECLINED — Sarah
+                                Mutua</div>
+                              <div style="font-size: 11px; color: var(--gray-500);">Token expired · 4:05 PM</div>
+                            </div>
+                          </div>
+                          <div
+                            style="padding: 10px 14px; display: flex; gap: 10px; align-items: flex-start; background: #fffbf0;">
+                            <div
+                              style="width: 8px; height: 8px; background: var(--amber); border-radius: 50%; margin-top: 5px; flex-shrink: 0;">
+                            </div>
+                            <div>
+                              <div style="font-size: 12px; font-weight: 600; color: #9a7000;">⚡ Override — Kevin Kamau
+                              </div>
+                              <div style="font-size: 11px; color: var(--gray-500);">Peter Kamau · 3:40 PM · Emergency
+                              </div>
+                            </div>
+                          </div>
+                          <div style="padding: 10px 14px; text-align: center; border-top: 1px solid var(--gray-100);">
+                            <button class="btn-ghost" style="font-size: 12px; font-family: 'Outfit', sans-serif;">View full gate log →</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- EMERGENCY OVERRIDE SCREEN -->
+                  <div id="admin-override" style="display:none;">
+                    <div class="admin-page-title">⚡ Emergency Override</div>
+                    <div class="admin-page-sub">Issue an emergency pickup authorization for a student not in the
+                      pre-approved Pickup Circle</div>
+                    <div class="grid-2" style="gap: 20px;">
+                      <div>
+                        <div
+                          style="background: white; border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--gray-100); margin-bottom: 14px;">
+                          <div
+                            style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gray-500); margin-bottom: 10px;">
+                            Student Search</div>
+                          <div class="admin-inp"
+                            style="display: flex; align-items: center; gap: 8px; color: var(--gray-700);">🔍 Kevin Kamau
+                          </div>
+                          <div
+                            style="background: var(--amber-pale); border-radius: var(--radius-xs); padding: 12px 14px; margin-top: 10px; border: 1px solid #ffe0a0;">
+                            <div
+                              style="font-size: 11px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+                              Student Found</div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--navy);">Kevin Kamau</div>
+                            <div style="font-size: 12px; color: var(--gray-600);">Form 2B · Adm: 2024/0089</div>
+                          </div>
+                        </div>
+                        <div
+                          style="background: white; border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--gray-100);">
+                          <div
+                            style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gray-500); margin-bottom: 12px;">
+                            Emergency Picker Details</div>
+                          <div class="form-section">
+                            <div>
+                              <div class="admin-inp-label">National ID Number</div><input class="admin-inp"
+                                value="ID: 12XXXXXXXX" />
+                            </div>
+                            <div>
+                              <div class="admin-inp-label">Phone Number</div><input class="admin-inp"
+                                value="+254 722 XXX XXX" />
+                            </div>
+                            <div>
+                              <div class="admin-inp-label">Relationship to Student</div><input class="admin-inp"
+                                value="Grandfather" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div
+                          style="background: white; border-radius: var(--radius-sm); padding: 16px; border: 1px solid var(--gray-100); margin-bottom: 14px;">
+                          <div
+                            style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--gray-500); margin-bottom: 12px;">
+                            Override Details</div>
+                          <div class="form-section">
+                            <div>
+                              <div class="admin-inp-label">Reason <span style="color: var(--red);">*required</span>
+                              </div>
+                              <textarea
+                                class="admin-textarea">Medical emergency — student injured during football match. Father unreachable in Kajiado. Grandfather is nearest relative.</textarea>
+                            </div>
+                            <div>
+                              <div class="admin-inp-label">Token Validity</div>
+                              <div class="admin-inp"
+                                style="display: flex; align-items: center; justify-content: space-between;">30 minutes
+                                from now <span>▾</span></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          style="background: var(--green-light); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 14px; border: 1px solid rgba(26,159,110,0.2);">
+                          <div
+                            style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--green); margin-bottom: 10px;">
+                            Automatic Notifications</div>
+                          <div style="font-size: 12px; color: var(--gray-700); line-height: 2;">✓ John Kamau (parent)
+                            will be notified via SMS<br>✓ Override reason logged with your admin ID + timestamp<br>✓
+                            Principal signature required if parent unreachable</div>
+                        </div>
+                        <button class="btn-amber"
+                          style="height: 44px; font-size: 13px; border-radius: var(--radius-xs); font-family: 'Outfit', sans-serif;">⚡ Generate Emergency
+                          Token</button>
+                        <button class="btn-outline"
+                          style="margin-top: 8px; height: 38px; font-size: 13px;">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- AUDIT LOG SCREEN -->
+                  <div id="admin-audit" style="display:none;">
+                    <div
+                      style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                      <div>
+                        <div class="admin-page-title">Reports & Audit Logs</div>
+                        <div class="admin-page-sub">Complete tamper-proof record of every pickup event</div>
+                      </div>
+                      <div style="display: flex; gap: 8px;">
+                        <button
+                          style="height: 34px; padding: 0 14px; background: var(--navy); color: white; border: none; border-radius: var(--radius-xs); font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif;">Export
+                          PDF</button>
+                        <button
+                          style="height: 34px; padding: 0 14px; background: white; color: var(--navy); border: 1.5px solid var(--gray-200); border-radius: var(--radius-xs); font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif;">Export
+                          CSV</button>
+                      </div>
+                    </div>
+                    <!-- Filter row -->
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; align-items: center;">
+                      <button
+                        style="height: 32px; padding: 0 14px; background: var(--navy); color: white; border: none; border-radius: 20px; font-size: 11px; font-weight: 600; font-family: 'Outfit', sans-serif;">All
+                        Events</button>
+                      <button
+                        style="height: 32px; padding: 0 14px; background: white; color: var(--gray-600); border: 1.5px solid var(--gray-200); border-radius: 20px; font-size: 11px; font-family: 'Outfit', sans-serif;">✓
+                        Authorized</button>
+                      <button
+                        style="height: 32px; padding: 0 14px; background: white; color: var(--gray-600); border: 1.5px solid var(--gray-200); border-radius: 20px; font-size: 11px; font-family: 'Outfit', sans-serif;">✗
+                        Declined</button>
+                      <button
+                        style="height: 32px; padding: 0 14px; background: white; color: var(--gray-600); border: 1.5px solid var(--gray-200); border-radius: 20px; font-size: 11px; font-family: 'Outfit', sans-serif;">⚡
+                        Emergency</button>
+                      <input
+                        style="height: 32px; border: 1.5px solid var(--gray-200); border-radius: var(--radius-xs); padding: 0 10px; font-size: 12px; font-family: 'Outfit', sans-serif; color: var(--gray-600);"
+                        placeholder="Date range..." />
+                      <input
+                        style="height: 32px; border: 1.5px solid var(--gray-200); border-radius: var(--radius-xs); padding: 0 10px; font-size: 12px; font-family: 'Outfit', sans-serif; color: var(--gray-600);"
+                        placeholder="Student name..." />
+                    </div>
+                    <!-- Table -->
+                    <div
+                      style="background: white; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--gray-100); margin-bottom: 14px;">
+                      <table class="data-table">
+                        <thead>
+                          <tr>
+                            <th>Timestamp</th>
+                            <th>Student</th>
+                            <th>Picker</th>
+                            <th>Authorized By</th>
+                            <th>Event</th>
+                            <th>Result</th>
+                            <th>Token</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td style="color: var(--gray-500);">21 Apr · 4:32 PM</td>
+                            <td><strong>Amina Wanjiku</strong><br><span
+                                style="font-size: 10px; color: var(--gray-400);">F3A</span></td>
+                            <td>Faith Njeri</td>
+                            <td>Grace Wanjiku</td>
+                            <td>Closing Day</td>
+                            <td><span class="badge badge-green">✓ Authorized</span></td>
+                            <td style="color: var(--gray-500); font-size: 11px;">QR</td>
+                          </tr>
+                          <tr>
+                            <td style="color: var(--gray-500);">21 Apr · 4:18 PM</td>
+                            <td><strong>Brian Otieno</strong><br><span
+                                style="font-size: 10px; color: var(--gray-400);">F3C</span></td>
+                            <td>Mary Otieno</td>
+                            <td>James Otieno</td>
+                            <td>Closing Day</td>
+                            <td><span class="badge badge-green">✓ Authorized</span></td>
+                            <td style="color: var(--gray-500); font-size: 11px;">QR</td>
+                          </tr>
+                          <tr style="background: #fff8f8;">
+                            <td style="color: var(--gray-500);">21 Apr · 4:05 PM</td>
+                            <td><strong>Sarah Mutua</strong><br><span
+                                style="font-size: 10px; color: var(--gray-400);">F2A</span></td>
+                            <td>Unknown</td>
+                            <td>—</td>
+                            <td>Closing Day</td>
+                            <td><span class="badge badge-red">✗ Declined</span></td>
+                            <td style="color: var(--red); font-size: 11px;">OTP (exp)</td>
+                          </tr>
+                          <tr style="background: #fffbf0;">
+                            <td style="color: var(--gray-500);">21 Apr · 3:40 PM</td>
+                            <td><strong>Kevin Kamau</strong><br><span
+                                style="font-size: 10px; color: var(--gray-400);">F2B</span></td>
+                            <td>Peter Kamau</td>
+                            <td><span style="color: var(--amber); font-weight: 600;">Admin Override</span></td>
+                            <td>Emergency</td>
+                            <td><span class="badge badge-amber">⚡ Override</span></td>
+                            <td style="color: var(--gray-500); font-size: 11px;">SMS OTP</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- Summary stats -->
+                    <div class="grid-3" style="gap: 12px;">
+                      <div class="stat-box">
+                        <div class="stat-num" style="color: var(--green);">89</div>
+                        <div class="stat-label">Released Today</div>
+                        <div
+                          style="height: 6px; background: var(--gray-100); border-radius: 3px; margin-top: 8px; overflow: hidden;">
+                          <div style="width: 61%; height: 100%; background: var(--green); border-radius: 3px;"></div>
+                        </div>
+                        <div style="font-size: 10px; color: var(--gray-400); margin-top: 4px;">61% of 147 total</div>
+                      </div>
+                      <div class="stat-box">
+                        <div class="stat-num">~68s</div>
+                        <div class="stat-label">Avg Gate Time</div>
+                        <div style="font-size: 10px; color: var(--green); margin-top: 6px;">↓ vs 18–25 min before
+                          SafePass</div>
+                      </div>
+                      <div class="stat-box" style="display: flex; flex-direction: column; justify-content: center;">
+                        <div style="font-size: 11px; color: var(--gray-500); margin-bottom: 8px;">Ministry of
+                          Education<br>Compliance Export</div>
+                        <button
+                          style="height: 32px; background: var(--navy); color: white; border: none; border-radius: var(--radius-xs); font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif;">Generate
+                          Report</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin annotation below desktop -->
+          <div
+            style="width: 100%; max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+            <div class="anno-card" id="anno-admin-dashboard" style="border-left-color: var(--navy);">
+              <div class="anno-label" style="color: var(--navy);">Screen 4A · Dashboard</div>
+              <div class="anno-title">Real-Time Closing Day Command Center</div>
+              <div class="anno-text">Six key stats in one row. Live gate activity feed. Pending circle approvals handled
+                inline. Replaces the paper register that "had not been updated since last term."</div>
+              <div class="anno-note"><strong>Addresses:</strong> 72% of admins with no digital record of past pickup
+                events (questionnaire finding).</div>
+            </div>
+            <div class="anno-card" id="anno-admin-override" style="display:none; border-left-color: var(--red);">
+              <div class="anno-label" style="color: var(--red); font-family: 'Outfit', sans-serif;">Screen 4B · Emergency Override</div>
+              <div class="anno-title">Replaces Dangerous Verbal Phone Auth</div>
+              <div class="anno-text">Admin enters picker's ID, phone, relationship, and mandatory reason. System
+                generates a 30-minute token and notifies the parent — creating the audit trail that was completely
+                absent before.</div>
+              <div class="anno-note"><strong>Addresses As-Is Scenario 2 (Kevin Kamau):</strong> Mzee Peter was turned
+                away because no digital mechanism existed. This screen gives admins the tool to handle this in under 2
+                minutes.</div>
+            </div>
+            <div class="anno-card" id="anno-admin-audit" style="display:none; border-left-color: var(--green);">
+              <div class="anno-label" style="color: var(--green);">Screen 4C · Audit Logs</div>
+              <div class="anno-title">Complete Tamper-Proof Pickup Record</div>
+              <div class="anno-text">Every pickup — authorized, declined, or emergency override — is timestamped with
+                the full authorization chain. Exportable as PDF/CSV for Ministry compliance.</div>
+              <div class="anno-note"><strong>Addresses post-Endarasha regulatory environment:</strong> 348 boarding
+                schools found non-compliant. SafePass audit logs directly support the Ministry of Education compliance
+                framework.</div>
+            </div>
+            <!-- Placeholder cards for layout when all are hidden -->
+            <div id="anno-admin-placeholder1" style="display:none;"></div>
+            <div id="anno-admin-placeholder2" style="display:none;"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- interfaces -->
+  </div><!-- proto-shell -->
+
+  <script>
+    // ── DARK MODE ──
+    function toggleDark() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      document.getElementById('toggleIcon').textContent = isDark ? '☀️' : '🌙';
+      try { localStorage.setItem('safepass-dark', isDark ? '1' : '0'); } catch (e) { }
+    }
+    // On load: restore preference
+    try {
+      if (localStorage.getItem('safepass-dark') === '1') {
+        document.documentElement.classList.add('dark');
+        document.addEventListener('DOMContentLoaded', () => {
+          const icon = document.getElementById('toggleIcon');
+          if (icon) icon.textContent = '☀️';
+        });
+      }
+    } catch (e) { }
+
+    // ── INTERFACE SWITCHING ──
+    function switchInterface(name) {
+      document.querySelectorAll('.interface-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.proto-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('panel-' + name).classList.add('active');
+      const tabs = document.querySelectorAll('.proto-tab');
+      const order = ['parent', 'picker', 'teacher', 'admin'];
+      tabs[order.indexOf(name)].classList.add('active');
+
+      // Auto-activate first screen pill
+      const firstPill = document.querySelector('#panel-' + name + ' .screen-pill');
+      if (firstPill) {
+        document.querySelectorAll('#panel-' + name + ' .screen-pill').forEach(p => p.classList.remove('active'));
+        firstPill.classList.add('active');
+      }
+    }
+
+    // ── SCREEN SWITCHING ──
+    function switchScreen(iface, screen) {
+      // Pill active state
+      const panel = document.getElementById('panel-' + iface);
+      panel.querySelectorAll('.screen-pill').forEach(p => {
+        const t = p.textContent.toLowerCase();
+        p.classList.toggle('active',
+          t.includes(screen.toLowerCase()) ||
+          (screen === 'login' && t.includes('otp')) ||
+          (screen === 'national-id' && (t.includes('national') || t.includes('id'))) ||
+          (screen === 'auth' && t.includes('authoriz')) ||
+          (screen === 'token' && t.includes('token')) ||
+          (screen === 'authorized' && t.includes('authorized')) ||
+          (screen === 'declined' && t.includes('declined')) ||
+          (screen === 'ussd' && t.includes('ussd'))
+        );
+      });
+
+      if (iface === 'admin') {
+        ['dashboard', 'override', 'audit'].forEach(s => {
+          const el = document.getElementById('admin-' + s);
+          if (el) el.style.display = s === screen ? '' : 'none';
+        });
+        document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+        const targetNav = document.getElementById('anav-' + screen);
+        if (targetNav) targetNav.classList.add('active');
+        const urlMap = { dashboard: 'safepass.ke/admin/dashboard', override: 'safepass.ke/admin/emergency-override', audit: 'safepass.ke/admin/reports' };
+        document.getElementById('admin-url').textContent = urlMap[screen] || 'safepass.ke/admin/dashboard';
+        ['dashboard', 'override', 'audit'].forEach(s => {
+          const el = document.getElementById('anno-admin-' + s);
+          if (el) el.style.display = s === screen ? '' : 'none';
+        });
+        return;
+      }
+
+      // Mobile screens
+      const allScreens = panel.querySelectorAll('.screen');
+      allScreens.forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(iface + '-' + screen);
+      if (target) target.classList.add('active');
+
+      // Annotations
+      const annoKeys = {
+        parent: ['login', 'national-id', 'home', 'circle', 'auth'],
+        picker: ['token', 'ussd'],
+        teacher: ['scan', 'authorized', 'declined']
+      };
+      if (annoKeys[iface]) {
+        annoKeys[iface].forEach(s => {
+          const el = document.getElementById('anno-' + iface + '-' + s);
+          if (el) el.style.display = s === screen ? '' : 'none';
+        });
+      }
+    }
+  </script>
+
+</body>
+
+</html>

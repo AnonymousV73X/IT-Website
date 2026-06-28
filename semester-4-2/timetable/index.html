@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecture Timetable</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Signika:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --accent: #AA4C39;
+      --accent2: #d07527;
+      --amber: #e56707;
+      --bg: #f5ede6;
+      /* Light cream */
+      --card-bg: #f5ede6;
+      /* Light cream */
+      --brown-text: #452302;
+      --brown-light: #76562b;
+      --brown-dark: #382409;
+      --green: rgb(41, 155, 45);
+      --blue: #1a6fa8;
+      --navbar-bg: #f5ede6;
+      /* Light cream */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: var(--navbar-bg);
+      border-bottom: 1px solid rgba(170, 76, 57, 0.15);
+      padding: 0.8rem 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(170, 76, 57, 0.08);
+    }
+
+    .navbar .container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar h2 {
+      font-family: 'Signika', sans-serif;
+      font-size: 1.1rem;
+      color: var(--brown-text);
+      font-weight: 700;
+    }
+
+    .menu-link {
+      color: var(--brown-text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .menu-link:hover {
+      color: var(--accent);
+    }
+
+    /* NEXT CLASS COUNTDOWN */
+    #active-countdown-section {
+      max-width: 680px;
+      margin: 24px auto 0;
+      background: linear-gradient(135deg, #fff8f0, #ffe8d0);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      padding: 22px 20px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(170, 76, 57, 0.13);
+      display: none;
+
+    }
+
+    #active-countdown-section h3 {
+      font-family: 'Signika', sans-serif;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 3px;
+    }
+
+    .cd-label {
+      font-size: 0.8rem;
+      color: var(--brown-light);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .cd-status {
+      font-size: 0.88rem;
+      color: var(--brown-text);
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .cd-status.in-class {
+      color: var(--green);
+    }
+
+    .flipdown {
+      display: inline-flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .rotor-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .rotor-group-label {
+      font-size: 0.7rem;
+      color: var(--accent2);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .rotor-box {
+      background: var(--accent);
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      width: 56px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-family: 'Signika', sans-serif;
+      box-shadow: 0 4px 12px rgba(170, 76, 57, 0.25);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    .rotor-box.in-class-mode {
+      background: var(--green);
+      box-shadow: 0 4px 12px rgba(41, 155, 45, 0.3);
+    }
+
+    .rotor-sep {
+      font-size: 1.6rem;
+      color: var(--accent);
+      font-weight: 700;
+      align-self: flex-end;
+      margin-bottom: 18px;
+      padding: 0 2px;
+    }
+
+    /* TIMELINE */
+    .timeline-wrapper {
+      max-width: 700px;
+      margin: 28px auto 60px;
+      padding: 0 16px;
+    }
+
+    .timeline-title {
+      font-family: 'Signika', sans-serif;
+      font-size: 1.4rem;
+      color: #6a4a22;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .uli {
+      --col-gap: 1.2rem;
+      --row-gap: 1.6rem;
+      --line-w: 0.25rem;
+      display: grid;
+      grid-template-columns: var(--line-w) 1fr;
+      column-gap: var(--col-gap);
+      list-style: none;
+      width: 100%;
+    }
+
+    .uli::before {
+      content: "";
+      grid-column: 1;
+      grid-row: 1 / span 30;
+      background: rgb(220, 220, 220);
+      border-radius: calc(var(--line-w) / 2);
+    }
+
+    .uli li:not(:last-child) {
+      margin-bottom: var(--row-gap);
+    }
+
+    .uli li {
+      grid-column: 2;
+      --inlineP: 1.5rem;
+      margin-inline: var(--inlineP);
+      grid-row: span 2;
+      display: grid;
+      grid-template-rows: min-content min-content min-content min-content;
+      transition: opacity 0.4s;
+    }
+
+    .uli li .date {
+      --dateH: 3rem;
+      height: var(--dateH);
+      margin-inline: calc(var(--inlineP) * -1);
+      text-align: center;
+      background-color: var(--accent-color);
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      display: grid;
+      place-content: center;
+      position: relative;
+      border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+    }
+
+    .uli li .date::before {
+      content: "";
+      width: var(--inlineP);
+      aspect-ratio: 1;
+      background: var(--accent-color);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+      position: absolute;
+      top: 100%;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      right: 0;
+    }
+
+    .uli li .date::after {
+      content: "";
+      position: absolute;
+      width: 1.5rem;
+      aspect-ratio: 1;
+      background: var(--bg);
+      border: 0.3rem solid var(--accent-color);
+      border-radius: 50%;
+      top: 50%;
+      transform: translate(50%, -50%);
+      right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+    }
+
+    .uli li .title,
+    .uli li .descr {
+      background: var(--card-bg);
+      position: relative;
+      padding-inline: 1rem;
+    }
+
+    .uli li .title {
+      overflow: hidden;
+      padding-block-start: 1.4rem;
+      padding-block-end: 0.9rem;
+      font-weight: 700;
+      color: var(--brown-light);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .uli li .descr {
+      padding-block-end: 0.6rem;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--brown-dark);
+    }
+
+    .uli li .title::before,
+    .uli li .descr::before {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 0.3rem;
+      background: rgba(139, 69, 19, 0.2);
+      left: 50%;
+      border-radius: 50%;
+      filter: blur(4px);
+      transform: translate(-50%, 50%);
+    }
+
+    .uli li .title::before {
+      bottom: calc(100% + 0.125rem);
+    }
+
+    .uli li .descr::before {
+      z-index: -1;
+      bottom: 0.25rem;
+    }
+
+    .class-actions {
+      background: var(--card-bg);
+      padding: 0 1rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* Status pills */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .pill-upcoming {
+      background: #fff3cd;
+      color: #7a5000;
+      border: 1px solid #ffd050;
+    }
+
+    .pill-live {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #28a745;
+      animation: pulse-green 1.5s infinite;
+    }
+
+    .pill-ended {
+      background: #e2e3e5;
+      color: #555;
+      border: 1px solid #ccc;
+    }
+
+    .pill-online {
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #3b82f6;
+    }
+
+    @keyframes pulse-green {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(40, 167, 69, 0);
+      }
+    }
+
+    /* online badge on venue */
+    .online-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #3b82f6;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-left: 4px;
+    }
+
+    @media (min-width: 40rem) {
+      .uli {
+        grid-template-columns: 1fr var(--line-w) 1fr;
+      }
+
+      .uli::before {
+        grid-column: 2;
+      }
+
+      .uli li:nth-child(odd) {
+        grid-column: 1;
+      }
+
+      .uli li:nth-child(even) {
+        grid-column: 3;
+      }
+
+      .uli li:nth-child(2) {
+        grid-row: 2/4;
+      }
+
+      .uli li:nth-child(odd) .date::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+        left: 0;
+      }
+
+      .uli li:nth-child(odd) .date::after {
+        transform: translate(-50%, -50%);
+        left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+      }
+
+      .uli li:nth-child(odd) .date {
+        border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+      }
+    }
+
+    /* Sub-slot divider for grouped same-day entries */
+    .slot-divider {
+      height: 1px;
+      background: rgba(139, 69, 19, 0.12);
+      margin: 0 1rem;
+    }
+
+    .slot-time {
+      padding: 1.4rem 1rem 0.2rem;
+      font-weight: 700;
+      color: var(--brown-light);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: var(--card-bg);
+    }
+
+    .slot-divider+.slot-time {
+      padding-top: 0.8rem;
+    }
+
+    /* TOAST */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+      max-width: 90vw;
+      text-align: center;
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <h2>🎓 Lecture Timetable</h2>
+      <a class="menu-link" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> Go Back
+      </a>
+    </div>
+  </nav>
+
+  <div id="timetablePopup" style="padding-left: 10px;
+      padding-right: 10px;">
+
+    <!-- AUTO COUNTDOWN -->
+    <div id="active-countdown-section">
+      <h3 id="cd-class-name">Next Class</h3>
+      <div class="cd-label" id="cd-class-detail">—</div>
+      <div class="flipdown">
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-days">00</div>
+          <div class="rotor-group-label">Days</div>
+        </div>
+        <div class="rotor-sep">:</div>
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-hours">00</div>
+          <div class="rotor-group-label">Hours</div>
+        </div>
+        <div class="rotor-sep">:</div>
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-minutes">00</div>
+          <div class="rotor-group-label">Mins</div>
+        </div>
+        <div class="rotor-sep">:</div>
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-seconds">00</div>
+          <div class="rotor-group-label">Secs</div>
+        </div>
+      </div>
+      <div class="cd-status" id="cd-status-text"></div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline-wrapper">
+      <h1 class="timeline-title">Weekly Lecture Schedule</h1>
+      <ul class="uli" id="class-list">
+
+        <!-- MONDAY -->
+        <li style="--accent-color:#1a6fa8" id="cls-0">
+          <div class="date">Monday</div>
+          <div class="slot-time">
+            8:00 AM – 10:00 AM
+            <span class="pill pill-online"><i class="fas fa-wifi" style="font-size:0.5rem"></i> Online</span>
+            <span class="pill pill-upcoming" id="pill-0">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Web Based Information Systems <span
+              style="color:#76562b;font-size:0.8rem">(INTE 462)</span>
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> <span class="online-badge"><i class="fas fa-wifi"></i> Online</span>
+          </div>
+          <div class="slot-divider"></div>
+          <div class="slot-time">
+            1:00 PM – 4:00 PM
+            <span class="pill pill-upcoming" id="pill-1">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Business Process Re-engineering <span
+              style="color:#76562b;font-size:0.8rem">(INTE 423)</span>
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> LAB 2
+          </div>
+          <div class="class-actions"></div>
+        </li>
+
+        <!-- TUESDAY -->
+        <li style="--accent-color:#c46800" id="cls-2">
+          <div class="date">Tuesday</div>
+          <div class="slot-time">
+            8:00 AM – 10:00 AM
+            <span class="pill pill-upcoming" id="pill-2">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> IT Security, Audit &amp; Ethics <span
+              style="color:#76562b;font-size:0.8rem">(INTE 422)</span>
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> SMHS 2nd Floor — 3rd room left of stairs
+          </div>
+          <div class="slot-divider"></div>
+          <div class="slot-time">
+            4:00 PM – 7:00 PM
+            <span class="pill pill-upcoming" id="pill-3">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Data Mining &amp; Warehousing <span
+              style="color:#76562b;font-size:0.8rem">(INTE 421)</span>
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> —
+          </div>
+          <div class="class-actions"></div>
+        </li>
+
+        <!-- WED 2–4: Research Project (Group A) -->
+        <li style="--accent-color:#2e7d32" id="cls-4">
+          <div class="date">Wednesday</div>
+          <div class="title">
+            2:00 PM – 4:00 PM
+            <span class="pill pill-upcoming" id="pill-4">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Research Project — Group A <span
+              style="color:#76562b;font-size:0.8rem">(INTE 424)</span>
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> LEC ROOM 12
+          </div>
+          <div class="class-actions"></div>
+        </li>
+
+        <!-- THU 4–7: Scripting Languages -->
+        <li style="--accent-color:#1a6fa8" id="cls-5">
+          <div class="date">Thursday</div>
+          <div class="title">
+            4:00 PM – 7:00 PM
+            <span class="pill pill-upcoming" id="pill-5">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Scripting Languages <span style="color:#76562b;font-size:0.8rem">(INTE
+              472)</span>
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> LAB 3
+          </div>
+          <div class="class-actions"></div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    // ── Weekly recurring schedule
+    // dow: 1=Mon,2=Tue,3=Wed,4=Thu,5=Fri
+    const schedule = [
+      { id: 0, name: "Web Based Information Systems", code: "INTE 462", dow: 1, startH: 8, startM: 0, endH: 10, endM: 0, venue: "Online", online: true },
+      { id: 1, name: "Business Process Re-engineering", code: "INTE 423", dow: 1, startH: 13, startM: 0, endH: 16, endM: 0, venue: "LAB 2", online: false },
+      { id: 2, name: "IT Security, Audit & Ethics", code: "INTE 422", dow: 2, startH: 8, startM: 0, endH: 10, endM: 0, venue: "SMHS 2nd Floor — 3rd room left of stairs", online: false },
+      { id: 3, name: "Data Mining & Warehousing", code: "INTE 421", dow: 2, startH: 16, startM: 0, endH: 19, endM: 0, venue: "—", online: false },
+      { id: 4, name: "Research Project (Group A)", code: "INTE 424", dow: 3, startH: 14, startM: 0, endH: 16, endM: 0, venue: "LEC ROOM 12", online: false },
+      { id: 5, name: "Scripting Languages", code: "INTE 472", dow: 4, startH: 16, startM: 0, endH: 19, endM: 0, venue: "LAB 3", online: false },
+    ];
+
+    const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    // Returns the next Date for a given dow, startH, startM (from now, could be today if not yet passed)
+    function nextOccurrence(dow, h, m) {
+      const now = new Date();
+      const d = new Date(now);
+      d.setHours(h, m, 0, 0);
+      const diff = (dow - d.getDay() + 7) % 7;
+      if (diff === 0 && d <= now) {
+        d.setDate(d.getDate() + 7);
+      } else {
+        d.setDate(d.getDate() + diff);
+      }
+      return d;
+    }
+
+    function getClassWindow(cls) {
+      const start = nextOccurrence(cls.dow, cls.startH, cls.startM);
+      const end = new Date(start);
+      end.setHours(cls.endH, cls.endM, 0, 0);
+      // If end < start (shouldn't happen) push end to next day
+      if (end < start) end.setDate(end.getDate() + 1);
+      return { start, end };
+    }
+
+    // Build time label
+    function fmtTime(h, m) {
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const hh = h % 12 || 12;
+      return `${hh}:${String(m).padStart(2, '0')} ${ampm}`;
+    }
+
+    let activeIdx = null;
+    let cdInterval = null;
+
+    function findTarget() {
+      const now = new Date();
+      // 1. live class
+      for (const cls of schedule) {
+        const { start, end } = getClassWindow(cls);
+        if (now >= start && now < end) return cls.id;
+      }
+      // 2. next upcoming — sort by next start
+      const upcoming = schedule.map(cls => {
+        const { start } = getClassWindow(cls);
+        return { id: cls.id, start };
+      }).sort((a, b) => a.start - b.start);
+      return upcoming[0]?.id ?? -1;
+    }
+
+    function autoCountdown() {
+      const idx = findTarget();
+      if (idx === -1) return;
+      if (idx === activeIdx) return;
+      startCountdown(idx);
+    }
+
+    function startCountdown(idx) {
+      if (cdInterval) clearInterval(cdInterval);
+      activeIdx = idx;
+      document.getElementById('active-countdown-section').style.display = 'block';
+      const cls = schedule[idx];
+      document.getElementById('cd-class-name').textContent = cls.name;
+      const { start } = getClassWindow(cls);
+      document.getElementById('cd-class-detail').textContent =
+        `${DAY_NAMES[cls.dow]} · ${fmtTime(cls.startH, cls.startM)}–${fmtTime(cls.endH, cls.endM)} · ${cls.venue}`;
+      tick(idx);
+      cdInterval = setInterval(() => tick(idx), 1000);
+    }
+
+    function tick(idx) {
+      const cls = schedule[idx];
+      const { start, end } = getClassWindow(cls);
+      const now = new Date();
+
+      if (now >= end) {
+        clearInterval(cdInterval);
+        document.getElementById('cd-status-text').textContent = '✅ Done — loading next class…';
+        setTimeout(() => { activeIdx = null; autoCountdown(); }, 1200);
+        return;
+      }
+
+      let target, statusText, inClass = false;
+      if (now < start) {
+        target = start;
+        statusText = (start - now < 7200000) ? '⚡ Starting soon!' : '📅 Time until class starts';
+      } else {
+        target = end;
+        inClass = true;
+        statusText = cls.online ? '💻 Class in progress (Online) — time remaining' : '✍️ Class in progress — time remaining';
+      }
+
+      const diff = target - now;
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+      document.querySelectorAll('.rotor-box').forEach(b => b.classList.toggle('in-class-mode', inClass));
+
+      const statusEl = document.getElementById('cd-status-text');
+      statusEl.textContent = statusText;
+      statusEl.className = 'cd-status' + (inClass ? ' in-class' : '');
+    }
+
+    function refreshPills() {
+      const now = new Date();
+      schedule.forEach(cls => {
+        const pill = document.getElementById('pill-' + cls.id);
+        if (!pill) return;
+        const { start, end } = getClassWindow(cls);
+        // "live" = now is within this week's occurrence
+        const todayDow = now.getDay();
+        const sameDay = todayDow === cls.dow;
+        const nowMins = now.getHours() * 60 + now.getMinutes();
+        const startMins = cls.startH * 60 + cls.startM;
+        const endMins = cls.endH * 60 + cls.endM;
+
+        if (sameDay && nowMins >= startMins && nowMins < endMins) {
+          pill.className = 'pill pill-live';
+          pill.innerHTML = '<i class="fas fa-circle" style="font-size:0.5rem"></i> Live Now';
+        } else if (sameDay && nowMins >= endMins) {
+          pill.className = 'pill pill-ended';
+          pill.textContent = 'Done Today';
+        } else {
+          // sameDay but before start: class is still upcoming today
+          if (sameDay && nowMins < startMins) {
+            const minsLeft = startMins - nowMins;
+            pill.className = 'pill pill-upcoming';
+            if (minsLeft <= 60) {
+              pill.textContent = `In ${minsLeft} Min${minsLeft === 1 ? '' : 's'}`;
+            } else {
+              const hrsLeft = Math.floor(minsLeft / 60);
+              const remMins = minsLeft % 60;
+              pill.textContent = remMins > 0 ? `In ${hrsLeft}h ${remMins}m` : `In ${hrsLeft}h`;
+            }
+          } else {
+            // different day
+            const rawDiff = (cls.dow - now.getDay() + 7) % 7;
+            const daysUntil = rawDiff === 0 ? 7 : rawDiff;
+            pill.className = 'pill pill-upcoming';
+            if (daysUntil === 7) {
+              pill.textContent = 'Next Week';
+            } else if (daysUntil === 1) {
+              pill.textContent = 'Tomorrow';
+            } else {
+              pill.textContent = `In ${daysUntil} Days`;
+            }
+          }
+        }
+      });
+    }
+
+    // ── TOAST ──
+    function showToast(msg, duration = 3500) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), duration);
+    }
+
+    // ── BOOT ──
+    document.addEventListener('DOMContentLoaded', () => {
+      refreshPills();
+      autoCountdown();
+      setInterval(autoCountdown, 60000);
+      setInterval(refreshPills, 30000);
+    });
+  </script>
+</body>
+
+</html>

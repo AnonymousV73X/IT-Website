@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafePass – Low Fidelity Prototype</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── GLOBAL RESET & BASE ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #f0ede8;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      background: #1a1a1a;
+      color: #f0ede8;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #444;
+    }
+
+    .page-header h1 {
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .page-header .subtitle {
+      font-size: 11px;
+      color: #999;
+      letter-spacing: 2px;
+    }
+
+    .badge {
+      background: #444;
+      border: 2px solid #888;
+      padding: 6px 14px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #ccc;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      background: #2a2a2a;
+      color: #f0ede8;
+      padding: 14px 40px;
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      border-top: 2px dashed #555;
+      border-bottom: 2px dashed #555;
+      margin: 0;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .section-wrap {
+      padding: clamp(16px, 4vw, 40px);
+      border-bottom: 3px solid #bbb;
+    }
+
+    .screens-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    /* ── SCREEN FRAME (Phone) ── */
+    .phone-frame {
+      width: 260px;
+      max-width: 100%;
+      flex-shrink: 0;
+      border: 3px solid #1a1a1a;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 4px 4px 0 #1a1a1a;
+    }
+
+    .phone-frame--wide {
+      width: 280px;
+    }
+
+    .phone-frame--dark {
+      width: 260px;
+      background: #111;
+    }
+
+    .phone-notch {
+      background: #1a1a1a;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-notch::after {
+      content: '';
+      width: 60px;
+      height: 10px;
+      background: #333;
+      border-radius: 10px;
+    }
+
+    .screen-label {
+      background: #333;
+      color: #eee;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 5px 0;
+    }
+
+    .phone-body {
+      padding: 14px;
+      min-height: 420px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .phone-home-btn {
+      background: #1a1a1a;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-home-btn::after {
+      content: '';
+      width: 30px;
+      height: 8px;
+      border: 2px solid #666;
+      border-radius: 6px;
+    }
+
+    /* ── DESKTOP FRAME ── */
+    .desktop-frame {
+      width: 100%;
+      max-width: 720px;
+      flex-shrink: 0;
+      border: 3px solid #1a1a1a;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 4px 4px 0 #1a1a1a;
+    }
+
+    .desktop-bar {
+      background: #2a2a2a;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-r {
+      background: #888;
+    }
+
+    .dot-y {
+      background: #aaa;
+    }
+
+    .dot-g {
+      background: #bbb;
+    }
+
+    .url-bar {
+      flex: 1;
+      height: 18px;
+      background: #444;
+      border-radius: 3px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+    }
+
+    .url-text {
+      font-size: 9px;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    .desktop-body {
+      display: flex;
+      min-height: 480px;
+    }
+
+    .desktop-sidebar {
+      width: 160px;
+      background: #1a1a1a;
+      padding: 16px 0;
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo {
+      padding: 0 16px 16px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 12px;
+    }
+
+    .sidebar-logo .logo-box {
+      width: 100%;
+      height: 32px;
+      border: 2px solid #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #ccc;
+      letter-spacing: 2px;
+    }
+
+    .sidebar-item {
+      padding: 10px 16px;
+      font-size: 9px;
+      color: #aaa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-left: 3px solid transparent;
+      cursor: default;
+    }
+
+    .sidebar-item.active {
+      color: #eee;
+      border-left: 3px solid #eee;
+      background: #2a2a2a;
+    }
+
+    .desktop-content {
+      flex: 1;
+      padding: 20px;
+      background: #f5f5f5;
+      overflow: hidden;
+    }
+
+    /* ── WIREFRAME COMPONENTS ── */
+    .wf-appbar {
+      background: #ddd;
+      border: 2px solid #aaa;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .wf-appbar-title {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .wf-icon {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #888;
+      border-radius: 50%;
+    }
+
+    .wf-icon-sq {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #888;
+    }
+
+    .wf-card {
+      border: 2px solid #bbb;
+      background: #efefef;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .wf-card-dark {
+      border: 2px solid #888;
+      background: #ddd;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .wf-label {
+      font-size: 8px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .wf-text {
+      font-size: 10px;
+      color: #333;
+    }
+
+    .wf-text-sm {
+      font-size: 9px;
+      color: #555;
+    }
+
+    .wf-text-lg {
+      font-size: 13px;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .wf-input {
+      width: 100%;
+      height: 28px;
+      border: 2px solid #999;
+      background: #fff;
+      padding: 0 8px;
+      font-size: 9px;
+      color: #555;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .wf-btn {
+      width: 100%;
+      height: 32px;
+      border: 2px solid #333;
+      background: #333;
+      color: #fff;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 6px;
+      cursor: default;
+    }
+
+    .wf-btn-outline {
+      width: 100%;
+      height: 30px;
+      border: 2px dashed #888;
+      background: transparent;
+      color: #555;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 6px;
+      cursor: default;
+    }
+
+    .wf-divider {
+      border: none;
+      border-top: 1px dashed #bbb;
+      margin: 10px 0;
+    }
+
+    .wf-avatar {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #999;
+      background: #ddd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: #777;
+      flex-shrink: 0;
+    }
+
+    .wf-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .wf-col {
+      flex: 1;
+    }
+
+    .wf-qr {
+      width: 100px;
+      height: 100px;
+      border: 3px solid #333;
+      background: repeating-conic-gradient(#333 0% 25%, #fff 0% 50%) 0 0 / 8px 8px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .wf-otp {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin: 8px 0;
+    }
+
+    .wf-otp-box {
+      width: 28px;
+      height: 36px;
+      border: 2px solid #444;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .wf-status-green {
+      border: 3px solid #333;
+      background: #d4d4d4;
+      text-align: center;
+      padding: 16px;
+      margin-bottom: 8px;
+    }
+
+    .wf-status-red {
+      border: 3px solid #333;
+      background: #c0c0c0;
+      text-align: center;
+      padding: 16px;
+      margin-bottom: 8px;
+      border-style: dashed;
+    }
+
+    .wf-status-icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .wf-badge {
+      display: inline-block;
+      border: 1px solid #888;
+      padding: 2px 6px;
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #555;
+      background: #e0e0e0;
+      margin-right: 4px;
+    }
+
+    .wf-tag {
+      display: inline-block;
+      border: 1px dashed #888;
+      padding: 2px 6px;
+      font-size: 8px;
+      letter-spacing: 1px;
+      color: #666;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .wf-nav-bar {
+      display: flex;
+      border-top: 2px solid #ccc;
+      background: #eee;
+      margin-top: auto;
+    }
+
+    .wf-nav-item {
+      flex: 1;
+      padding: 8px 4px 4px;
+      text-align: center;
+      font-size: 7px;
+      color: #777;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-right: 1px solid #ccc;
+    }
+
+    .wf-nav-item:last-child {
+      border-right: none;
+    }
+
+    .wf-nav-item.active {
+      color: #222;
+      font-weight: bold;
+      background: #ddd;
+    }
+
+    .wf-nav-icon {
+      width: 16px;
+      height: 16px;
+      border: 1px solid #aaa;
+      border-radius: 2px;
+      margin: 0 auto 3px;
+    }
+
+    .wf-circle-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .wf-circle-status {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #888;
+      flex-shrink: 0;
+    }
+
+    .wf-circle-status.approved {
+      background: #555;
+    }
+
+    .wf-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .wf-stat-box {
+      border: 2px solid #bbb;
+      background: #efefef;
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .wf-stat-num {
+      font-size: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .wf-stat-lbl {
+      font-size: 8px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .wf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9px;
+    }
+
+    .wf-table th {
+      background: #ddd;
+      border: 1px solid #bbb;
+      padding: 6px 8px;
+      text-align: left;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 8px;
+      color: #555;
+    }
+
+    .wf-table td {
+      border: 1px solid #ccc;
+      padding: 6px 8px;
+      color: #333;
+      background: #fafafa;
+    }
+
+    .wf-table tr:nth-child(even) td {
+      background: #f0f0f0;
+    }
+
+    .wf-filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .wf-filter {
+      border: 2px solid #bbb;
+      background: #fff;
+      padding: 5px 12px;
+      font-size: 9px;
+      color: #555;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .wf-filter.active {
+      border: 2px solid #333;
+      background: #333;
+      color: #fff;
+    }
+
+    .wf-section-head {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .wf-progress {
+      height: 8px;
+      background: #ddd;
+      border: 1px solid #bbb;
+      margin-bottom: 4px;
+      position: relative;
+    }
+
+    .wf-progress-fill {
+      position: absolute;
+      height: 100%;
+      background: #555;
+    }
+
+    .wf-select {
+      width: 100%;
+      height: 28px;
+      border: 2px solid #999;
+      background: #fff;
+      padding: 0 8px;
+      font-size: 9px;
+      color: #555;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wf-select::after {
+      content: '▼';
+      font-size: 8px;
+      color: #888;
+    }
+
+    .annotation {
+      font-size: 10px;
+      color: #666;
+      font-style: italic;
+      border-left: 3px solid #aaa;
+      padding-left: 10px;
+      margin: 6px 0;
+    }
+
+    .flow-arrow {
+      text-align: center;
+      font-size: 20px;
+      color: #888;
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    /* ── SCREEN LABEL STRIP ── */
+    .screen-info {
+      width: 260px;
+      flex-shrink: 0;
+    }
+
+    .screen-info--narrow {
+      width: 200px;
+    }
+
+    .screen-info h3 {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #333;
+    }
+
+    .screen-info p {
+      font-size: 10px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .screen-info ul {
+      font-size: 10px;
+      color: #666;
+      padding-left: 16px;
+      line-height: 1.8;
+    }
+
+    /* ── FLOW DIAGRAM ── */
+    .flow-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .flow-box {
+      border: 2px solid #666;
+      padding: 8px 12px;
+      font-size: 9px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: #eee;
+      min-width: 80px;
+    }
+
+    .flow-connector {
+      font-size: 18px;
+      color: #888;
+      padding-top: 10px;
+    }
+
+    /* ── USSD SCREEN ── */
+    .wf-ussd {
+      background: #111;
+      border: 3px solid #333;
+      color: #0f0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      padding: 12px;
+      min-height: 160px;
+      line-height: 1.8;
+    }
+
+    .note-box {
+      background: #e8e8e8;
+      border: 2px dashed #aaa;
+      padding: 12px 16px;
+      font-size: 10px;
+      color: #555;
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+
+    .note-box strong {
+      color: #222;
+    }
+
+    /* ── TITLE BLOCK ── */
+    .title-block {
+      padding: 40px;
+      background: #1a1a1a;
+      color: #f0ede8;
+      text-align: center;
+      border-bottom: 4px solid #444;
+    }
+
+    .title-block h2 {
+      font-size: 28px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .title-block p {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 3px;
+    }
+
+    .interface-tag {
+      display: inline-block;
+      border: 2px solid #666;
+      padding: 4px 12px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-top: 12px;
+    }
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet: 768px–1024px */
+    @media (max-width: 1024px) {
+      .page-header {
+        padding: 16px 20px;
+        gap: 12px;
+      }
+
+      .page-header h1 {
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+
+      .page-header .subtitle {
+        font-size: 10px;
+      }
+
+      .section-title {
+        padding: 12px 20px;
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
+      .section-wrap {
+        padding: 24px 20px;
+      }
+
+      .title-block {
+        padding: 28px 20px;
+      }
+
+      .title-block h2 {
+        font-size: 20px;
+        letter-spacing: 3px;
+      }
+
+      .screens-row {
+        gap: 20px;
+      }
+
+      /* Phone frames: scale down slightly */
+      .phone-frame {
+        width: 220px;
+      }
+
+      /* Desktop frame: full width */
+      .desktop-frame {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .desktop-sidebar {
+        width: 130px;
+      }
+
+      .desktop-sidebar .sidebar-item {
+        font-size: 8px;
+        padding: 8px 10px;
+      }
+
+      .wf-stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .screen-info {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .flow-wrap {
+        gap: 6px;
+      }
+
+      .flow-box {
+        font-size: 8px;
+        min-width: 60px;
+        padding: 6px 8px;
+      }
+    }
+
+    /* Mobile: max 767px */
+    @media (max-width: 767px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 16px;
+        gap: 8px;
+      }
+
+      .page-header h1 {
+        font-size: 13px;
+        letter-spacing: 1px;
+      }
+
+      .page-header .subtitle {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .badge {
+        font-size: 9px;
+        padding: 4px 10px;
+      }
+
+      .section-title {
+        padding: 10px 16px;
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      .section-wrap {
+        padding: 16px;
+      }
+
+      .title-block {
+        padding: 20px 16px;
+      }
+
+      .title-block h2 {
+        font-size: 16px;
+        letter-spacing: 2px;
+      }
+
+      .title-block p {
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      .interface-tag {
+        font-size: 8px;
+        letter-spacing: 1px;
+        padding: 4px 8px;
+      }
+
+      /* Stack all screens vertically on mobile */
+      .screens-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+
+      /* Phone frames: fluid width on mobile */
+      .phone-frame {
+        width: 100%;
+        max-width: 320px;
+        flex-shrink: 1;
+      }
+
+      /* Desktop frames: full width, scroll sideways if needed */
+      .desktop-frame {
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+      }
+
+      /* Hide sidebar on mobile, show as top nav bar */
+      .desktop-body {
+        flex-direction: column;
+      }
+
+      .desktop-sidebar {
+        width: 100%;
+        padding: 8px 0;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0;
+      }
+
+      .desktop-sidebar .sidebar-logo {
+        display: none;
+      }
+
+      .desktop-sidebar .sidebar-item {
+        font-size: 8px;
+        padding: 8px 10px;
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+      }
+
+      .desktop-sidebar .sidebar-item.active {
+        border-left: none;
+        border-bottom: 3px solid #eee;
+        background: #2a2a2a;
+      }
+
+      .desktop-content {
+        padding: 12px;
+        overflow-x: auto;
+      }
+
+      /* Stat grid: 2 cols on mobile */
+      .wf-stat-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .wf-stat-num {
+        font-size: 16px;
+      }
+
+      /* Admin tables: scrollable */
+      .wf-table {
+        font-size: 8px;
+      }
+
+      .wf-table th,
+      .wf-table td {
+        padding: 4px 6px;
+      }
+
+      /* Screen info panels: full width */
+      .screen-info {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .screen-info h3 {
+        font-size: 11px;
+      }
+
+      .screen-info p,
+      .screen-info li {
+        font-size: 10px;
+      }
+
+      .note-box {
+        font-size: 9px;
+        padding: 10px 12px;
+      }
+
+      .annotation {
+        font-size: 9px;
+      }
+
+      /* Flow overview: wrap tightly */
+      .flow-wrap {
+        gap: 4px;
+        justify-content: center;
+      }
+
+      .flow-box {
+        font-size: 8px;
+        min-width: 54px;
+        padding: 5px 6px;
+      }
+
+      .flow-connector {
+        font-size: 14px;
+        padding-top: 8px;
+      }
+
+      /* OTP boxes: slightly smaller */
+      .wf-otp-box {
+        width: 32px;
+        height: 38px;
+        font-size: 14px;
+      }
+
+      /* Admin 2-col grids: stack */
+      .desktop-content>div[style*="grid-template-columns:1fr 1fr"],
+      .desktop-content>div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Filter row: wrap */
+      .wf-filter-row {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .wf-filter {
+        font-size: 8px;
+        padding: 4px 8px;
+      }
+
+      /* Section headings inside screens */
+      .wf-section-head {
+        font-size: 9px;
+      }
+
+      /* Legend grid: single col */
+      div[style*="grid-template-columns:repeat(3"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Very small phones */
+    @media (max-width: 380px) {
+      .phone-frame {
+        max-width: 280px;
+      }
+
+      .wf-otp {
+        gap: 4px;
+      }
+
+      .wf-otp-box {
+        width: 28px;
+        height: 34px;
+        font-size: 13px;
+      }
+
+      .title-block h2 {
+        font-size: 14px;
+      }
+    }
+
+    /* Phone frame variants — responsive overrides */
+    @media (max-width: 767px) {
+
+      .phone-frame--wide,
+      .phone-frame--dark {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .screen-info--narrow {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div>
+      <h1>SafePass — Low Fidelity Prototype</h1>
+      <div class="subtitle">INTE 451: Analysis &amp; Design of User Interface &nbsp;·&nbsp; Digital Pickup Authorization
+        Platform</div>
+    </div>
+    <div class="badge">Lo-Fi Wireframes</div>
+  </div>
+
+  <!-- =====================================================================
+     FLOW OVERVIEW
+     ===================================================================== -->
+  <div class="title-block">
+    <h2>System Flow Overview</h2>
+    <p>Four Interfaces · Six Core Screens · Complete Pickup Journey</p>
+    <div class="interface-tag">Parent App → Picker App → Teacher Gate App → Admin Dashboard</div>
+  </div>
+  <div class="section-wrap" style="background:#1a1a1a;">
+    <div class="flow-wrap" style="justify-content:center;">
+      <div class="flow-box" style="background:#444; color:#eee; border-color:#888;">① Parent<br>Creates Auth</div>
+      <div class="flow-connector" style="color:#666;">→</div>
+      <div class="flow-box" style="background:#444; color:#eee; border-color:#888;">② QR/OTP<br>Sent to Picker</div>
+      <div class="flow-connector" style="color:#666;">→</div>
+      <div class="flow-box" style="background:#444; color:#eee; border-color:#888;">③ Picker<br>Arrives at Gate</div>
+      <div class="flow-connector" style="color:#666;">→</div>
+      <div class="flow-box" style="background:#444; color:#eee; border-color:#888;">④ Teacher<br>Scans &amp; Verifies
+      </div>
+      <div class="flow-connector" style="color:#666;">→</div>
+      <div class="flow-box" style="background:#444; color:#eee; border-color:#888;">⑤ Parent<br>Gets Notified</div>
+      <div class="flow-connector" style="color:#666;">→</div>
+      <div class="flow-box" style="background:#444; color:#eee; border-color:#888;">⑥ Admin<br>Audit Log</div>
+    </div>
+  </div>
+
+
+  <!-- =====================================================================
+     INTERFACE 1: PARENT APP
+     ===================================================================== -->
+  <div class="section-title">Interface 01 — Parent / Guardian App (Mobile)</div>
+
+  <!-- SCREEN 1A: LOGIN -->
+  <div class="section-wrap">
+    <div class="screens-row">
+
+      <!-- Screen 1A-i: Phone + OTP -->
+      <div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="screen-label">1A-i · Step 1 — Phone &amp; OTP</div>
+          <div class="phone-body">
+            <div class="wf-appbar">
+              <span class="wf-appbar-title">SAFEPASS</span>
+              <div style="font-size:9px;color:#888;">EN | SW</div>
+            </div>
+            <div style="text-align:center; padding:8px 0 4px;">
+              <div
+                style="width:52px;height:52px;border:3px solid #333;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#555;">
+                LOGO</div>
+              <div style="font-size:11px;font-weight:bold;letter-spacing:2px;">SAFEPASS</div>
+              <div style="font-size:8px;color:#888;letter-spacing:1px;margin-top:2px;">DIGITAL PICKUP AUTHORIZATION
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;gap:6px;margin:8px 0;">
+              <div style="width:20px;height:6px;background:#333;border-radius:3px;"></div>
+              <div style="width:8px;height:6px;background:#ccc;border-radius:3px;"></div>
+            </div>
+            <div style="font-size:9px;text-align:center;color:#888;margin-bottom:8px;letter-spacing:1px;">STEP 1 OF 2
+            </div>
+            <hr class="wf-divider">
+            <div class="wf-label">Mobile Number</div>
+            <div class="wf-input">+254 7XX XXX XXX</div>
+            <div class="wf-btn-outline" style="margin-bottom:8px;">Send OTP via SMS</div>
+            <div class="wf-label">Enter OTP (sent to your phone)</div>
+            <div class="wf-otp">
+              <div class="wf-otp-box">—</div>
+              <div class="wf-otp-box">—</div>
+              <div class="wf-otp-box">—</div>
+              <div class="wf-otp-box">—</div>
+              <div class="wf-otp-box">—</div>
+              <div class="wf-otp-box">—</div>
+            </div>
+            <div class="annotation" style="margin-bottom:8px;">Free SMS · No data needed · Expires in 5 min</div>
+            <div class="wf-btn">Verify &amp; Continue →</div>
+            <hr class="wf-divider">
+            <div class="annotation">Feature phone? Dial *384# instead</div>
+            <div class="wf-text-sm" style="text-align:center; margin-top:4px;">Swahili | English</div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div style="display:flex;align-items:center;padding-top:180px;">
+        <div style="font-size:28px;color:#888;">→</div>
+      </div>
+
+      <!-- Screen 1A-ii: National ID Verification -->
+      <div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="screen-label">1A-ii · Step 2 — National ID Verification</div>
+          <div class="phone-body">
+            <div class="wf-appbar">
+              <div class="wf-icon-sq"></div>
+              <span class="wf-appbar-title">VERIFY IDENTITY</span>
+              <div style="width:20px;"></div>
+            </div>
+            <div style="display:flex;justify-content:center;gap:6px;margin:8px 0;">
+              <div style="width:8px;height:6px;background:#ccc;border-radius:3px;"></div>
+              <div style="width:20px;height:6px;background:#333;border-radius:3px;"></div>
+            </div>
+            <div style="font-size:9px;text-align:center;color:#888;margin-bottom:8px;letter-spacing:1px;">STEP 2 OF 2 —
+              FIRST LOGIN ONLY</div>
+            <div class="wf-card-dark" style="margin-bottom:10px;">
+              <div class="wf-text-sm">To keep students safe, we verify every parent's identity once using your
+                <strong>Kenyan National ID</strong>.
+              </div>
+            </div>
+            <div class="wf-label">National ID Number</div>
+            <div class="wf-input">Enter your ID number (e.g. 12345678)</div>
+            <div class="wf-label">Full Name (as on ID)</div>
+            <div class="wf-input">Grace Wanjiku Kamau</div>
+            <hr class="wf-divider">
+            <div class="wf-label">ID Card Photo (optional)</div>
+            <div
+              style="border:2px dashed #999;height:68px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;background:#f5f5f5;margin-bottom:8px;">
+              <div style="font-size:18px;color:#aaa;">📷</div>
+              <div style="font-size:8px;color:#aaa;letter-spacing:1px;text-transform:uppercase;">Tap to photograph your
+                ID card</div>
+            </div>
+            <div class="annotation" style="margin-bottom:8px;">Speeds up admin approval. Not mandatory.</div>
+            <div class="wf-btn">Submit &amp; Enter SafePass →</div>
+            <div class="wf-btn-outline">Skip photo — submit ID number only</div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="screen-info">
+        <h3>1A-i &amp; 1A-ii — Login &amp; National ID</h3>
+        <p>Registration is a two-step process on first login only. After that, returning users go straight to the home
+          screen after the OTP step.</p>
+        <ul>
+          <li><strong>Step 1 (1A-i):</strong> Phone number → free SMS OTP → verify. No password ever.</li>
+          <li><strong>Step 2 (1A-ii):</strong> National ID number + full name. This is the one-time identity check that
+            ties every parent to a real, verifiable person before any authorization can be issued.</li>
+          <li>Progress dots (1 of 2, 2 of 2) show the user exactly where they are — no surprise steps</li>
+          <li>ID card photo is optional — admin can still manually verify with just the ID number</li>
+          <li>Step 2 only appears on first login — not on every subsequent login</li>
+        </ul>
+        <div class="note-box">
+          <strong>Why this matters:</strong> In As-Is Scenario 1, Faith's identity was never verified at any point in
+          the process. This step ensures every parent in the system is a named, verifiable person before they can
+          authorize anyone to collect a child.
+        </div>
+        <div class="note-box" style="margin-top:8px;">
+          <strong>Jakob's Law:</strong> OTP via SMS mirrors M-Pesa, eCitizen, and KCB flows — zero new learning
+          required.
+        </div>
+      </div>
+
+      <!-- Screen 1B: Home Dashboard -->
+      <div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="screen-label">1B · Parent Home</div>
+          <div class="phone-body">
+            <div class="wf-appbar">
+              <div class="wf-icon"></div>
+              <span class="wf-appbar-title">HOME</span>
+              <div class="wf-icon-sq"></div>
+            </div>
+            <div class="wf-card">
+              <div class="wf-label">Student</div>
+              <div class="wf-text-lg">Amina Wanjiku</div>
+              <div class="wf-text-sm">Form 3A · Moi Kabarak High School</div>
+              <hr class="wf-divider">
+              <div class="wf-row">
+                <div class="wf-badge">PICKUP CIRCLE</div>
+                <div class="wf-text-sm">2 approved</div>
+              </div>
+            </div>
+            <div class="wf-btn">+ Authorize Pickup</div>
+            <div class="wf-section-head" style="margin-top:4px;">Recent Activity</div>
+            <div class="wf-card">
+              <div class="wf-row">
+                <div class="wf-icon" style="flex-shrink:0;"></div>
+                <div class="wf-col">
+                  <div class="wf-label">Last Pickup</div>
+                  <div class="wf-text">Faith Njeri · 14 Mar</div>
+                  <div class="wf-text-sm">Collected at 4:32 PM ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="wf-card">
+              <div class="wf-label">Upcoming Event</div>
+              <div class="wf-text">Closing Day — 21 April 2026</div>
+              <div class="wf-text-sm">No auth set yet</div>
+            </div>
+            <div class="wf-nav-bar">
+              <div class="wf-nav-item active">
+                <div class="wf-nav-icon"></div>Home
+              </div>
+              <div class="wf-nav-item">
+                <div class="wf-nav-icon"></div>Circle
+              </div>
+              <div class="wf-nav-item">
+                <div class="wf-nav-icon"></div>Auth
+              </div>
+              <div class="wf-nav-item">
+                <div class="wf-nav-icon"></div>Alerts
+              </div>
+            </div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="screen-info">
+        <h3>1B — Home</h3>
+        <p>Parent's primary dashboard. Shows their linked student, Pickup Circle status, a prominent "Authorize Pickup"
+          CTA, and a recent activity feed.</p>
+        <ul>
+          <li>Student card with school &amp; form</li>
+          <li>Pickup Circle quick status</li>
+          <li>Large authorize button — most frequent action</li>
+          <li>Recent pickup log entry with timestamp</li>
+          <li>Upcoming school event reminder</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCREEN 1C: PICKUP CIRCLE & 1D: AUTHORIZE -->
+  <div class="section-wrap" style="background:#f8f6f2;">
+    <div class="screens-row">
+
+      <!-- Screen 1C: Pickup Circle -->
+      <div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="screen-label">1C · Pickup Circle</div>
+          <div class="phone-body">
+            <div class="wf-appbar">
+              <div class="wf-icon-sq"></div>
+              <span class="wf-appbar-title">PICKUP CIRCLE</span>
+              <div class="wf-icon"></div>
+            </div>
+            <div class="wf-section-head">Approved Members</div>
+            <div class="wf-circle-item">
+              <div class="wf-avatar">F·N</div>
+              <div class="wf-col">
+                <div class="wf-text" style="font-weight:bold;">Faith Njeri</div>
+                <div class="wf-text-sm">Aunt · +254 722 XXX</div>
+                <div class="wf-tag">APPROVED</div>
+              </div>
+              <div class="wf-circle-status approved"></div>
+            </div>
+            <div class="wf-circle-item">
+              <div class="wf-avatar">B·J</div>
+              <div class="wf-col">
+                <div class="wf-text" style="font-weight:bold;">Baba James</div>
+                <div class="wf-text-sm">Grandfather · +254 710 XXX</div>
+                <div class="wf-tag">APPROVED</div>
+              </div>
+              <div class="wf-circle-status approved"></div>
+            </div>
+            <div class="wf-circle-item">
+              <div class="wf-avatar">?</div>
+              <div class="wf-col">
+                <div class="wf-text" style="font-weight:bold; color:#888;">[Pending]</div>
+                <div class="wf-text-sm">ID verification needed</div>
+                <div class="wf-tag" style="border-color:#aaa;color:#aaa;">PENDING</div>
+              </div>
+              <div class="wf-circle-status"></div>
+            </div>
+            <hr class="wf-divider">
+            <div class="wf-btn-outline">+ Add Circle Member</div>
+            <div class="annotation" style="margin-top:6px;">Members without smartphones: physical ID verification at
+              school office</div>
+            <div class="wf-nav-bar">
+              <div class="wf-nav-item">
+                <div class="wf-nav-icon"></div>Home
+              </div>
+              <div class="wf-nav-item active">
+                <div class="wf-nav-icon"></div>Circle
+              </div>
+              <div class="wf-nav-item">
+                <div class="wf-nav-icon"></div>Auth
+              </div>
+              <div class="wf-nav-item">
+                <div class="wf-nav-icon"></div>Alerts
+              </div>
+            </div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <div class="screen-info">
+        <h3>1C — Pickup Circle</h3>
+        <p>Parent's pre-verified list of trusted people who can collect their child. Set up once, valid for the academic
+          year.</p>
+        <ul>
+          <li>Shows all circle members with status</li>
+          <li>Approved (filled dot) vs Pending (empty dot)</li>
+          <li>Each member verified via National ID selfie</li>
+          <li>Offline-capable: school office fallback for elderly/non-smartphone members</li>
+          <li>Admin must approve each member before they're active</li>
+        </ul>
+      </div>
+
+      <!-- Screen 1D: Authorize Pickup -->
+      <div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="screen-label">1D · Authorize Pickup</div>
+          <div class="phone-body">
+            <div class="wf-appbar">
+              <div class="wf-icon-sq"></div>
+              <span class="wf-appbar-title">NEW AUTHORIZATION</span>
+              <div style="width:20px;"></div>
+            </div>
+
+            <div class="wf-label">Event Type</div>
+            <div class="wf-select">Closing Day — 21 April 2026</div>
+
+            <div class="wf-label">Authorized Picker</div>
+            <div class="wf-select">Faith Njeri (Aunt) ✓</div>
+
+            <div class="wf-label">Time Window</div>
+            <div style="display:flex;gap:6px;margin-bottom:8px;">
+              <div class="wf-input" style="margin-bottom:0;width:50%;">3:00 PM</div>
+              <div class="wf-input" style="margin-bottom:0;width:50%;">6:00 PM</div>
+            </div>
+
+            <div class="wf-label">Instructions (optional)</div>
+            <div class="wf-input" style="height:44px;">Amina's trunk in Dorm 3 Block B...</div>
+
+            <hr class="wf-divider">
+            <div class="wf-card-dark" style="margin-bottom:8px;">
+              <div class="wf-label" style="font-size:7px;">Token Delivery</div>
+              <div class="wf-text-sm">QR → Faith's SafePass app</div>
+              <div class="wf-text-sm">OTP → Faith's SMS (+254 722 XXX)</div>
+            </div>
+            <div class="wf-btn">Confirm &amp; Send</div>
+            <div class="wf-btn-outline">Cancel</div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <div class="screen-info">
+        <h3>1D — Authorize Pickup</h3>
+        <p>Parent creates a time-bound, event-specific authorization in ~90 seconds. The system generates a QR code and
+          6-digit OTP automatically.</p>
+        <ul>
+          <li>Event type: Closing Day / Half-Term / Emergency / Visiting Day</li>
+          <li>Picker selected from pre-approved Pickup Circle only</li>
+          <li>Time window limits token validity</li>
+          <li>Optional instructions for the picker</li>
+          <li>Token delivered via app (QR) + SMS (OTP fallback)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================================
+     INTERFACE 2: AUTHORIZED PICKER APP
+     ===================================================================== -->
+  <div class="section-title">Interface 02 — Authorized Picker App (Mobile)</div>
+
+  <div class="section-wrap">
+    <div class="screens-row">
+
+      <!-- Screen 2A: Token Received -->
+      <div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="screen-label">2A · Token Received</div>
+          <div class="phone-body">
+            <div class="wf-appbar">
+              <div class="wf-icon-sq"></div>
+              <span class="wf-appbar-title">MY TOKEN</span>
+              <div class="wf-icon"></div>
+            </div>
+            <div class="wf-card" style="text-align:center;">
+              <div class="wf-label">Authorized to Collect</div>
+              <div class="wf-text-lg" style="font-size:14px;">Amina Wanjiku</div>
+              <div class="wf-text-sm">Form 3A ·  Moi Kabarak</div>
+              <hr class="wf-divider">
+              <div class="wf-label">Valid Window</div>
+              <div class="wf-text">3:00 PM – 6:00 PM · 21 April 2026</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="wf-label" style="text-align:center;">QR CODE (Tap to enlarge)</div>
+            <div class="wf-qr" style="margin-bottom:10px;"></div>
+            <div class="wf-label" style="text-align:center;">OR — SMS OTP BACKUP</div>
+            <div class="wf-otp">
+              <div class="wf-otp-box">4</div>
+              <div class="wf-otp-box">7</div>
+              <div class="wf-otp-box">2</div>
+              <div class="wf-otp-box">9</div>
+              <div class="wf-otp-box">1</div>
+              <div class="wf-otp-box">3</div>
+            </div>
+            <div class="annotation" style="text-align:center;">Single-use · Expires at 6:00 PM</div>
+            <div class="wf-btn-outline" style="margin-top:8px;">Share via SMS</div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <div class="screen-info">
+        <h3>2A — Picker Token Screen</h3>
+        <p>What the authorized picker sees when they arrive at the school gate. They show either the QR code or read out
+          the 6-digit OTP to the teacher.</p>
+        <ul>
+          <li>QR code displayed full-screen on tap (for easy scanning)</li>
+          <li>OTP as backup — readable aloud, no data needed</li>
+          <li>Token is single-use — consumed after one successful verification</li>
+          <li>Time window displayed prominently</li>
+          <li>Works offline — QR/OTP pre-downloaded when auth was sent</li>
+        </ul>
+        <div class="note-box">
+          <strong>No-smartphone fallback:</strong> Mzee Peter (grandfather) receives the 6-digit OTP via plain SMS on
+          his feature phone. He reads it aloud at the gate. No app required.
+        </div>
+      </div>
+
+      <!-- USSD Screen -->
+      <div>
+        <div class="phone-frame phone-frame--dark">
+          <div class="phone-notch" style="background:#000;"></div>
+          <div class="screen-label" style="background:#000; color:#0a0;">2B · Feature Phone – USSD</div>
+          <div class="phone-body" style="background:#111; padding:10px;">
+            <div class="wf-ussd">
+              SafePass Kenya<br>
+              ────────────────<br>
+              Karibu / Welcome<br><br>
+              1. Ruhusa ya Kuchukua<br>
+              &nbsp;&nbsp; (Authorize Pickup)<br>
+              2. Angalia Token<br>
+              &nbsp;&nbsp; (Check My Token)<br>
+              3. Wasiliana Shule<br>
+              &nbsp;&nbsp; (Contact School)<br>
+              4. Msaada / Help<br><br>
+              ────────────────<br>
+              Chagua / Select: _<br><br>
+              *384# · Free of charge
+            </div>
+            <div style="margin-top:10px;">
+              <div class="wf-ussd" style="min-height:80px;">
+                OTP yako:<br>
+                &nbsp;&nbsp;&nbsp;<span style="font-size:16px; letter-spacing:4px;">4 7 2 9 1 3</span><br><br>
+                Mwambie askari<br>
+                nambari hii.<br>
+                Inaisha: 6:00 PM
+              </div>
+            </div>
+          </div>
+          <div class="phone-home-btn" style="background:#222;"></div>
+        </div>
+      </div>
+
+      <div class="screen-info">
+        <h3>2B — USSD / Feature Phone</h3>
+        <p>For pickers without smartphones (grandparents, elderly relatives) — the USSD layer delivers the OTP via a
+          simple menu in both Swahili and English.</p>
+        <ul>
+          <li>Dial *384# — free of charge, no data needed</li>
+          <li>Menu in Swahili (primary) + English</li>
+          <li>OTP displayed on-screen and also read via voice prompt</li>
+          <li>Covers the 38% of alt-pickers who have no smartphone (per survey)</li>
+          <li>Parent can also use USSD to authorize if their data is off</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================================
+     INTERFACE 3: TEACHER / GATE APP
+     ===================================================================== -->
+  <div class="section-title">Interface 03 — Class Teacher / Gate Verification App (Mobile/Tablet)</div>
+
+  <div class="section-wrap" style="background:#f8f6f2;">
+    <div class="screens-row">
+
+      <!-- Screen 3A: Scan -->
+      <div>
+        <div class="phone-frame phone-frame--wide">
+          <div class="phone-notch"></div>
+          <div class="screen-label">3A · Scan / Enter OTP</div>
+          <div class="phone-body" style="min-height:460px;">
+            <div class="wf-appbar">
+              <div class="wf-icon-sq"></div>
+              <span class="wf-appbar-title">GATE VERIFY</span>
+              <div class="wf-text-sm">21 April 2026</div>
+            </div>
+            <!-- Scanner box -->
+            <div
+              style="border:3px dashed #888;height:160px;display:flex;align-items:center;justify-content:center;background:#f0f0f0;margin-bottom:10px;flex-direction:column;gap:8px;">
+              <div style="width:80px;height:80px;border:3px solid #333;position:relative;">
+                <div
+                  style="position:absolute;top:0;left:0;width:16px;height:16px;border-top:3px solid #333;border-left:3px solid #333;">
+                </div>
+                <div
+                  style="position:absolute;top:0;right:0;width:16px;height:16px;border-top:3px solid #333;border-right:3px solid #333;">
+                </div>
+                <div
+                  style="position:absolute;bottom:0;left:0;width:16px;height:16px;border-bottom:3px solid #333;border-left:3px solid #333;">
+                </div>
+                <div
+                  style="position:absolute;bottom:0;right:0;width:16px;height:16px;border-bottom:3px solid #333;border-right:3px solid #333;">
+                </div>
+                <div style="position:absolute;top:50%;left:0;right:0;height:2px;background:#888;"></div>
+              </div>
+              <div style="font-size:9px;color:#888;letter-spacing:1px;">POINT AT QR CODE</div>
+            </div>
+            <div class="wf-label" style="text-align:center;">— OR ENTER OTP MANUALLY —</div>
+            <div class="wf-otp" style="margin:8px 0;">
+              <div class="wf-otp-box" style="width:32px;height:40px;font-size:16px;">_</div>
+              <div class="wf-otp-box" style="width:32px;height:40px;font-size:16px;">_</div>
+              <div class="wf-otp-box" style="width:32px;height:40px;font-size:16px;">_</div>
+              <div class="wf-otp-box" style="width:32px;height:40px;font-size:16px;">_</div>
+              <div class="wf-otp-box" style="width:32px;height:40px;font-size:16px;">_</div>
+              <div class="wf-otp-box" style="width:32px;height:40px;font-size:16px;">_</div>
+            </div>
+            <div class="wf-btn">Verify</div>
+            <hr class="wf-divider">
+            <div class="wf-section-head">Today's Releases — Form 3A</div>
+            <div class="wf-card">
+              <div class="wf-row">
+                <div class="wf-col">
+                  <div class="wf-text-sm">Amina Wanjiku · PENDING</div>
+                </div>
+                <div class="wf-badge">WAITING</div>
+              </div>
+            </div>
+            <div class="wf-card" style="opacity:0.5;">
+              <div class="wf-text-sm">Brian Otieno · RELEASED 3:12 PM</div>
+            </div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <div class="screen-info">
+        <h3>3A — Gate Scan Screen</h3>
+        <p>The teacher or gate security opens this screen on their phone or tablet. One tap to scan QR, or type the
+          6-digit OTP if picker has no app.</p>
+        <ul>
+          <li>Large QR scanner fills the screen — fast to use</li>
+          <li>Manual OTP entry as fallback</li>
+          <li>Class list shows pending vs released students</li>
+          <li>Works offline for QR verification</li>
+          <li>Designed for one-hand use under time pressure</li>
+        </ul>
+        <div class="note-box">
+          <strong>On closing day:</strong> teacher processes 20-30 pickups in 3 hours. Each scan must be under 10
+          seconds. No complex flows.
+        </div>
+      </div>
+
+      <!-- Screen 3B: AUTHORIZED -->
+      <div>
+        <div class="phone-frame phone-frame--wide">
+          <div class="phone-notch"></div>
+          <div class="screen-label">3B · AUTHORIZED Result</div>
+          <div class="phone-body" style="min-height:460px;">
+            <div class="wf-status-green" style="margin-top:8px;">
+              <span class="wf-status-icon">✓</span>
+              <div style="font-size:18px;font-weight:bold;letter-spacing:3px;margin-bottom:6px;">AUTHORIZED</div>
+              <div class="wf-label">Authorized Picker</div>
+              <div class="wf-text-lg">Faith Njeri</div>
+              <hr class="wf-divider">
+              <div class="wf-row" style="justify-content:center;">
+                <div class="wf-avatar" style="width:50px;height:50px;font-size:10px;">PHOTO</div>
+                <div style="text-align:left;">
+                  <div class="wf-label">Student to Release</div>
+                  <div class="wf-text-lg">Amina Wanjiku</div>
+                  <div class="wf-text-sm">Form 3A</div>
+                </div>
+              </div>
+              <hr class="wf-divider">
+              <div class="wf-label">Valid Until</div>
+              <div class="wf-text">6:00 PM · 21 April 2026</div>
+              <div class="wf-label" style="margin-top:6px;">Authorized by</div>
+              <div class="wf-text-sm">Grace Wanjiku (Mother)</div>
+            </div>
+            <div class="wf-btn" style="background:#444;">✓ Confirm Release</div>
+            <div class="wf-btn-outline">Flag Issue</div>
+            <div class="annotation">Token consumed after release confirmation</div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <!-- Screen 3C: DECLINED -->
+      <div>
+        <div class="phone-frame phone-frame--wide">
+          <div class="phone-notch"></div>
+          <div class="screen-label">3C · DECLINED Result</div>
+          <div class="phone-body" style="min-height:460px;">
+            <div class="wf-status-red" style="margin-top:8px;">
+              <span class="wf-status-icon">✗</span>
+              <div style="font-size:18px;font-weight:bold;letter-spacing:3px;margin-bottom:6px;">DECLINED</div>
+              <div class="wf-label">Reason</div>
+              <div class="wf-text">Token expired / Invalid</div>
+              <hr class="wf-divider">
+              <div class="wf-text-sm">This token is no longer valid or does not match any active authorization.</div>
+            </div>
+            <div class="wf-btn-outline" style="margin-top:8px;">Contact Administrator</div>
+            <div class="wf-btn-outline">Request Emergency Override</div>
+            <hr class="wf-divider">
+            <div class="wf-section-head">Admin Emergency Override</div>
+            <div class="wf-card">
+              <div class="wf-text-sm">If an urgent situation warrants release to an unlisted person, the administrator
+                issues an emergency override token from the admin dashboard.</div>
+            </div>
+            <div class="annotation">All declined attempts are logged in D4: Audit Logs</div>
+          </div>
+          <div class="phone-home-btn"></div>
+        </div>
+      </div>
+
+      <div class="screen-info screen-info--narrow">
+        <h3>3B / 3C — Result Screens</h3>
+        <p><strong>AUTHORIZED (3B):</strong> Large, clear green-equivalent (dark fill) screen with picker photo, student
+          name, and time window. Teacher taps "Confirm Release" — event logged immediately.</p>
+        <p style="margin-top:8px;"><strong>DECLINED (3C):</strong> Clear rejection with reason. Teacher contacts admin.
+          Emergency override available from admin dashboard.</p>
+        <ul>
+          <li>Designed for gate security with low literacy: visual result first, text second</li>
+          <li>Picker photo shown to allow face match</li>
+          <li>Parent is notified automatically either way</li>
+          <li>Every outcome written to D4 Audit Log</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================================
+     INTERFACE 4: ADMIN DASHBOARD
+     ===================================================================== -->
+  <div class="section-title">Interface 04 — School Administrator Dashboard (Web / Desktop)</div>
+
+  <div class="section-wrap">
+    <div class="screens-row" style="flex-direction:column; gap:32px;">
+
+      <!-- Screen 4A: Main Dashboard -->
+      <div>
+        <div style="margin-bottom:12px;">
+          <div class="wf-section-head">4A — Admin Home Dashboard</div>
+        </div>
+        <div class="desktop-frame">
+          <div class="desktop-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <div class="url-bar"><span class="url-text">safepass.ke/admin/dashboard</span></div>
+          </div>
+          <div class="desktop-body">
+            <div class="desktop-sidebar">
+              <div class="sidebar-logo">
+                <div class="logo-box">SAFEPASS</div>
+              </div>
+              <div class="sidebar-item active">Dashboard</div>
+              <div class="sidebar-item">Pickup Circle Registry</div>
+              <div class="sidebar-item">Authorizations</div>
+              <div class="sidebar-item">Gate Activity</div>
+              <div class="sidebar-item">Reports &amp; Audit</div>
+              <div class="sidebar-item">Emergency Override</div>
+              <div class="sidebar-item">School Settings</div>
+            </div>
+            <div class="desktop-content">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                <div>
+                  <div style="font-size:14px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;">Dashboard
+                  </div>
+                  <div style="font-size:9px;color:#888;letter-spacing:1px;">Moi Kabarak High School · 21 April 2026 —
+                    Closing Day</div>
+                </div>
+                <div class="wf-btn" style="width:auto;padding:0 16px;">+ Emergency Override</div>
+              </div>
+
+              <div class="wf-stat-grid">
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">347</div>
+                  <div class="wf-stat-lbl">Students<br>Enrolled</div>
+                </div>
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">214</div>
+                  <div class="wf-stat-lbl">Authorizations<br>Issued</div>
+                </div>
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">89</div>
+                  <div class="wf-stat-lbl">Students<br>Released</div>
+                </div>
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">12</div>
+                  <div class="wf-stat-lbl">Pending<br>Approvals</div>
+                </div>
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">3</div>
+                  <div class="wf-stat-lbl">Declined<br>Attempts</div>
+                </div>
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">2</div>
+                  <div class="wf-stat-lbl">Emergency<br>Overrides</div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div>
+                  <div class="wf-section-head">Pending Circle Approvals</div>
+                  <div class="wf-card">
+                    <div class="wf-row">
+                      <div class="wf-avatar" style="width:30px;height:30px;font-size:8px;">P·K</div>
+                      <div class="wf-col">
+                        <div class="wf-text-sm" style="font-weight:bold;">Peter Kamau</div>
+                        <div class="wf-text-sm">Grandfather · Student: Kevin K.</div>
+                      </div>
+                      <div class="wf-btn" style="width:auto;padding:0 10px;height:24px;font-size:8px;">Approve</div>
+                    </div>
+                  </div>
+                  <div class="wf-card">
+                    <div class="wf-row">
+                      <div class="wf-avatar" style="width:30px;height:30px;font-size:8px;">A·M</div>
+                      <div class="wf-col">
+                        <div class="wf-text-sm" style="font-weight:bold;">Agnes Mwangi</div>
+                        <div class="wf-text-sm">Aunt · Student: Sarah M.</div>
+                      </div>
+                      <div class="wf-btn" style="width:auto;padding:0 10px;height:24px;font-size:8px;">Approve</div>
+                    </div>
+                  </div>
+                  <div class="wf-btn-outline" style="height:26px;font-size:8px;">View All 12 Pending</div>
+                </div>
+                <div>
+                  <div class="wf-section-head">Live Gate Activity</div>
+                  <div class="wf-card">
+                    <div class="wf-label">4:32 PM</div>
+                    <div class="wf-text-sm">✓ Amina Wanjiku · Released to Faith Njeri</div>
+                  </div>
+                  <div class="wf-card">
+                    <div class="wf-label">4:18 PM</div>
+                    <div class="wf-text-sm">✓ Brian Otieno · Released to mother</div>
+                  </div>
+                  <div class="wf-card" style="border-style:dashed;">
+                    <div class="wf-label">4:05 PM</div>
+                    <div class="wf-text-sm">✗ DECLINED — Token expired · Sarah Mutua</div>
+                  </div>
+                  <div class="wf-btn-outline" style="height:26px;font-size:8px;">View Full Log</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanation 4A -->
+      <div class="screen-info"
+        style="width:100%; max-width:700px; border-top:2px dashed #bbb; padding-top:16px; margin-top:-16px;">
+        <h3>4A — Admin Home Dashboard</h3>
+        <p>The administrator's central command view, designed for a desktop or laptop browser. It gives the school admin
+          a real-time snapshot of the entire closing day operation at a single glance — how many students have been
+          released, how many authorizations are active, any pending Pickup Circle approvals, and a live feed of gate
+          events.</p>
+        <ul>
+          <li><strong>6-stat summary grid</strong> — Total enrolled, authorizations issued, students released, pending
+            approvals, declined attempts, and emergency overrides all visible without scrolling</li>
+          <li><strong>Pending Pickup Circle approvals</strong> — Admin can approve or reject new circle members directly
+            from the dashboard with one click, replacing the current manual paper-based process</li>
+          <li><strong>Live gate activity feed</strong> — Real-time list of every pickup event (authorized, declined,
+            override) as they happen at the gate; replaces the unupdated handwritten register found in field
+            observations</li>
+          <li><strong>Emergency Override shortcut</strong> — Prominent button at the top right, since emergencies
+            require the fastest possible access path</li>
+          <li><strong>Web-based, desktop-first</strong> — Administrators in Kenyan public schools work from desktops or
+            laptops; this screen is not mobile-optimized unlike the parent and teacher interfaces</li>
+        </ul>
+        <div class="note-box" style="margin-top:10px;">
+          <strong>Addresses:</strong> The 72% of administrators who reported having <em>no digital record</em> of past
+          pickup events (questionnaire finding, Chapter 2). Every event shown here is automatically timestamped and
+          stored in D4: Audit Logs.
+        </div>
+      </div>
+
+      <!-- Screen 4B: Emergency Override -->
+      <div>
+        <div style="margin-bottom:12px;">
+          <div class="wf-section-head">4B — Emergency Override</div>
+        </div>
+        <div class="desktop-frame">
+          <div class="desktop-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <div class="url-bar"><span class="url-text">safepass.ke/admin/emergency-override</span></div>
+          </div>
+          <div class="desktop-body">
+            <div class="desktop-sidebar">
+              <div class="sidebar-logo">
+                <div class="logo-box">SAFEPASS</div>
+              </div>
+              <div class="sidebar-item">Dashboard</div>
+              <div class="sidebar-item">Pickup Circle Registry</div>
+              <div class="sidebar-item">Authorizations</div>
+              <div class="sidebar-item">Gate Activity</div>
+              <div class="sidebar-item">Reports &amp; Audit</div>
+              <div class="sidebar-item active">Emergency Override</div>
+              <div class="sidebar-item">School Settings</div>
+            </div>
+            <div class="desktop-content">
+              <div
+                style="font-size:14px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">
+                Emergency Override</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                <div>
+                  <div class="wf-section-head">Student Search</div>
+                  <div class="wf-input" style="height:32px;">Search by name or admission number...</div>
+                  <div class="wf-card-dark">
+                    <div class="wf-label">Student Found</div>
+                    <div class="wf-text-lg">Kevin Kamau</div>
+                    <div class="wf-text-sm">Form 2B · Adm: 2024/0089</div>
+                  </div>
+                  <div class="wf-section-head" style="margin-top:12px;">Emergency Picker Details</div>
+                  <div class="wf-label">National ID Number</div>
+                  <div class="wf-input">ID: XXXXXXXX</div>
+                  <div class="wf-label">Phone Number</div>
+                  <div class="wf-input">+254 7XX XXX XXX</div>
+                  <div class="wf-label">Relationship to Student</div>
+                  <div class="wf-input">Grandfather</div>
+                </div>
+                <div>
+                  <div class="wf-section-head">Override Details</div>
+                  <div class="wf-label">Reason for Override (logged in audit trail)</div>
+                  <div class="wf-input" style="height:64px;">Medical emergency — student injured during football match.
+                    Father unreachable...</div>
+                  <div class="wf-label">Token Validity</div>
+                  <div class="wf-select" style="width:100%;">30 minutes from now</div>
+                  <div class="wf-section-head" style="margin-top:12px;">Notifications</div>
+                  <div class="wf-card">
+                    <div class="wf-text-sm">✓ Parent (John Kamau) will be notified via SMS</div>
+                    <div class="wf-text-sm">✓ Override reason logged with admin ID + timestamp</div>
+                    <div class="wf-text-sm">✓ Principal signature required if parent unreachable</div>
+                  </div>
+                  <div class="wf-btn" style="margin-top:10px;">Generate Emergency Token</div>
+                  <div class="wf-btn-outline">Cancel</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanation 4B -->
+      <div class="screen-info"
+        style="width:100%; max-width:700px; border-top:2px dashed #bbb; padding-top:16px; margin-top:-16px;">
+        <h3>4B — Emergency Override</h3>
+        <p>A dedicated admin-only screen that handles the most critical and sensitive scenario in SafePass — releasing a
+          student to a person who is <em>not</em> on the pre-approved Pickup Circle due to an urgent, unforeseen
+          situation. This directly replaces the dangerous verbal phone authorizations described in As-Is Scenario 2
+          (Kevin Kamau's medical emergency).</p>
+        <ul>
+          <li><strong>Student search</strong> — Admin finds the student quickly by name or admission number; student
+            details are confirmed before proceeding to prevent errors under pressure</li>
+          <li><strong>Emergency picker details</strong> — Admin enters the emergency picker's National ID, phone number,
+            and relationship to the student — all logged permanently in the audit trail</li>
+          <li><strong>Mandatory reason field</strong> — Admin must state the reason for the override in writing. This
+            creates the accountability and legal record that was completely absent in the old verbal phone authorization
+            system where principals had "no way to record or document" their decision</li>
+          <li><strong>30-minute token validity</strong> — Emergency tokens are short-lived by design; the narrow time
+            window limits misuse while remaining practical for the real situation</li>
+          <li><strong>Automatic parent notification</strong> — Parent receives an SMS the moment the override is issued,
+            ensuring full transparency even if they were the ones who triggered the request</li>
+          <li><strong>Principal fallback clause</strong> — If the parent cannot be reached for notification, the system
+            flags this and requires a physical principal signature as a backup accountability measure</li>
+        </ul>
+        <div class="note-box" style="margin-top:10px;">
+          <strong>Addresses UC-04:</strong> The emergency override use case — covering Mzee Peter's scenario where an
+          unlisted grandfather needed to collect an injured Kevin Kamau but was turned away at the gate because no
+          digital mechanism existed to authorize him in real time.
+        </div>
+      </div>
+
+      <!-- Screen 4C: Audit Logs & Reports -->
+      <div>
+        <div style="margin-bottom:12px;">
+          <div class="wf-section-head">4C — Audit Logs &amp; Reports</div>
+        </div>
+        <div class="desktop-frame">
+          <div class="desktop-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <div class="url-bar"><span class="url-text">safepass.ke/admin/reports</span></div>
+          </div>
+          <div class="desktop-body">
+            <div class="desktop-sidebar">
+              <div class="sidebar-logo">
+                <div class="logo-box">SAFEPASS</div>
+              </div>
+              <div class="sidebar-item">Dashboard</div>
+              <div class="sidebar-item">Pickup Circle Registry</div>
+              <div class="sidebar-item">Authorizations</div>
+              <div class="sidebar-item">Gate Activity</div>
+              <div class="sidebar-item active">Reports &amp; Audit</div>
+              <div class="sidebar-item">Emergency Override</div>
+              <div class="sidebar-item">School Settings</div>
+            </div>
+            <div class="desktop-content">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                <div style="font-size:14px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;">Reports &amp;
+                  Audit Logs</div>
+                <div style="display:flex;gap:8px;">
+                  <div class="wf-btn" style="width:auto;padding:0 14px;height:30px;font-size:9px;">Export PDF</div>
+                  <div class="wf-btn" style="width:auto;padding:0 14px;height:30px;font-size:9px;">Export CSV</div>
+                </div>
+              </div>
+              <div class="wf-filter-row">
+                <div class="wf-filter active">All Events</div>
+                <div class="wf-filter">Authorized</div>
+                <div class="wf-filter">Declined</div>
+                <div class="wf-filter">Emergency</div>
+                <div class="wf-input" style="height:28px;width:140px;margin:0;">Date range...</div>
+                <div class="wf-input" style="height:28px;width:120px;margin:0;">Student name...</div>
+              </div>
+              <table class="wf-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Student</th>
+                    <th>Picker</th>
+                    <th>Auth By (Parent)</th>
+                    <th>Event</th>
+                    <th>Result</th>
+                    <th>Token Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>21 April · 4:32 PM</td>
+                    <td>Amina Wanjiku · F3A</td>
+                    <td>Faith Njeri</td>
+                    <td>Grace Wanjiku</td>
+                    <td>Closing Day</td>
+                    <td><span class="wf-badge">✓ AUTHORIZED</span></td>
+                    <td>QR</td>
+                  </tr>
+                  <tr>
+                    <td>21 April · 4:18 PM</td>
+                    <td>Brian Otieno · F3C</td>
+                    <td>Mary Otieno</td>
+                    <td>James Otieno</td>
+                    <td>Closing Day</td>
+                    <td><span class="wf-badge">✓ AUTHORIZED</span></td>
+                    <td>QR</td>
+                  </tr>
+                  <tr>
+                    <td>21 April · 4:05 PM</td>
+                    <td>Sarah Mutua · F2A</td>
+                    <td>Unknown</td>
+                    <td>—</td>
+                    <td>Closing Day</td>
+                    <td><span class="wf-badge" style="border-color:#666;">✗ DECLINED</span></td>
+                    <td>OTP (expired)</td>
+                  </tr>
+                  <tr>
+                    <td>21 April · 3:40 PM</td>
+                    <td>Kevin Kamau · F2B</td>
+                    <td>Peter Kamau</td>
+                    <td>Admin Override</td>
+                    <td>Emergency</td>
+                    <td><span class="wf-badge">⚠ OVERRIDE</span></td>
+                    <td>SMS OTP</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:14px;">
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">89</div>
+                  <div class="wf-stat-lbl">Released Today</div>
+                  <div class="wf-progress" style="margin-top:6px;">
+                    <div class="wf-progress-fill" style="width:60%;"></div>
+                  </div>
+                  <div class="wf-stat-lbl">of 147 total</div>
+                </div>
+                <div class="wf-stat-box">
+                  <div class="wf-stat-num">~68s</div>
+                  <div class="wf-stat-lbl">Avg Gate Time</div>
+                </div>
+                <div class="wf-stat-box">
+                  <div class="wf-num" style="font-size:9px;color:#888;margin-top:8px;">Ministry of
+                    Education<br>compliance export</div>
+                  <div class="wf-btn" style="width:100%;height:28px;font-size:8px;margin-top:8px;">Generate Report</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explanation 4C -->
+      <div class="screen-info"
+        style="width:100%; max-width:700px; border-top:2px dashed #bbb; padding-top:16px; margin-top:-16px;">
+        <h3>4C — Audit Logs &amp; Reports</h3>
+        <p>The full historical record of every pickup event that has ever passed through SafePass — searchable,
+          filterable, and exportable. This screen directly addresses the most alarming finding from the administrator
+          interviews: <em>"If something happened after a student left with someone, we have no record of who authorised
+            it or when."</em> That gap is permanently closed here.</p>
+        <ul>
+          <li><strong>Timestamped log table</strong> — Every row records the exact time, student name, picker identity,
+            authorizing parent, event type, outcome (Authorized / Declined / Override), and token type (QR or OTP). The
+            full authorization chain is visible for any disputed entry</li>
+          <li><strong>Filter bar</strong> — Admin can filter by event type (Authorized, Declined, Emergency), date
+            range, or student name to quickly locate a specific incident or generate a closing-day summary</li>
+          <li><strong>Export to PDF / CSV</strong> — One-click export for Ministry of Education compliance submissions,
+            internal school records, or investigation documentation — directly supporting the post-Endarasha regulatory
+            environment described in Chapter 1</li>
+          <li><strong>Summary statistics</strong> — Shows students released vs total, average gate processing time (~68
+            seconds vs the 18–25 minutes observed in the field study), and a Ministry compliance report generator</li>
+          <li><strong>Tamper-proof storage</strong> — Records are written to D4: Audit Logs (as shown in the Level 1
+            DFD) and cannot be edited after the fact; disputes show the original authorization chain including parent
+            confirmation timestamp</li>
+        </ul>
+        <div class="note-box" style="margin-top:10px;">
+          <strong>Addresses UC-05 &amp; Ministry alignment:</strong> Supports the Phase 5 recommendation to integrate
+          SafePass audit logs with the national school safety compliance framework established following the 2024
+          boarding school safety audit that found 348 schools non-compliant.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================================
+     LEGEND & ANNOTATIONS
+     ===================================================================== -->
+  <div class="section-title">Wireframe Legend &amp; Design Annotations</div>
+  <div class="section-wrap" style="background:#fafafa;">
+    <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:32px;flex-wrap:wrap;">
+      <div>
+        <div class="wf-section-head">Wireframe Elements</div>
+        <div class="wf-row" style="margin-bottom:8px;">
+          <div class="wf-input" style="width:80px;margin:0;">[ Input ]</div>
+          <div class="wf-text-sm" style="margin-left:8px;">Text input field</div>
+        </div>
+        <div class="wf-row" style="margin-bottom:8px;">
+          <div class="wf-btn" style="width:80px;height:24px;font-size:8px;">Button</div>
+          <div class="wf-text-sm" style="margin-left:8px;">Primary CTA</div>
+        </div>
+        <div class="wf-row" style="margin-bottom:8px;">
+          <div class="wf-btn-outline" style="width:80px;height:24px;font-size:8px;">Button</div>
+          <div class="wf-text-sm" style="margin-left:8px;">Secondary action</div>
+        </div>
+        <div class="wf-row" style="margin-bottom:8px;">
+          <div class="wf-avatar"></div>
+          <div class="wf-text-sm" style="margin-left:8px;">Avatar / Photo placeholder</div>
+        </div>
+        <div class="wf-row" style="margin-bottom:8px;">
+          <div class="wf-qr" style="width:40px;height:40px;margin:0;display:inline-block;"></div>
+          <div class="wf-text-sm" style="margin-left:8px;">QR code placeholder</div>
+        </div>
+        <div class="wf-row">
+          <div class="wf-badge">Badge</div>
+          <div class="wf-text-sm" style="margin-left:8px;">Status badge</div>
+        </div>
+      </div>
+      <div>
+        <div class="wf-section-head">Key Design Decisions</div>
+        <div class="note-box">
+          <strong>No passwords</strong> — OTP-only login mirrors M-Pesa familiarity (Jakob's Law). No new cognitive
+          load.
+        </div>
+        <div class="note-box" style="margin-top:8px;">
+          <strong>Swahili first</strong> — All notifications and USSD menus in Swahili (primary) with English toggle.
+          Not a secondary option.
+        </div>
+        <div class="note-box" style="margin-top:8px;">
+          <strong>Offline-capable gate</strong> — Teacher's QR scan works without live internet. Critical for rural
+          school gates with intermittent connectivity.
+        </div>
+        <div class="note-box" style="margin-top:8px;">
+          <strong>Large touch targets</strong> — Confirm Release button is full-width. Designed for elderly users and
+          high-pressure closing day environments.
+        </div>
+      </div>
+      <div>
+        <div class="wf-section-head">User Coverage</div>
+        <div class="wf-card" style="margin-bottom:8px;">
+          <div class="wf-text-sm" style="font-weight:bold;">👩 Parent / Guardian</div>
+          <div class="wf-text-sm">Screens 1A, 1B, 1C, 1D + Notifications</div>
+        </div>
+        <div class="wf-card" style="margin-bottom:8px;">
+          <div class="wf-text-sm" style="font-weight:bold;">🚶 Authorized Picker</div>
+          <div class="wf-text-sm">Screens 2A (app) + 2B (USSD/feature phone)</div>
+        </div>
+        <div class="wf-card" style="margin-bottom:8px;">
+          <div class="wf-text-sm" style="font-weight:bold;">👩‍🏫 Class Teacher / Gate</div>
+          <div class="wf-text-sm">Screens 3A (scan) + 3B (auth) + 3C (declined)</div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-text-sm" style="font-weight:bold;">🏫 School Administrator</div>
+          <div class="wf-text-sm">Screens 4A (dashboard) + 4B (override) + 4C (audit)</div>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="wf-section-head">Use Cases Covered</div>
+          <div class="wf-tag">UC-01 Register</div>
+          <div class="wf-tag">UC-02 Authorize</div>
+          <div class="wf-tag">UC-03 Gate Verify</div>
+          <div class="wf-tag">UC-04 Emergency</div>
+          <div class="wf-tag">UC-05 Audit</div>
+          <div class="wf-tag">UC-06 USSD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div
+    style="background:#1a1a1a;color:#666;text-align:center;padding:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;">
+    SafePass · Low Fidelity Prototype · INTE 451 Group Project · March 2026
+    &nbsp;·&nbsp; All screens are wireframe placeholders — no color, no real imagery, structure &amp; flow only
+  </div>
+
+</body>
+
+</html>

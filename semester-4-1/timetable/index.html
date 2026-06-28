@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam Timetable</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Signika:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --accent: #AA4C39;
+      --accent2: #d07527;
+      --amber: #e56707;
+      --bg: #fdf6ee;
+      --card-bg: #fdf6ee;
+      --brown-text: #452302;
+      --brown-light: #76562b;
+      --brown-dark: #382409;
+      --green: rgb(41, 155, 45);
+      --navbar-bg: #fdf2e4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: var(--navbar-bg);
+      border-bottom: 1px solid rgba(170, 76, 57, 0.15);
+      padding: 0.8rem 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(170, 76, 57, 0.08);
+    }
+
+    .navbar .container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar h2 {
+      font-family: 'Signika', sans-serif;
+      font-size: 1.1rem;
+      color: var(--brown-text);
+      font-weight: 700;
+    }
+
+    .menu-link {
+      color: var(--brown-text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .menu-link:hover {
+      color: var(--accent);
+    }
+
+    /* COUNTDOWN */
+    #active-countdown-section {
+      max-width: 680px;
+      margin: 24px auto 0;
+      background: linear-gradient(135deg, #fff8f0, #ffe8d0);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      padding: 22px 20px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(170, 76, 57, 0.13);
+      display: none;
+    }
+
+    #active-countdown-section h3 {
+      font-family: 'Signika', sans-serif;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 3px;
+    }
+
+    .cd-label {
+      font-size: 0.8rem;
+      color: var(--brown-light);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .cd-status {
+      font-size: 0.88rem;
+      color: var(--brown-text);
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .cd-status.in-exam {
+      color: var(--green);
+    }
+
+    .flipdown {
+      display: inline-flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .rotor-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .rotor-group-label {
+      font-size: 0.7rem;
+      color: var(--accent2);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .rotor-box {
+      background: var(--accent);
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      width: 56px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-family: 'Signika', sans-serif;
+      box-shadow: 0 4px 12px rgba(170, 76, 57, 0.25);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    .rotor-box.in-exam-mode {
+      background: var(--green);
+      box-shadow: 0 4px 12px rgba(41, 155, 45, 0.3);
+    }
+
+    .rotor-sep {
+      font-size: 1.6rem;
+      color: var(--accent);
+      font-weight: 700;
+      align-self: flex-end;
+      margin-bottom: 18px;
+      padding: 0 2px;
+    }
+
+    /* TIMELINE */
+    .timeline-wrapper {
+      max-width: 700px;
+      margin: 28px auto 60px;
+      padding: 0 16px;
+    }
+
+    .timeline-title {
+      font-family: 'Signika', sans-serif;
+      font-size: 1.4rem;
+      color: #6a4a22;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .uli {
+      --col-gap: 1.2rem;
+      --row-gap: 1.6rem;
+      --line-w: 0.25rem;
+      display: grid;
+      grid-template-columns: var(--line-w) 1fr;
+      column-gap: var(--col-gap);
+      list-style: none;
+      width: 100%;
+    }
+
+    .uli::before {
+      content: "";
+      grid-column: 1;
+      grid-row: 1 / span 30;
+      background: rgb(220, 220, 220);
+      border-radius: calc(var(--line-w) / 2);
+    }
+
+    .uli li:not(:last-child) {
+      margin-bottom: var(--row-gap);
+    }
+
+    .uli li {
+      grid-column: 2;
+      --inlineP: 1.5rem;
+      margin-inline: var(--inlineP);
+      grid-row: span 2;
+      display: grid;
+      grid-template-rows: min-content min-content min-content min-content;
+      transition: opacity 0.4s;
+    }
+
+    .uli li.completed {
+      opacity: 0.5;
+    }
+
+    .uli li .date {
+      --dateH: 3rem;
+      height: var(--dateH);
+      margin-inline: calc(var(--inlineP) * -1);
+      text-align: center;
+      background-color: var(--accent-color);
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      display: grid;
+      place-content: center;
+      position: relative;
+      border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
+    }
+
+    .uli li .date::before {
+      content: "";
+      width: var(--inlineP);
+      aspect-ratio: 1;
+      background: var(--accent-color);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
+      position: absolute;
+      top: 100%;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      right: 0;
+    }
+
+    .uli li .date::after {
+      content: "";
+      position: absolute;
+      width: 1.5rem;
+      aspect-ratio: 1;
+      background: var(--bg);
+      border: 0.3rem solid var(--accent-color);
+      border-radius: 50%;
+      top: 50%;
+      transform: translate(50%, -50%);
+      right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+    }
+
+    .uli li .title,
+    .uli li .descr {
+      background: var(--card-bg);
+      position: relative;
+      padding-inline: 1rem;
+    }
+
+    .uli li .title {
+      overflow: hidden;
+      padding-block-start: 1.4rem;
+      padding-block-end: 0.9rem;
+      font-weight: 700;
+      color: var(--brown-light);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .uli li .descr {
+      padding-block-end: 0.6rem;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--brown-dark);
+    }
+
+    .uli li .title::before,
+    .uli li .descr::before {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 0.3rem;
+      background: rgba(139, 69, 19, 0.2);
+      left: 50%;
+      border-radius: 50%;
+      filter: blur(4px);
+      transform: translate(-50%, 50%);
+    }
+
+    .uli li .title::before {
+      bottom: calc(100% + 0.125rem);
+    }
+
+    .uli li .descr::before {
+      z-index: -1;
+      bottom: 0.25rem;
+    }
+
+    .exam-actions {
+      background: var(--card-bg);
+      padding: 0 1rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-complete {
+      padding: 7px 18px;
+      background: var(--green);
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      box-shadow: 0 0 10px rgba(87, 233, 141, 0.4);
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-complete:hover {
+      background: #228b22;
+      transform: scale(1.04);
+    }
+
+    .completed-badge {
+      display: none;
+      padding: 7px 20px;
+      background: var(--green);
+      color: #fff;
+      border: 2px solid white;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 0 10px rgba(87, 233, 141, 0.6);
+      align-items: center;
+      gap: 6px;
+    }
+
+    .uli li.completed .completed-badge {
+      display: flex;
+    }
+
+    .uli li.completed .btn-complete {
+      display: none;
+    }
+
+    /* Status pills */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .pill-upcoming {
+      background: #fff3cd;
+      color: #7a5000;
+      border: 1px solid #ffd050;
+    }
+
+    .pill-live {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #28a745;
+      animation: pulse-green 1.5s infinite;
+    }
+
+    .pill-ended {
+      background: #e2e3e5;
+      color: #555;
+      border: 1px solid #ccc;
+    }
+
+    @keyframes pulse-green {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(40, 167, 69, 0);
+      }
+    }
+
+    @media (min-width: 40rem) {
+      .uli {
+        grid-template-columns: 1fr var(--line-w) 1fr;
+      }
+
+      .uli::before {
+        grid-column: 2;
+      }
+
+      .uli li:nth-child(odd) {
+        grid-column: 1;
+      }
+
+      .uli li:nth-child(even) {
+        grid-column: 3;
+      }
+
+      .uli li:nth-child(2) {
+        grid-row: 2/4;
+      }
+
+      .uli li:nth-child(odd) .date::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+        left: 0;
+      }
+
+      .uli li:nth-child(odd) .date::after {
+        transform: translate(-50%, -50%);
+        left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+      }
+
+      .uli li:nth-child(odd) .date {
+        border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+      }
+    }
+
+    /* TOAST */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+      max-width: 90vw;
+      text-align: center;
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ALL DONE */
+    #all-done-banner {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #d4edda, #b8dfc0);
+      border-radius: 20px;
+      max-width: 500px;
+      margin: 24px auto;
+      border: 2px solid #28a745;
+    }
+
+    #all-done-banner h2 {
+      color: #155724;
+      font-family: 'Signika', sans-serif;
+      font-size: 1.4rem;
+    }
+
+    #all-done-banner p {
+      color: #1a6a30;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <h2>📚 Exam Timetable</h2>
+      <a class="menu-link" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i> Go Back
+      </a>
+    </div>
+  </nav>
+
+  <div id="timetablePopup">
+
+    <!-- AUTO COUNTDOWN -->
+    <div id="active-countdown-section">
+      <h3 id="cd-exam-name">Next Exam</h3>
+      <div class="cd-label" id="cd-exam-detail">—</div>
+      <div class="flipdown">
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-days">00</div>
+          <div class="rotor-group-label">Days</div>
+        </div>
+        <div class="rotor-sep">:</div>
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-hours">00</div>
+          <div class="rotor-group-label">Hours</div>
+        </div>
+        <div class="rotor-sep">:</div>
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-minutes">00</div>
+          <div class="rotor-group-label">Mins</div>
+        </div>
+        <div class="rotor-sep">:</div>
+        <div class="rotor-group">
+          <div class="rotor-box" id="cd-seconds">00</div>
+          <div class="rotor-group-label">Secs</div>
+        </div>
+      </div>
+      <div class="cd-status" id="cd-status-text"></div>
+    </div>
+
+    <!-- ALL DONE -->
+    <div id="all-done-banner">
+      <h2>🎉 All Exams Done!</h2>
+      <p>You've crushed every unit. Time to celebrate!</p>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline-wrapper">
+      <h1 class="timeline-title">Exam Timetable</h1>
+      <ul class="uli" id="exam-list">
+
+        <!-- 0: Thu 9th — Mobile Applications Programming 11:30–13:30 -->
+        <li style="--accent-color:#7b3f9e" id="exam-0">
+          <div class="date">Thursday, 9th April</div>
+          <div class="title">
+            11:30 AM – 1:30 PM
+            <span class="pill pill-upcoming" id="pill-0">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Mobile Applications Programming
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> Convocation Hall, Door 2
+          </div>
+          <div class="exam-actions">
+            <button class="btn-complete" onclick="markComplete(0)"><i class="fas fa-check"></i> Mark Complete</button>
+            <span class="completed-badge"><i class="fas fa-check"></i> Nailed It!</span>
+          </div>
+        </li>
+
+        <!-- 1: Thu 9th — Software Evolution 16:00–18:00 -->
+        <li style="--accent-color:#AA4C39" id="exam-1">
+          <div class="date">Thursday, 9th April</div>
+          <div class="title">
+            4:00 PM – 6:00 PM
+            <span class="pill pill-upcoming" id="pill-1">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Software Evolution
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> Convocation Hall, Door 2
+          </div>
+          <div class="exam-actions">
+            <button class="btn-complete" onclick="markComplete(1)"><i class="fas fa-check"></i> Mark Complete</button>
+            <span class="completed-badge"><i class="fas fa-check"></i> Nailed It!</span>
+          </div>
+        </li>
+
+        <!-- 2: Mon 13th — Multimedia Systems 9:00–11:00 -->
+        <li style="--accent-color:#1a6fa8" id="exam-2">
+          <div class="date">Monday, 13th April</div>
+          <div class="title">
+            9:00 AM – 11:00 AM
+            <span class="pill pill-upcoming" id="pill-2">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Multimedia Systems
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> Convocation Hall, Door 2
+          </div>
+          <div class="exam-actions">
+            <button class="btn-complete" onclick="markComplete(2)"><i class="fas fa-check"></i> Mark Complete</button>
+            <span class="completed-badge"><i class="fas fa-check"></i> Nailed It!</span>
+          </div>
+        </li>
+
+        <!-- 3: Mon 13th — Network Administration 14:00–16:00 -->
+        <li style="--accent-color:#7b3f9e" id="exam-3">
+          <div class="date">Monday, 13th April</div>
+          <div class="title">
+            2:00 PM – 4:00 PM
+            <span class="pill pill-upcoming" id="pill-3">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Network Administration
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> Convocation Hall, Door 2
+          </div>
+          <div class="exam-actions">
+            <button class="btn-complete" onclick="markComplete(3)"><i class="fas fa-check"></i> Mark Complete</button>
+            <span class="completed-badge"><i class="fas fa-check"></i> Nailed It!</span>
+          </div>
+        </li>
+
+        <!-- 4: Fri 17th — User Interface Design 11:30–13:30 -->
+        <li style="--accent-color:#AA4C39" id="exam-4">
+          <div class="date">Friday, 17th April</div>
+          <div class="title">
+            11:30 AM – 1:30 PM
+            <span class="pill pill-upcoming" id="pill-4">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> User Interface Design
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> Convocation Hall, Door 2
+          </div>
+          <div class="exam-actions">
+            <button class="btn-complete" onclick="markComplete(4)"><i class="fas fa-check"></i> Mark Complete</button>
+            <span class="completed-badge"><i class="fas fa-check"></i> Nailed It!</span>
+          </div>
+        </li>
+
+        <!-- 5: Fri 17th — Artificial Intelligence 16:00–18:00 -->
+        <li style="--accent-color:#c46800" id="exam-5">
+          <div class="date">Friday, 17th April</div>
+          <div class="title">
+            4:00 PM – 6:00 PM
+            <span class="pill pill-upcoming" id="pill-5">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Artificial Intelligence
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> Convocation Hall, Door 2
+          </div>
+          <div class="exam-actions">
+            <button class="btn-complete" onclick="markComplete(5)"><i class="fas fa-check"></i> Mark Complete</button>
+            <span class="completed-badge"><i class="fas fa-check"></i> Nailed It!</span>
+          </div>
+        </li>
+
+        <!-- 6: Tue 21st — Entrepreneurship 14:00–16:00 -->
+        <li style="--accent-color:#5c3566" id="exam-6">
+          <div class="date">Tuesday, 21st April</div>
+          <div class="title">
+            2:00 PM – 4:00 PM
+            <span class="pill pill-upcoming" id="pill-6">Upcoming</span>
+          </div>
+          <div class="descr" style="margin-bottom:-8px;">
+            <b style="color:#452302b3">Unit:</b> Entrepreneurship
+          </div>
+          <div class="descr">
+            <b style="color:#452302b3">Venue:</b> Convocation Hall, Door 2
+          </div>
+          <div class="exam-actions">
+            <button class="btn-complete" onclick="markComplete(6)"><i class="fas fa-check"></i> Mark Complete</button>
+            <span class="completed-badge"><i class="fas fa-check"></i> Nailed It!</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    // ── EXAM DATA — sorted chronologically ──
+    const exams = [
+      { id: 0, name: "Mobile Applications Programming", day: "Thursday, 9th April", time: "11:30 AM – 1:30 PM", venue: "Convocation Hall, Door 2", start: new Date(2026, 3, 9, 11, 30, 0), end: new Date(2026, 3, 9, 13, 30, 0) },
+      { id: 1, name: "Software Evolution", day: "Thursday, 9th April", time: "4:00 PM – 6:00 PM", venue: "Convocation Hall, Door 2", start: new Date(2026, 3, 9, 16, 0, 0), end: new Date(2026, 3, 9, 18, 0, 0) },
+      { id: 2, name: "Multimedia Systems", day: "Monday, 13th April", time: "9:00 AM – 11:00 AM", venue: "Convocation Hall, Door 2", start: new Date(2026, 3, 13, 9, 0, 0), end: new Date(2026, 3, 13, 11, 0, 0) },
+      { id: 3, name: "Network Administration", day: "Monday, 13th April", time: "2:00 PM – 4:00 PM", venue: "Convocation Hall, Door 2", start: new Date(2026, 3, 13, 14, 0, 0), end: new Date(2026, 3, 13, 16, 0, 0) },
+      { id: 4, name: "User Interface Design", day: "Friday, 17th April", time: "11:30 AM – 1:30 PM", venue: "Convocation Hall, Door 2", start: new Date(2026, 3, 17, 11, 30, 0), end: new Date(2026, 3, 17, 13, 30, 0) },
+      { id: 5, name: "Artificial Intelligence", day: "Friday, 17th April", time: "4:00 PM – 6:00 PM", venue: "Convocation Hall, Door 2", start: new Date(2026, 3, 17, 16, 0, 0), end: new Date(2026, 3, 17, 18, 0, 0) },
+      { id: 6, name: "Entrepreneurship", day: "Tuesday, 21st April", time: "2:00 PM – 4:00 PM", venue: "Convocation Hall, Door 2", start: new Date(2026, 3, 21, 14, 0, 0), end: new Date(2026, 3, 21, 16, 0, 0) },
+    ];
+
+    let completed = JSON.parse(localStorage.getItem('exam_completed') || '[]');
+    let smsAlertSent = JSON.parse(localStorage.getItem('sms_alerts_sent') || '[]');
+    const smsPhone = '+254745179023';
+    let activeIdx = null;
+    let cdInterval = null;
+
+    // ─────────────────────────────────────────
+    // Returns index of: live exam → next upcoming → -1 (all done)
+    function findTargetExam() {
+      const now = new Date();
+      for (let i = 0; i < exams.length; i++) {
+        if (completed.includes(i)) continue;
+        if (now >= exams[i].start && now < exams[i].end) return i; // live
+      }
+      for (let i = 0; i < exams.length; i++) {
+        if (completed.includes(i)) continue;
+        if (now < exams[i].start) return i; // next upcoming
+      }
+      return -1;
+    }
+
+    // Called every minute + on init + after markComplete
+    function autoCountdown() {
+      const idx = findTargetExam();
+      if (idx === -1) { checkAllDone(); return; }
+      if (idx === activeIdx) return; // already on it
+      startCountdown(idx);
+    }
+
+    function startCountdown(idx) {
+      if (cdInterval) clearInterval(cdInterval);
+      activeIdx = idx;
+      document.getElementById('active-countdown-section').style.display = 'block';
+      const exam = exams[idx];
+      document.getElementById('cd-exam-name').textContent = exam.name;
+      document.getElementById('cd-exam-detail').textContent = exam.day + ' · ' + exam.time + ' · ' + exam.venue;
+      tick(idx);
+      cdInterval = setInterval(() => tick(idx), 1000);
+    }
+
+    function tick(idx) {
+      const exam = exams[idx];
+      const now = new Date();
+
+      if (now >= exam.end) {
+        // This exam window has passed — re-evaluate
+        clearInterval(cdInterval);
+        document.getElementById('cd-status-text').textContent = '✅ Done — loading next exam…';
+        setTimeout(() => { activeIdx = null; autoCountdown(); }, 1200);
+        return;
+      }
+
+      let target, statusText, inExam = false;
+      if (now < exam.start) {
+        target = exam.start;
+        statusText = (exam.start - now < 7200000) ? '⚡ Starting soon!' : '📅 Time until exam starts';
+      } else {
+        target = exam.end;
+        inExam = true;
+        statusText = '✍️ Exam in progress — time remaining';
+      }
+
+      const diff = target - now;
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+      document.querySelectorAll('.rotor-box').forEach(b => b.classList.toggle('in-exam-mode', inExam));
+
+      const statusEl = document.getElementById('cd-status-text');
+      statusEl.textContent = statusText;
+      statusEl.className = 'cd-status' + (inExam ? ' in-exam' : '');
+    }
+
+    // ── PILLS ──
+    function refreshPills() {
+      const now = new Date();
+      exams.forEach((exam, i) => {
+        const pill = document.getElementById('pill-' + i);
+        if (!pill) return;
+        if (completed.includes(i)) {
+          pill.className = 'pill pill-ended';
+          pill.textContent = 'Done';
+        } else if (now >= exam.start && now < exam.end) {
+          pill.className = 'pill pill-live';
+          pill.innerHTML = '<i class="fas fa-circle" style="font-size:0.5rem"></i> Live Now';
+        } else if (now >= exam.end) {
+          pill.className = 'pill pill-ended';
+          pill.textContent = 'Ended';
+        } else {
+          pill.className = 'pill pill-upcoming';
+          pill.textContent = 'Upcoming';
+        }
+      });
+    }
+
+    // ── MARK COMPLETE ──
+    function markComplete(idx) {
+      if (completed.includes(idx)) return;
+      completed.push(idx);
+      localStorage.setItem('exam_completed', JSON.stringify(completed));
+      document.getElementById('exam-' + idx)?.classList.add('completed');
+      refreshPills();
+      showToast('🎉 ' + exams[idx].name + ' marked complete!');
+      if (activeIdx === idx) {
+        clearInterval(cdInterval);
+        activeIdx = null;
+        setTimeout(autoCountdown, 800);
+      } else {
+        checkAllDone();
+      }
+    }
+
+    // ── ALL DONE ──
+    function checkAllDone() {
+      if (exams.every((_, i) => completed.includes(i))) {
+        document.getElementById('all-done-banner').style.display = 'block';
+        document.getElementById('active-countdown-section').style.display = 'none';
+        if (cdInterval) clearInterval(cdInterval);
+      }
+    }
+
+    // ── SMS ALERTS ──
+    function checkSMSAlerts() {
+      const now = new Date();
+      exams.forEach((exam, idx) => {
+        if (completed.includes(idx) || smsAlertSent.includes(idx)) return;
+        const h = (exam.start - now) / 3600000;
+        if (h > 0 && h <= 1.05) triggerAlert(exam, idx, Math.round(h * 60) + ' minutes');
+        else if (h > 23.5 && h <= 24.5) triggerAlert(exam, idx, '24 hours');
+      });
+    }
+
+    function triggerAlert(exam, idx, label) {
+      smsAlertSent.push(idx);
+      localStorage.setItem('sms_alerts_sent', JSON.stringify(smsAlertSent));
+      const msg = `📱 EXAM ALERT: "${exam.name}" in ${label}! Venue: ${exam.venue}`;
+      showToast(msg, 6000);
+      if ('Notification' in window) {
+        Notification.requestPermission().then(p => {
+          if (p === 'granted') new Notification('📚 Exam Reminder', { body: `${exam.name} starts in ${label}!\n${exam.venue}` });
+        });
+      }
+      console.log('[ALERT →', smsPhone, ']', msg);
+    }
+
+    // ── TOAST ──
+    function showToast(msg, duration = 3500) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), duration);
+    }
+
+    // ── BOOT ──
+    document.addEventListener('DOMContentLoaded', () => {
+      completed.forEach(id => document.getElementById('exam-' + id)?.classList.add('completed'));
+      refreshPills();
+      autoCountdown();
+      setInterval(autoCountdown, 60000);       // re-evaluate every minute
+      setInterval(() => { refreshPills(); checkSMSAlerts(); }, 30000);
+      checkSMSAlerts();
+      if ('Notification' in window && Notification.permission === 'default') {
+        setTimeout(() => Notification.requestPermission(), 2000);
+      }
+    });
+  </script>
+</body>
+
+</html>
