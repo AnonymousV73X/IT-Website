@@ -2,7 +2,7 @@
 
 A comprehensive static website built for BSc. Information Technology students at Kabarak University. Covers all 8 semesters with unit notes, video tutorials, past paper references, quizzes, revision tools, project ideas, and a student utilities hub — all in one place.
 
-The website is live at https://ithub.surge.sh or 
+The website is live at https://ithub.surge.sh or https://anonymousv73x.github.io/IT-Website/
 
 ---
 
