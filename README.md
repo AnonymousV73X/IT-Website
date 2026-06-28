@@ -34,7 +34,7 @@ A comprehensive static website built for BSc. Information Technology students at
 ## 🚀 Deployment
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/bsc-it-kabarak.git
+git clone https://github.com/AnonymousV73X/IT-Website.git
 cd bsc-it-kabarak
 # Open index.html in a browser or deploy via GitHub Pages
 ```
